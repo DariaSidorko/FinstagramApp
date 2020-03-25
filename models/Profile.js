@@ -9,14 +9,16 @@ const ProfileSchema = new Schema({
   handle: {
     type: String,
     required: true,
-    max: 40
+    max: 30
   },
   website: {
     type: String
   },
-  Bio: {
+  bio: {
     type: String
   }
 });
+
+//handle removed
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

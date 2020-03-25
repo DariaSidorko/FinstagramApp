@@ -38,6 +38,10 @@ module.exports = function validateRegisterInput(data) {
     errors.password2 = 'Passwords must match';
   }
 
+  if (isEmpty(data.handle)) {
+    errors.handle = 'User name field is required';
+  }
+
   return {
     errors,
     isValid: isEmpty(errors)

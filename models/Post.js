@@ -10,6 +10,10 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
+  image: {
+    type: String,
+    required: true
+  },
   name: {
     type: String
   },
@@ -46,6 +50,16 @@ const PostSchema = new Schema({
       }
     }
   ],
+
+  bookmarks: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
+
   date: {
     type: Date,
     default: Date.now
