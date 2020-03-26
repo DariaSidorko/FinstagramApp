@@ -10,7 +10,7 @@ module.exports = function validateProfileInput(data) {
   data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-    errors.handle = 'Handle needs to between 2 and 40 characters';
+    errors.handle = 'User name needs to between 2 and 40 characters';
   }
  
 
@@ -20,9 +20,9 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
-  if (Validator.isEmpty(data.bio)) {
+/*   if (Validator.isEmpty(data.bio)) {
     errors.bio = 'Skills field is required';
-  }
+  } */
 
   return {
     errors,
