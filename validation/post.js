@@ -23,7 +23,7 @@ module.exports = function validatePostInput(data) {
   }
 
   if (Validator.isEmpty(data.image)) {
-    errors.image = 'Text field is required';
+    errors.image = 'Image field is required';
   }
 
   return {
