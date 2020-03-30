@@ -28,6 +28,16 @@ const PostSchema = new Schema({
       }
     }
   ],
+  tags:[
+    {
+          user: {
+          type: Schema.Types.ObjectId,
+          ref: 'users'
+        }
+      },
+  ],
+
+
   comments: [
     {
       user: {
