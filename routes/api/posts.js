@@ -155,7 +155,7 @@ router.delete(
     // @desc    Remove Tag from post
     // @access  Private
     router. delete(
-      '/tag/:id/:tag_handle',
+      '/tag/:id/:tag_id',
       passport.authenticate('jwt', { session: false }),
       (req, res) => {
         Post.findOne({ user: req.user.id })
