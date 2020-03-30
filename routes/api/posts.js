@@ -151,7 +151,7 @@ router.delete(
       }
     );
     
-    // @route   DELETE api/posts/tag/:id/:post_id
+    // @route   DELETE api/posts/untag/:post_id
     // @desc    Remove Tag from post
     // @access  Private
     router. delete(
