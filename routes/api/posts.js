@@ -158,12 +158,12 @@ router.delete(
       '/tag/:id/:tag_handle',
       passport.authenticate('jwt', { session: false }),
       (req, res) => {
-        Post.findOne({ handle: req.body.handle })
+        Post.findOne({ user: req.user.id })
           .then(post => {
             // Check to see if Tags exists
             if (
               post.tag.filter(
-                tag => tag._id.toString() === req.params.tag_id
+                tag => tag.user.toString() === req.params.user_id
               ).length === 0
             ) {
               return res
@@ -177,9 +177,9 @@ router.delete(
               .indexOf(req.params.tag_id);
     
             // Splice comment out of array
-            tags.splice(removeIndex, 1);
+            posts.tags.splice(removeIndex, 1);
     
-            post.save().then(post => res.json(post));
+            posts.save().then(post => res.json(post));
           })
           .catch(err => res.status(404).json({ tagsnotfound: 'No tags found' }));
     
