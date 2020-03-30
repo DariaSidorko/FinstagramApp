@@ -118,7 +118,7 @@ router.delete(
 );
 
 /////////////////////////////////////////TAGS in POSTS////////////////////////////////////////////////////
-    //@route Get api/posts/tag/:handle
+    //@route Post api/posts/tag/:handle
     // Tag user in Post
     // @access  Public
 
