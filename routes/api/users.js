@@ -28,9 +28,6 @@ router.post('/register', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const profileFields = {};
-  if (req.body.handle) profileFields.handle = req.body.handle;
-
   const Errors = {};
   User.findOne({email: req.body.email})
   .then(user => {
@@ -61,7 +58,10 @@ router.post('/register', (req, res) => {
         password: req.body.password,
         avatar
       });
-    
+
+      const profileFields = {};
+      profileFields.handle = req.body.handle;
+
       bcrypt.genSalt(10, (err, salt) => {
         if (err) throw err;
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -69,7 +69,6 @@ router.post('/register', (req, res) => {
           newUser.save()
           .then(user => {
             profileFields.user = user._id;
-            console.log(user._id);
             new Profile(profileFields).save().then(profile => res.json(profile));
             res.json(user)
           })
