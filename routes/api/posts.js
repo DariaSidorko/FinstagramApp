@@ -117,6 +117,77 @@ router.delete(
   }
 );
 
+/////////////////////////////////////////TAGS in POSTS////////////////////////////////////////////////////
+    //@route Get api/posts/tag/:handle
+    // Tag user in Post
+    // @access  Public
+
+    router.post(
+      '/tag/:handle',
+      passport.authenticate('jwt', { session: false }),
+      (req, res) => {
+        const { errors, isValid } = validatePostInput(req.body);
+    
+        // Check Validation
+        if (!isValid) {
+          // If any errors, send 400 with errors object
+          return res.status(400).json(errors);
+        }
+    
+        Post.findOne(req.body.handle)
+          .then(post => {
+            const newTag = {
+              text: req.body.text,
+              handle:req.body.handle
+            };
+    
+            // Add to comments array
+            post.tags.unshift(newTag);
+    
+            // Save
+            post.save().then(post => res.json(post));
+          })
+          .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+      }
+    );
+    
+    // @route   DELETE api/posts/tag/:id/:post_id
+    // @desc    Remove Tag from post
+    // @access  Private
+    router. delete(
+      '/tag/:id/:tag_handle',
+      passport.authenticate('jwt', { session: false }),
+      (req, res) => {
+        Post.findOne({ handle: req.body.handle })
+          .then(post => {
+            // Check to see if Tags exists
+            if (
+              post.tag.filter(
+                tag => tag._id.toString() === req.params.tag_id
+              ).length === 0
+            ) {
+              return res
+                .status(404)
+                .json({ tagnotexists: 'Tag does not exist' });
+            }
+    
+            // Get remove index
+            const removeIndex = post.tags
+              .map(item => item._id.toString())
+              .indexOf(req.params.tag_id);
+    
+            // Splice comment out of array
+            tags.splice(removeIndex, 1);
+    
+            post.save().then(post => res.json(post));
+          })
+          .catch(err => res.status(404).json({ tagsnotfound: 'No tags found' }));
+    
+    }
+    )
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 // @route   POST api/posts/like/:id
 // @desc    Like post
 // @access  Private
