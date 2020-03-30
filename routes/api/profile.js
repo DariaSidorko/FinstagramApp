@@ -128,7 +128,7 @@ router.post(
           {$set: profileFields},
           {new: true}
         )
-      }/*  else {
+      }  else {
         //Create
         Profile.findOne({handle: profileFields.handle})
         .then(profile => {
@@ -140,7 +140,7 @@ router.post(
           new Profile(profileFields).save().then(profile => res.json(profile));
         }
         ) 
-      } */
+      } 
     }) 
   });
 
@@ -161,5 +161,127 @@ router.delete(
   }
 );
 
+
+
+/*  ******* NEW FOLLOWING PART *******  */
+
+// @route   POST api/profile/follow/:user_id
+// @desc    Adds user'd ids into folllowong/followers arrays respectfully
+// @access  Private
+router.post(
+  '/follow/:user_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log(req.user)
+    Profile.findOne({user: req.user.id})
+    .then(profile => {
+      if (profile.following.filter(follow => follow.user.toString() === req.params.user_id).length > 0) {
+        return res.status(400).json({ alreadyfollowing: 'You are already following this profile' });
+      } 
+      // Adds user's id of the profile to follow, into "following" array of the current user.
+      profile.following.unshift({ user: req.params.user_id });
+      profile.save().then(profile => res.json(profile));
+
+      Profile.findOne({user: req.params.user_id})
+      .then(profile => {
+        // Adds current user's id into the "followers" array of the profile, this current user start to follow.
+        profile.followers.unshift({ user: req.user.id });
+        profile.save().then(profile => res.json(profile));
+      })
+    })
+    .catch(err => res.status(404).json({ profilenotfound: 'No profile found' }));
+  }
+); 
+
+
+// @route   POST api/profile/unfollow/:user_id
+// @desc    Remove user'd ids into folllowong/followers arrays respectfully
+// @access  Private
+ router.post(
+  '/unfollow/:user_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+      Profile.findOne({user: req.user.id})
+        .then(profile => {
+          if (
+            profile.following.filter(follow => follow.user.toString() === req.params.user_id)
+              .length === 0
+          ) {
+            return res
+              .status(400)
+              .json({ notfollowing: 'You have not yet following this profile' });
+          }
+
+          // Get remove index
+          const removeIndex = profile.following
+            .map(item => item.user.toString())
+            .indexOf(req.user.id);
+          // Splice out of array
+          profile.following.splice(removeIndex, 1);
+          // Save
+          profile.save().then(profile => res.json(profile));
+
+
+          Profile.findOne({user: req.params.user_id})
+          .then(profile => {
+            // Get remove index
+            const removeIndex = profile.followers
+              .map(item => item.user.toString())
+              .indexOf(req.user.id);
+            // Splice out of array
+            profile.followers.splice(removeIndex, 1);
+            // Save
+            profile.save().then(profile => res.json(profile));
+          })
+
+        })
+        .catch(err => res.status(404).json({ profilenotfound: 'No post found' }));
+  }
+); 
+
+
+// @route   GET api/profile/following/:user_id
+// @desc    Get following profiles
+// @access  Private
+
+router.get(
+  "/following",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        if (profile.following.length === 0) {
+          errors.noprofile = "You don't follow any profiles";
+          return res.status(404).json(errors);
+        }
+        res.json(profile.following);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route   GET api/profile/following/:user_id
+// @desc    Get following profiles
+// @access  Private
+
+router.get(
+  "/followers",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        if (profile.followers.length === 0) {
+          errors.noprofile = "You don't follow any profiles";
+          return res.status(404).json(errors);
+        }
+        res.json(profile.followers);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+/*  ******* NEW FOLLOWING PART  - END *******  */
 
 module.exports = router;
