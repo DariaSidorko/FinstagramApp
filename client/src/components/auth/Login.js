@@ -3,7 +3,23 @@ import React, { Component } from 'react'
 class Login extends Component {
   render() {
     return (
-      <div className="login">
+      <div className="wrapper">
+        <div className="main-content">
+          <div className="header">
+            <img src={require("../../img/instagram_logo.png")} />
+          </div>
+          <input type="text" placeholder="Username"/>
+          <input type="password" placeholder="Password" />
+          <input type="button" value="Log in" className="btn" />
+          <div className="fogot-pass">
+            <a className="main-link" href="#">Forgot password?</a>
+          </div>
+        </div>
+        <div className="sub-content">
+            Don't have an account? <a className="sub-link" href="#">Sign up</a>
+        </div>
+      </div>
+/*       <div className="login">
       <div className="container">
         <div className="row">
           <div className="col-md-8 m-auto">
@@ -21,7 +37,7 @@ class Login extends Component {
           </div>
         </div>
       </div>
-    </div>
+    </div> */
   
     )
   }
