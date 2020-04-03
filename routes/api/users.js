@@ -35,6 +35,10 @@ router.post('/register', (req, res) => {
     if(user){
       Errors.email = 'Email already exists';
     } 
+
+    const profileFields = {};
+    profileFields.handle = req.body.handle;
+
     // checking if handle is already being used
     Profile.findOne({ handle: profileFields.handle })
       .then(profile => {
@@ -58,9 +62,6 @@ router.post('/register', (req, res) => {
         password: req.body.password,
         avatar
       });
-
-      const profileFields = {};
-      profileFields.handle = req.body.handle;
 
       bcrypt.genSalt(10, (err, salt) => {
         if (err) throw err;
@@ -89,6 +90,10 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 
+  const {errors, isValid} = validateLoginInput(req.body)
+  if(!isValid){
+    return res.status(400).json(errors);
+  }
 
  const login = {};
  //console.log(Validator.isEmail(req.body.email))
