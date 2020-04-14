@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
@@ -9,20 +9,54 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import store from './store';
 
-function App() {
-  return (
-    <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Footer />
-        </div>
-      </Router>
-    </Provider>
-  );
+import setAuthToken from './utils/setAuthToken';
+import { SET_CURRENT_USER } from './actions/types';
+import jwt_decode from 'jwt-decode';
+import { logoutUser } from './actions/authActions';
+
+
+if(localStorage.jwtToken){
+
+  //decode
+  const decoded = jwt_decode(localStorage.jwtToken);  
+  //check for expired token
+  const currentTime = Date.now()/1000;
+  if (decoded.exp < currentTime){
+    //logout
+    store.dispatch(logoutUser());
+    //redirect user to the login page
+    window.location.href = '/login';
+
+  }
+  //set auth header
+  setAuthToken(localStorage.jwtToken);
+
+  //dispatch call
+  store.dispatch({
+    type: SET_CURRENT_USER,
+    payload: decoded
+  });
+
+
+
+}
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;
