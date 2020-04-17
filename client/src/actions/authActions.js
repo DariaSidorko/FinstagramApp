@@ -1,8 +1,7 @@
 import {SET_CURRENT_USER, SET_ERRORS} from './types'
 import axios from "axios";
 import setAuthToken from '../utils/setAuthToken';
-import jwt_decoded from 'jwt_decoded'
-
+import jwt_decode from 'jwt-decode';
 
 //Register user
 export const registerUser = (userData, history) => dispatch => {
@@ -17,12 +16,13 @@ export const registerUser = (userData, history) => dispatch => {
 }
 
 // Login - get user token
-export const loginUser = userData => {
+export const loginUser = userData => dispatch => {
   axios
   .post('/api/users/login', userData)
   .then(res => {
     const { token } = res.data;
     // save to local storage
+    localStorage.setItem('jwtToken', token);
     // set token to axios auth header
     setAuthToken(token);
     // Decode the token to get the user data
@@ -41,3 +41,16 @@ export const loginUser = userData => {
     )
 }
 
+//Logout user action
+
+export const  logoutUser = () => dispatch => {
+  //Remove from localstorage
+  localStorage.removeItem('jwtToken');
+  //remove from auth header
+  setAuthToken(false);
+  // clean redux store
+  dispatch({
+    type: SET_CURRENT_USER,
+    payload: {}
+  })
+}

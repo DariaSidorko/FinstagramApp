@@ -3,10 +3,10 @@ import axios from 'axios';
 const setAuthToken = token =>{
   if (token) {
     // Apply token to every request
-    axios.defaults.header.common['Authorization'] = token;
+    axios.defaults.headers.common['Authorization'] = token;
   } else {
     // Delete token from header
-    delete axios.defaults.header.common['Authorization'];
+    delete axios.defaults.headers.common['Authorization'];
   }
 } ;
 

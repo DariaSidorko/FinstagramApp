@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
+import Login from '../auth/Login';
+
 
 class Landing extends Component {
   render() {
     return (
-      <div className="landing">
+    <div className="landing">
       <div className="dark-overlay landing-inner text-light">
         <div className="container">
           <div className="row">
@@ -19,7 +21,7 @@ class Landing extends Component {
           </div>
         </div>
       </div>
-    </div>
+    </div>  
     )
   }
 }
