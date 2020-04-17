@@ -1,0 +1,81 @@
+body {
+  font-family: 'Fira Sans', sans-serif;
+  margin: 0;  
+  }  
+
+.topnav-contanier{
+  background: #ffffff;
+  position: fixed;
+  width: 100%;
+  border-bottom: 0.5px solid #e7e7e7;
+}
+
+.topnav {
+max-width: 70%;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.topnav a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/*   .topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #ebeaea;
+  color: white;
+} */
+
+.insta-logo {
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 5px;
+
+}
+
+.topnav-search{
+  height: 25px;
+  margin-top: 14px;
+  margin-left: 240px;
+  max-width: 160px;
+}
+
+.home-btn{
+  color: rgb(51, 51, 51);
+  padding-top: 17px;
+  font-size: 18px;   
+  margin-left: 668px;
+}
+
+.topnav-like-btn {
+  padding-top: 9px;
+  margin-left: 20px;
+}
+
+.like-btn{
+  color: rgb(51, 51, 51);
+  font-size: 18px;
+  padding-top: 9px;
+}
+
+.topnav-avatar {
+  border-radius: 50%;
+  width: 25px;
+  margin-top: 14px;
+  margin-left: 20px;
+}
+
+.logout-btn{
+  color: rgb(51, 51, 51);
+  font-size: 18px;
+  padding-top: 9px;
+}

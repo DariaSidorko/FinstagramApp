@@ -1,3 +1,5 @@
+import '../../css/register-login.css';
+
 import React from 'react';
 import classnames from 'classnames';
 import propTypes from 'prop-types';
@@ -16,7 +18,7 @@ const TextFieldGroup = ({
   return (
     <div>
       <input type={type} 
-      className={classnames('form-control', {'is-invalid': errors})} 
+      className={classnames( {'is-invalid': errors})} 
       placeholder={placeholder} 
       name={name} value={value}  
       onChange={onChange}  
@@ -35,7 +37,7 @@ TextFieldGroup.propTypes = {
   placeholder: propTypes.string,
   value: propTypes.string.isRequired,
   info: propTypes.string,
-  error: propTypes.string,
+  errors: propTypes.string,
   type: propTypes.string.isRequired,
   onChange: propTypes.func.isRequired,
   disabled: propTypes.string

@@ -1,10 +1,13 @@
+import '../../css/register-login.css';
+
 import React, { Component } from 'react'
 import classnames from "classnames";
-
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {loginUser} from '../../actions/authActions';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup'
+
 
 class Login extends Component {
 
@@ -35,13 +38,13 @@ class Login extends Component {
 
   componentDidMount(){
     if(this.props.auth.isAuthenticated){
-      this.props.history.push('/dashboard');
+      this.props.history.push('/profile');
     }
   }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.auth.isAuthenticated){
-      this.props.history.push('/dashboard');
+      this.props.history.push('/profile');
     }
     if(nextProps.errors){
       this.setState({errors: nextProps.errors});
@@ -64,7 +67,7 @@ class Login extends Component {
               name = "email" 
               value = {this.state.email}
               onChange = {this.onChange}
-              errores = {errors.email}
+              errors = {errors.email}
             />
             </div>
             <div>
@@ -73,7 +76,7 @@ class Login extends Component {
               name = "password" 
               value = {this.state.password}
               onChange = {this.onChange}
-              errores = {errors.password}
+              errors = {errors.password}
             />
             </div>
             <input type="submit" value="Log in" className="btn" />
@@ -83,7 +86,7 @@ class Login extends Component {
           </div>
         </div>
         <div className="sub-content">
-            Don't have an account? <a className="sub-link" href="#">Sign up</a>
+            Don't have an account? <Link className="sub-link" to="/register">Sign up</Link>
         </div>
       </div>
 /*       <div className="login">

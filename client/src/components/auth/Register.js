@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import '../../css/register-login.css';
 
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import classnames from "classnames";
 import { connect } from 'react-redux';
 import {registerUser} from '../../actions/authActions';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup'
+
 
 class Register extends Component {
 
@@ -60,7 +63,7 @@ class Register extends Component {
               name = "email" 
               value = {this.state.email}
               onChange = {this.onChange}
-              errores = {errors.email}
+              errors = {errors.email}
             />
           </div>
           <div>
@@ -69,7 +72,7 @@ class Register extends Component {
               name = "name" 
               value = {this.state.name}
               onChange = {this.onChange}
-              errores = {errors.name}
+              errors = {errors.name}
             />
             </div>
             <div>
@@ -78,7 +81,7 @@ class Register extends Component {
               name = "handle" 
               value = {this.state.handle}
               onChange = {this.onChange}
-              errores = {errors.handle}
+              errors = {errors.handle}
             />
           </div>
           <div>
@@ -87,14 +90,14 @@ class Register extends Component {
               name = "password" 
               value = {this.state.password}
               onChange = {this.onChange}
-              errores = {errors.password}
+              errors = {errors.password}
             />
             </div>
           <input type="submit" value="Sign up" className="btn" />
         </form>
       </div>
       <div className="sub-content">
-          Have an account? <a className="sub-link" href="#">Log in</a>
+          Have an account? <Link className="sub-link" to="/login">Log in</Link>
       </div>
     </div>
     )

@@ -7,8 +7,10 @@ import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import store from './store';
+import Profile from './components/profile/Profile';
+import EditProfile from './components/create-edit-profile/CreateEditProfile';
 
+import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { SET_CURRENT_USER } from './actions/types';
 import jwt_decode from 'jwt-decode';
@@ -48,9 +50,11 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={Landing} /> 
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/edit-profile" component={EditProfile} />
             <Footer />
           </div>
         </Router>
