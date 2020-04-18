@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/create-edit-profile/CreateEditProfile';
+import PostFeed from './components/posts/PostFeed';
 
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
@@ -55,6 +56,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/edit-profile" component={EditProfile} />
+            <Route exact path="/post-feed" component={PostFeed}  />
             <Footer />
           </div>
         </Router>

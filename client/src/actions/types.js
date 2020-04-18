@@ -1,4 +1,5 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SET_ERRORS = "SET_ERRORS";
 export const GET_PROFILE = "GET_PROFILE";
+export const PROFILE_LOADING = 'PROFILE_LOADING';
 export const SET_UPDATE_PROFILE = "SET_UPDATE_PROFILE";

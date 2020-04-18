@@ -6,11 +6,11 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  handle: {
+ /*  handle: {
     type: String,
     required: true,
     max: 30
-  },
+  }, */
   website: {
     type: String
   },

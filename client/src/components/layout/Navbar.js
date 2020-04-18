@@ -33,8 +33,10 @@ class Navbar extends Component {
     const authLink = (
       <div className="topnav-contanier">
         <div className="topnav">
-          <Link className="active" to="/feed"><img src={require("../../img/instagram_logo.png")}  alt="logo" className="insta-logo"/></Link>
-          <Link to="/feed" aria-hidden="true"><i className="fa fa-home home-btn black" aria-hidden="true"></i></Link>
+          <Link className="active" to="/post-feed"><img src={require("../../img/instagram_logo.png")}  alt="logo" className="insta-logo"/></Link>
+          <div type="button" className="add-new-post">
+            <button className="btn btn-primary button-post" data-toggle="modal" data-target="#exampleModalCenter"><i className="fas fa-plus"></i></button> </div>
+          <Link to="/post-feed" aria-hidden="true"><i className="fa fa-home home-btn black" aria-hidden="true"></i></Link>
           <Link to="/likes" className="topnav-like-btn" aria-hidden="true"><i className="fas fa-heart like-btn black" aria-hidden="true"></i></Link>
           <Link to="/profile" ><img src={user.avatar} alt={user.name} className="topnav-avatar"/></Link>
           <Link to="/login" className="topnav-like-btn" aria-hidden="true" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></Link>
@@ -47,8 +49,32 @@ class Navbar extends Component {
     return (
        <div>
       {isAuthenticated ? authLink : undefined}
+      
+
+
+<div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalCenterTitle">Create New Post</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-  
+      <div className="modal-body">
+
+        <input type="email" className="form-control" placeholder="Insert Image Link" name="email" /> 
+        <input type="email" className="form-control" placeholder="Write Caption" name="email" /> 
+
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     )
   }
 }

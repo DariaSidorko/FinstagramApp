@@ -2,7 +2,6 @@ import '../../css/register-login.css';
 
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import classnames from "classnames";
 import { connect } from 'react-redux';
 import {registerUser} from '../../actions/authActions';
 import PropTypes from 'prop-types';
@@ -49,12 +48,11 @@ class Register extends Component {
 
   render() {
     const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
-    const { user } = this.props.auth;
     return (
       <div className="wrapper">
       <div className="main-content">
         <div className="header">
-          <img src={require("../../img/instagram_logo.png")} />
+          <img alt="logo" src={require("../../img/instagram_logo.png")} />
         </div>
         <form onSubmit={this.onSubmit}>
           <div>

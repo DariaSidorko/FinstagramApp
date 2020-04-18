@@ -28,7 +28,7 @@ img {
   padding: 0 2rem;
 }
 
-.btn {
+/* .btn {
   display: inline-block;
   font: inherit;
   background: none;
@@ -40,7 +40,7 @@ img {
 
 .btn:focus {
   outline: 0.5rem auto #4d90fe;
-}
+} */
 
 .visually-hidden {
   position: absolute !important;

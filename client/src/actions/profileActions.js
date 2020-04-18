@@ -1,10 +1,16 @@
-
-import { GET_PROFILE, SET_ERRORS } from './types'
 import axios from "axios";
+
+import { 
+  GET_PROFILE, 
+  SET_ERRORS,
+  PROFILE_LOADING
+ } from './types'
+
+
 
 //Get profile
 export const getCurrentProfile = () => dispatch => {
-  //dispatch(setProfileLoading());
+  dispatch(setProfileLoading());
   console.log('action is on!')
   axios
     .get('/api/profile')
@@ -25,10 +31,18 @@ export const getCurrentProfile = () => dispatch => {
 };
 
 
+// Profile loading
+export const setProfileLoading = () => {
+  return {
+    type: PROFILE_LOADING
+  };
+};
+
 
 //Set update profile
 export const updateProfile = (userData, history) => dispatch => {
-  axios.post("/", userData)
+  console.log('Action is on!')
+  axios.post("/api/profile", userData)
   .then(res => history.push('/profile'))
   .catch(err =>
     dispatch({

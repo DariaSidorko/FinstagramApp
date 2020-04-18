@@ -1,7 +1,7 @@
 import '../../css/register-login.css';
 
 import React, { Component } from 'react'
-import classnames from "classnames";
+//import classnames from "classnames";
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {loginUser} from '../../actions/authActions';
@@ -58,7 +58,7 @@ class Login extends Component {
       <div className="wrapper">
         <div className="main-content">
           <div className="header">
-            <img src={require("../../img/instagram_logo.png")} />
+            <img alt="logo" src={require("../../img/instagram_logo.png")} />
           </div>
           <form onSubmit={this.onSubmit}>
             <div>
@@ -82,7 +82,7 @@ class Login extends Component {
             <input type="submit" value="Log in" className="btn" />
           </form>
           <div className="fogot-pass">
-            <a className="main-link" href="#">Forgot password?</a>
+            <Link className="main-link" to="/register">Forgot password?</Link>
           </div>
         </div>
         <div className="sub-content">
