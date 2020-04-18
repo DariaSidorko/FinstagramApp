@@ -13,45 +13,60 @@ class Profile extends Component {
   
 
   componentDidMount() {
-    console.log("Calling the func!")
     this.props.getCurrentProfile();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile === null) {
+   componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
       this.props.history.push('/not-found');
     }
-  }
+  } 
   
   //const { profile, loading } = this.props.profile;
   //{profile.handle && profile.handle || ""}
   // {profile.bio && profile.bio || ""}
+  // console.log("print: ", this.props.profile)
   render() {
-    console.log("print: ", this.props.profile)
+    const  { profile, loading } = this.props.profile;
+    const { user } = this.props.auth;
+
+    let profileContent;
+
+    if (profile === null || loading) {
+      profileContent = (<div className="loader"></div>)
+    } else {
+      profileContent = (
+        <div className="profile">
+          <div className="profile-image">
+            <img src={user.avatar} alt="" />
+          </div>
+          <div className="profile-user-settings">
+            <h1 className="profile-user-name">{profile.handle}</h1>
+            <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
+            <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
+          </div>
+          <div className="profile-stats">
+            <ul>
+              <li><span className="profile-stat-count">164</span> posts</li>
+              <li><span className="profile-stat-count">{profile.followers.length}</span> followers</li>
+              <li><span className="profile-stat-count">{profile.following.length}</span> following</li>
+            </ul>
+          </div>
+          <div className="profile-bio">
+            <div className="profile-real-name">{user.name}</div> 
+            <div>{profile.bio}</div>
+          </div>
+        </div>  
+      )
+    }
+
+
+
     return (
       <div>
         <header>
           <div className="container">
-            <div className="profile">
-              <div className="profile-image">
-                <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="" />
-              </div>
-              <div className="profile-user-settings">
-                <h1 className="profile-user-name">mane</h1>
-                <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
-                <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
-              </div>
-              <div className="profile-stats">
-                <ul>
-                  <li><span className="profile-stat-count">164</span> posts</li>
-                  <li><span className="profile-stat-count">188</span> followers</li>
-                  <li><span className="profile-stat-count">206</span> following</li>
-                </ul>
-              </div>
-              <div className="profile-bio">
-                <p><span className="profile-real-name">Jane Doe</span> bio</p>
-              </div>
-            </div>
+            {profileContent}
           </div>
         </header>
 
@@ -102,6 +117,7 @@ Profile.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   profile: state.profile
 });
 

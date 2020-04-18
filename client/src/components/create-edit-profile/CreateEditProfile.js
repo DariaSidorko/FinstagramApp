@@ -2,21 +2,23 @@
 import '../../css/create-edit-profile.css';
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-
-import classnames from "classnames";
-import {Link} from 'react-router-dom';
-import {loginUser} from '../../actions/authActions';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup'
+
+//import classnames from "classnames";
+import { Link } from 'react-router-dom';
+import { updateProfile } from '../../actions/profileActions';
 
 
-export class CreateEditProfile extends Component {
+
+
+class CreateEditProfile extends Component {
 
 
   constructor() {
     super();
     this.state = {
+      //handle: '',
       name: '',
       website: '',
       bio: '',
@@ -34,6 +36,7 @@ export class CreateEditProfile extends Component {
   onSubmit(e){
     e.preventDefault();
     const userData = {
+      //handle: this.state.handle,
       name: this.state.name,
       website: this.state.website,
       bio: this.state.bio,
@@ -47,6 +50,7 @@ export class CreateEditProfile extends Component {
 placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
   render() {
     const { user } = this.props.auth;
+    const  { profile } = this.props.profile;
 
     return (
       <div className="wrapper-1">
@@ -67,22 +71,22 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                   
                   <div className="row top-row">
                     <div className="col-3 input-lable-wrapper">
-                      <Link to="/profile" ><img src={user.avatar} alt={user.name} className="avatar"/></Link>
+                      <Link to="/profile"><img src={user.avatar} alt={profile.handle} className="avatar"/></Link>
                     </div> 
                     <div className="col-9">
-                      <div className="username">{user.handle}</div>
+                      <div className="username">{profile.handle}</div>
                       <div className="username-disc">to change your profile picture please use gravatar.com</div>
                     </div>    
                   </div>
                   
                   
-                  <form >
+                  <form  onSubmit={this.onSubmit}>
                     <div className="row input-row">
                       <div className="col-3 input-lable-wrapper">
                         <lable className="input-lable" >Name</lable> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.name && user.name || ""} name="email" disabled/> 
+                        <input type="email" className="form-control" placeholder={ user.name && user.name } name="email" disabled/> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -90,7 +94,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                         <lable className="input-lable" >Username</lable> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.name && user.name || ""} name="email" disabled/> 
+                        <input type="handle" className="form-control" placeholder={ user.name && user.name } name="handle"  disabled/> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -98,7 +102,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                         <lable className="input-lable" >Website</lable> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.website && user.website || ""}  name="email" /> 
+                        <input type="website" className="form-control" placeholder={ user.website && user.website }  name="website" value={this.state.website}  onChange={this.onChange}/> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -106,13 +110,13 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                         <lable className="input-lable" >bio</lable> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.bio && user.bio || ""}  name="email" /> 
+                        <input type="bio" className="form-control" placeholder={ user.bio && user.bio }  name="bio" value={this.state.bio}  onChange={this.onChange}/> 
                       </div>
                     </div>
+                    <div className="row justify-content-center submit-btn-row">
+                      <input type="submit" value="Submit" className="submit-btn" />
+                    </div>
                   </form>
-                  <div className="row justify-content-center submit-btn-row">
-                  <input type="submit" value="Submit" className="submit-btn" />
-                  </div>
                 </div>
                 <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"></div>
                 <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
@@ -132,12 +136,17 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
   }
 }
 
+CreateEditProfile.propTypes = {
+  updateProfile: PropTypes.func.isRequired,
+  //profile: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  profile: state.profile,
+  auth: state.auth
 });
 
-export default connect(mapStateToProps)(CreateEditProfile);
+export default connect(mapStateToProps, { updateProfile })(CreateEditProfile);
 
 
 

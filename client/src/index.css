@@ -1,4 +1,4 @@
-
+/* 
 
 .btn {
   display: inline-block;
@@ -6,9 +6,9 @@
   background: none;
   border: none;
   color: inherit;
-  padding: 0;
+  padding: 15px;
   cursor: pointer;
-}
+} */
 
 .btn:focus {
   outline: 0.5rem auto #4d90fe;

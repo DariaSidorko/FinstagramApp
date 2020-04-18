@@ -105,16 +105,17 @@ router.post(
   "/", 
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log("API called")
     const { errors, isValid } = validateProfileInput(req.body);
 
     if(!isValid){
       return res.status(400).json(errors);
     }
-
+    console.log("API called-2")
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (req.body.handle) profileFields.handle = req.body.handle;
+    //if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.bio) profileFields.bio = req.body.bio;
     
@@ -123,15 +124,18 @@ router.post(
     .then(profile => {
       if(profile){
         //Update
+        console.log("update")
+        console.log(profileFields)
         Profile.findOneAndUpdate(
           {user: req.user.id},
           {$set: profileFields},
           {new: true}
-        )
+        ).then(profile => res.json(profile));
       }  else {
         //Create
         Profile.findOne({handle: profileFields.handle})
         .then(profile => {
+          console.log("test")
           if(profile){
             errors.handle = "That user name is already taken";
             return res.status(400).json(errors)

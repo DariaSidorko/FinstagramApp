@@ -179,8 +179,51 @@ else {
 /*  ******* END NEW PART -- LOGIN VIA HANDLE OR EMAIL *******  */  
 
 
+//@route POST api/users/
+//@desc Reset Password
+// access Public
 
+router.post('/passreset',
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
 
+  const {errors, isValid} = validateLoginInput(req.body) //need to change validation
+  if(!isValid){
+    return res.status(400).json(errors);
+  }
+   
+    User.findOne({id: req.user.id})
+    .then(user => {
+
+        bcrypt.compare(req.body.password, user.password)
+          .then(isMatch => {
+            if (isMatch){
+              const newPassword = {
+                password: req.body.password,
+              };
+        
+              bcrypt.genSalt(10, (err, salt) => {
+                if (err) throw err;
+                bcrypt.hash(newPassword.password, salt, (err, hash) => {
+                  newPassword.password = hash;
+                  User.findOneAndUpdate(
+                    {user: req.user.id},
+                    {$set: profileFields},
+                  //newPassword.save()
+                  )
+                  .then(user => res.json(user));
+                  })
+                  .catch(err => console.log(err))
+                  
+                })
+              }
+            else {
+              return res.status(404).json({password: 'Password is incorrect'})
+            }
+        })
+    })
+  .catch(err => console.log(err));
+  })
 
 //@route GET api/posts/current
 //@desc Return current user info
