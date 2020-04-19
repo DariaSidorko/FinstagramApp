@@ -7,28 +7,63 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 
+import { addPost } from '../../actions/postActions'
+
 class Navbar extends Component {
 
   onLogoutClick(e){
     e.preventDefault();
     this.props.logoutUser();
-    console.log(this.props.history);
   }
+
+  constructor() {
+    super();
+    this.state = {
+      text: '',
+      image: '',
+      errors: {}
+    };   
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e){
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e){
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+
+    const newPost = {
+      text: this.state.text,
+      image: this.state.image,
+      name: user.name,
+      avatar: user.avatar,
+      user: user.user,
+    }
+
+    this.props.addPost(newPost)
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+      this.setState({errors: nextProps.errors});
+    }
+  }
+
+
+
+
+/* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} 
+placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
+
 
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    
-/*     const guestLink = (
-      <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Sign Up</Link>
-            </li>
-            <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
-            </li>
-          </ul>
-    ); */
     
     const authLink = (
       <div className="topnav-contanier">
@@ -39,7 +74,7 @@ class Navbar extends Component {
           <Link to="/post-feed" aria-hidden="true"><i className="fa fa-home home-btn black" aria-hidden="true"></i></Link>
           <Link to="/likes" className="topnav-like-btn" aria-hidden="true"><i className="fas fa-heart like-btn black" aria-hidden="true"></i></Link>
           <Link to="/profile" ><img src={user.avatar} alt={user.name} className="topnav-avatar"/></Link>
-          <Link to="/login" className="topnav-like-btn" aria-hidden="true" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></Link>
+          <a href="" className="topnav-like-btn" aria-hidden="true" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></a>
         </div>
       </div>
     );
@@ -62,14 +97,16 @@ class Navbar extends Component {
         </button>
       </div>
       <div className="modal-body">
-
-        <input type="email" className="form-control" placeholder="Insert Image Link" name="email" /> 
-        <input type="email" className="form-control" placeholder="Write Caption" name="email" /> 
-
+        <form onSubmit={this.onSubmit}>
+          <input type="text" className="form-control" placeholder="Insert Image Link" name="email" name="email" 
+            name="image" value={this.state.image}  onChange={this.onChange}/> 
+          <input type="text" className="form-control" placeholder="Write Caption" name="email" name="email" 
+            name="text" value={this.state.text}  onChange={this.onChange}/> 
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" className="btn btn-primary">Post</button>
+        </form>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Post</button>
       </div>
     </div>
   </div>
@@ -81,14 +118,16 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, {logoutUser})(Navbar);
+export default connect(mapStateToProps, {logoutUser, addPost})(Navbar);
 
 
 /*

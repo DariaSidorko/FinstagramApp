@@ -105,13 +105,11 @@ router.post(
   "/", 
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("API called")
     const { errors, isValid } = validateProfileInput(req.body);
 
     if(!isValid){
       return res.status(400).json(errors);
     }
-    console.log("API called-2")
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
