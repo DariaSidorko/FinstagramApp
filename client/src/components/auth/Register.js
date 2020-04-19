@@ -49,7 +49,34 @@ class Register extends Component {
   render() {
     const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
     return (
+
+ 
+
       <div className="wrapper">
+
+        <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              {/*Photo by Jack Church on Unsplash*/}
+            <img className="d-block w-100 img-size" src="https://source.unsplash.com/jKGFqL3llv0/1600x900" alt="First slide" />
+            </div>
+            <div className="dark-overlay"></div>
+            <div className="carousel-item">
+              {/*Photo by Chronis Yan on Unsplash*/}
+            <img className="d-block w-100 img-size" src="https://source.unsplash.com/aDFJ5Fm50IA/1600x900" alt="Second slide" />
+            </div>
+            <div className="dark-overlay"></div>
+            <div className="carousel-item">
+              {/*Photo by Anders Jildén on Unsplash*/}
+              <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1600x900"
+              alt="Third slide" />
+            </div>
+            <div className="dark-overlay"></div>
+          </div>
+          </div>
+
+
+
       <div className="main-content">
         <div className="header">
           <img alt="logo" src={require("../../img/instagram_logo.png")} />
@@ -93,9 +120,10 @@ class Register extends Component {
             </div>
           <input type="submit" value="Sign up" className="btn" />
         </form>
-      </div>
+      
       <div className="sub-content">
           Have an account? <Link className="sub-link" to="/login">Log in</Link>
+      </div>
       </div>
     </div>
     )
