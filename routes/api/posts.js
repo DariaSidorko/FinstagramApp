@@ -12,7 +12,7 @@ const Profile = require('../../models/Profile');
 const validatePostInput = require('../../validation/post');
 
 // @route   GET api/posts
-// @desc    Get posts
+// @desc    Get ALL posts
 // @access  Public
 router.get("/", (req, res) => {
   Post.find()
@@ -70,10 +70,8 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
-
     // Check Validation
     if (!isValid) {
-
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }

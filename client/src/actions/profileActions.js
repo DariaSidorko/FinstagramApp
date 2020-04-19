@@ -11,11 +11,9 @@ import {
 //Get profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
-  console.log('action is on!')
   axios
     .get('/api/profile')
     .then(res => {
-      console.log("data is here: ", res.data)
       dispatch({
         type: GET_PROFILE,
         payload: res.data
@@ -41,7 +39,6 @@ export const setProfileLoading = () => {
 
 //Set update profile
 export const updateProfile = (userData, history) => dispatch => {
-  console.log('Action is on!')
   axios.post("/api/profile", userData)
   .then(res => history.push('/profile'))
   .catch(err =>

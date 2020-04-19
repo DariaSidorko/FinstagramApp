@@ -1,26 +1,31 @@
 /* Base Styles */
 
-:root {
-  font-size: 10px;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Open Sans", Arial, sans-serif;
-  min-height: 100vh;
   background-color: #fafafa;
   color: #262626;
-  padding-bottom: 3rem;
 }
 
-img {
-  display: block;
+
+.main-containier {
+  max-width: 70%;
+  padding-top: 90px;
+  padding-bottom: 80px;
 }
+
+
+
+.profile-avatar img {
+  border-radius: 50%;
+  width: 140px;
+  margin-left: 20%;
+}
+
+
+ :root {
+  font-size: 9px;
+} 
+
 
 .container {
   max-width: 70%;
@@ -28,19 +33,7 @@ img {
   padding: 0 2rem;
 }
 
-/* .btn {
-  display: inline-block;
-  font: inherit;
-  background: none;
-  border: none;
-  color: inherit;
-  padding: 0;
-  cursor: pointer;
-}
 
-.btn:focus {
-  outline: 0.5rem auto #4d90fe;
-} */
 
 .visually-hidden {
   position: absolute !important;
@@ -79,54 +72,41 @@ img {
 .profile-stats,
 .profile-bio {
   float: left;
-  width: calc(66.666% - 2rem);
+  /* width: calc(66.666% - 2rem); */
 }
 
 .profile-user-settings {
-  margin-top: 1.1rem;
+  
 }
 
 .profile-user-name {
-  display: inline-block;
-  font-size: 3.2rem;
-  font-weight: 300;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .profile-edit-btn {
-  font-size: 1.4rem;
-  line-height: 1.8;
-  border: 0.1rem solid #dbdbdb;
-  border-radius: 0.3rem;
-  padding: 0 2.4rem;
-  margin-left: 2rem;
+  font-size: 14px;
+  line-height: 2.4;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  padding: 0 15px;
+  margin-left: 30px;
 }
 
 .profile-settings-btn {
-  font-size: 2rem;
-  margin-left: 1rem;
+  font-size: 18px;
+  margin-left: 30px;
 }
 
 .profile-stats {
-  margin-top: 2.3rem;
-}
-
-.profile-stats li {
-  display: inline-block;
-  font-size: 1.6rem;
-  line-height: 1.5;
-  margin-right: 4rem;
-  cursor: pointer;
-}
-
-.profile-stats li:last-of-type {
-  margin-right: 0;
+  font-size: 16px;
+  padding-top: 20px;
 }
 
 .profile-bio {
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
-  margin-top: 2.3rem;
+  padding-top: 20px;
 }
 
 .profile-real-name,
