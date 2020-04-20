@@ -36,22 +36,24 @@ class Navbar extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
-
     const newPost = {
       text: this.state.text,
       image: this.state.image,
+      handle: user.handle,
       name: user.name,
       avatar: user.avatar,
       user: user.user,
     }
 
-    this.props.addPost(newPost)
+    this.props.addPost(newPost, this.props.history)
   }
+l
 
   componentWillReceiveProps(nextProps){
+    console.log(nextProps)
     if(nextProps.errors){
       this.setState({errors: nextProps.errors});
-    }
+    } 
   }
 
 
@@ -60,7 +62,7 @@ class Navbar extends Component {
 /* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} 
 placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
 
-
+//data-dismiss="modal"
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -69,8 +71,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
       <div className="topnav-contanier">
         <div className="topnav">
           <Link className="active" to="/post-feed"><img src={require("../../img/instagram_logo.png")}  alt="logo" className="insta-logo"/></Link>
-          <div type="button" className="add-new-post">
-            <button className="btn btn-primary button-post" data-toggle="modal" data-target="#exampleModalCenter"><i className="fas fa-plus"></i></button> </div>
+          <Link className="add-new-post" to="/create-post"><button className="btn btn-primary button-post"><i className="fas fa-plus"></i></button> </Link>
           <Link to="/post-feed" aria-hidden="true"><i className="fa fa-home home-btn black" aria-hidden="true"></i></Link>
           <Link to="/likes" className="topnav-like-btn" aria-hidden="true"><i className="fas fa-heart like-btn black" aria-hidden="true"></i></Link>
           <Link to="/profile" ><img src={user.avatar} alt={user.name} className="topnav-avatar"/></Link>
@@ -103,7 +104,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
           <input type="text" className="form-control" placeholder="Write Caption" name="email" name="email" 
             name="text" value={this.state.text}  onChange={this.onChange}/> 
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" className="btn btn-primary">Post</button>
+          <button type="submit" value="submit" className="btn btn-primary" data-dismiss="modal">Post</button>
         </form>
       </div>
       <div className="modal-footer">
@@ -124,7 +125,7 @@ Navbar.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, {logoutUser, addPost})(Navbar);

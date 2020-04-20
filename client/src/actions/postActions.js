@@ -32,22 +32,24 @@ export const getPosts = () => dispatch => {
 
 
 // Add new post 
-export const addPost = (postData) => dispatch => {
+export const addPost = (postData, history) => dispatch => {
   dispatch(clearErrors());
   axios
     .post('/api/posts', postData)
-    .then(res =>
+    .then(res => {
+      history.push("/post-feed");
       dispatch({
         type: ADD_POST,
         payload: res.data
       })
+    }
     )
-    .catch(err =>
+     .catch(err =>
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
       })
-    );
+    );  
 };
 
 

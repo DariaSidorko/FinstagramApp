@@ -78,46 +78,40 @@ width: 100%;
 }
 
 .post-bottom {
-padding: 12px 12px 0px 12px;  
+padding: 8px 12px 0px 12px;  
 }
 
 .like-icon {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-repeat: no-repeat;
-  background-position: -72px -138px;
   display: inline;
   float: left;
   height: 24px;
   margin-right: 20px;
   width: 24px;  
+  font-size: 26px;
 }
 
 .comment-icon {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-repeat: no-repeat;
-  background-position: -184px -52px;
   display: inline;
   float: left;
   height: 24px;
   vertical-align: middle;
-  width: 24px;   
+  width: 24px;  
+  font-size: 26px; 
 }
 
 .bookmark-icon {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-repeat: no-repeat;
-  background-position: -182px -184px;
   display: inline;
   float: right;
   height: 24px;
   vertical-align: middle;
-  width: 24px;   
+  width: 24px;  
+  font-size: 26px; 
 }
 
 .likes {
   font-weight: 600;
   font-size: 13px;
-  padding-top: 35px;
+  padding-top: 45px;
   padding-bottom: 8px;
   text-align: left;
 }

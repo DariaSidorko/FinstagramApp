@@ -3,13 +3,13 @@ import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
 import Navbar from './components/layout/Navbar';
-import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/create-edit-profile/CreateEditProfile';
 import PostFeed from './components/posts/PostFeed';
+import PostForm from './components/posts/PostForm';
 
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
@@ -50,12 +50,13 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route exact path="/" component={Landing} /> 
+            <Route exact path="/" component={Login} /> 
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/edit-profile" component={EditProfile} />
-            <Route exact path="/post-feed" component={PostFeed}  />
+            <Route exact path="/post-feed" component={PostFeed} />
+            <Route exact path="/create-post" component={PostForm} />
             <Footer />
           </div>
         </Router>
