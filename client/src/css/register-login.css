@@ -28,7 +28,7 @@
   
   .main-content {
   width: 350px;
-  height: 45%;
+  height: 55%;
   /*margin: 10px auto;*/
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #e0e0e0;
@@ -59,6 +59,11 @@
   box-sizing: border-box;
   border-radius: 5px;
   }
+
+  .btn-login {
+    background-color: #0095f6;
+    color: white;
+  }
   
   /* .btn {
   width: 100%;
@@ -76,10 +81,10 @@
   
   .fogot-pass{
   text-align: center;
-  padding-top: 40px;
+  padding-top: 20px;
   font-size: 12px;
   font-weight: normal;
-  color: blue;
+  color: #4267b2;
   }
   
   .pass-link{
@@ -89,17 +94,18 @@
   }
   
   .sub-content {
-  width: 350px;
-  height: 10%;
   margin: 10% auto;
-  border: 1px solid #e6e6e6;
-  padding: 20px 50px;
-  background-color: #fff;
   text-align: center;
   font-size: 14px;
   text-decoration: none;
   }
-  
+
+  .sub-link {
+  text-decoration: none;
+  color: #0095f6;
+  }
+ 
+  /*
   .signup-link {
   text-decoration: none;
   cursor: pointer;
@@ -110,10 +116,71 @@
   .signup{
     margin-top: 5px;
   }
+  */
   
   input:focus {
     background-color: #ffffff;
   }
+
+  .footer {
+    margin-top: -20px;
+  }
+
+ 
+
+  @media(min-width: 500px) and (max-width: 665px) {
+    .main-content {
+      margin-left: 20%;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .footer {
+      margin: 0;
+    }
+  }
+
+  @media(min-width: 666px) and (max-width: 800px) {
+    .main-content {
+      margin-left: 25%;
+      height: 31%;
+    }
+    .header {
+      margin-bottom: 7px;
+      margin-top: -3px;
+    }
+    .sub-content {
+      margin-top: 6px;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+  }
+
+  @media(min-width: 801px) and (max-width: 1000px) {
+    .main-content {
+      margin-left: 29%;
+      height: 36%;
+    }
+  }
+
+  @media(min-width: 1001px) and (max-width: 1200px) {
+    .main-content {
+      margin-left: 35%;
+      height: 40%;
+    }
+  }
+
+  @media(min-width: 1201px) {
+    .main-content {
+      margin-left: 36%;
+      height: 40%;
+    }
+  }
+
   
   
   
