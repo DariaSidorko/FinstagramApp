@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  post: {}
+  posts: []
 };
 
 export default function(state = initialState, action) {
@@ -18,13 +18,13 @@ export default function(state = initialState, action) {
       case GET_POSTS:
         return {
           ...state,
-          payload: action.payload,
-          loading: true
+          posts: action.payload,
+          loading: false
         }
       case ADD_POST:
         return {
           ...state,
-          payload: [action.payload, ...state.posts]
+          posts: [action.payload, ...state.posts]
         };
         default:
           return state;

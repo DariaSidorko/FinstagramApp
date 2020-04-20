@@ -52,7 +52,7 @@ margin-right: auto;
 .add-new-post {
   height: 25px;
   margin-top: 13px;
-  margin-left: -185px;
+  margin-left: 68%;
   max-width: 180px;
   display: inline-block;
 }
@@ -72,7 +72,7 @@ margin-right: auto;
   color: rgb(51, 51, 51);
   padding-top: 17px;
   font-size: 18px;   
-  margin-left: 680px;
+   margin-left: 20px; 
 }
 
 .topnav-like-btn {
