@@ -51,6 +51,9 @@ const PostSchema = new Schema({
         type: String,
         required: true
       },
+      handle: {
+        type: String
+      },
       name: {
         type: String
       },

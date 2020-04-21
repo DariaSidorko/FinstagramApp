@@ -10,6 +10,7 @@ import Profile from './components/profile/Profile';
 import EditProfile from './components/create-edit-profile/CreateEditProfile';
 import PostFeed from './components/posts/PostFeed';
 import PostForm from './components/posts/PostForm';
+import Comments from './components/comments/CommentsPage';
 
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
@@ -57,6 +58,7 @@ class App extends Component {
             <Route exact path="/edit-profile" component={EditProfile} />
             <Route exact path="/post-feed" component={PostFeed} />
             <Route exact path="/create-post" component={PostForm} />
+            <Route exact path="/comments" component={Comments} />
             <Footer />
           </div>
         </Router>

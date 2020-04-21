@@ -32,6 +32,15 @@ body {
   padding: 20px;
   }
 
+  .content-main-post {
+    width: 50%;
+    min-height: 400px;
+    margin: 0px auto;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    }
+
   .side-bar {
     margin-right: 20px;
     border-right: 1px solid #e0e0e0;
