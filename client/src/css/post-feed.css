@@ -88,6 +88,11 @@ padding: 8px 12px 0px 12px;
   margin-right: 20px;
   width: 24px;  
   font-size: 26px;
+  color: #464646;
+}
+
+.red-heart{
+  color: rgb(255, 92, 92);
 }
 
 .comment-icon {
@@ -97,6 +102,7 @@ padding: 8px 12px 0px 12px;
   vertical-align: middle;
   width: 24px;  
   font-size: 26px; 
+  color: #464646;
 }
 
 .bookmark-icon {
@@ -106,6 +112,7 @@ padding: 8px 12px 0px 12px;
   vertical-align: middle;
   width: 24px;  
   font-size: 26px; 
+  color: #464646;
 }
 
 .likes {
@@ -114,6 +121,15 @@ padding: 8px 12px 0px 12px;
   padding-top: 45px;
   padding-bottom: 8px;
   text-align: left;
+}
+
+.comments {
+  font-weight: 600;
+  font-size: 13px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  text-align: left;
+  color: #464646;
 }
 
 .username-caption {
@@ -139,20 +155,28 @@ color: #8a8a8a;
 }
 
 .input-contanier{
-  padding-top: 3px;
+  padding-top: 8px;
   border-top: 0.5px solid #e7e7e7;
 }
 
 .comment-input{
+  display: inline;
   border: none;
   width: 99%;
   margin-left: 5px;
-  height: 45px;
+  height: 38px;
   font-size: 14px;
 }
 
 input:focus {
   border-color: yellow;
+}
+
+.post-button {
+  font-size: 14px;
+  margin-right: 15px;
+  font-weight: 600;
+  color: #0095f6;
 }
 
 .side-bar-header{

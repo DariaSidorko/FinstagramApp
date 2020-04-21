@@ -20,7 +20,7 @@ class PostFeed extends Component {
     const { user } = this.props.auth;
     let postContent;
     // || Object.keys(posts).length === 0
-    if (posts === null || loading ) {
+    if (posts === null || loading || Object.keys(posts).length === 0) {
       postContent = <div className="loader"></div>; // NEED TO IMPORT
     } else {
         postContent = <Posts posts={posts} />;

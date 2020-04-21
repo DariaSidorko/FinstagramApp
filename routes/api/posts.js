@@ -257,18 +257,21 @@ router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+    console.log("Got here!!")
+    //const { errors, isValid } = validatePostInput(req.body);
 
     // Check Validation
-    if (!isValid) {
+   /*  if (!isValid) {
       
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
-    }
+    } */
+    console.log("And here!!")
     Post.findById(req.params.id)
       .then(post => {
         const newComment = {
           text: req.body.text,
+          handle: req.body.hanle,
           name: req.body.name,
           avatar: req.body.avatar,
           user: req.user.id
@@ -276,7 +279,7 @@ router.post(
 
         // Add to comments array
         post.comments.unshift(newComment);
-
+        console.log(newComment)
         // Save
         post.save().then(post => res.json(post));
       })
