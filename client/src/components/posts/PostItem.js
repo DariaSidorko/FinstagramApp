@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { addComment } from '../../actions/postActions';
-import { deletePost, addLike, removeLike, addBookmark, removeBookmark } from '../../actions/postActions';
+import { addComment, deletePost, addLike, removeLike, addBookmark, removeBookmark } from '../../actions/postActions';
 
 class PostItem extends Component {
 
@@ -69,6 +68,10 @@ class PostItem extends Component {
       this.props.addBookmark(id);
     }
   }
+
+  onDeletePostClick(id){
+    this.props.deletePost(id);
+  }
  
 
   componentWillReceiveProps(newProps) {
@@ -77,14 +80,12 @@ class PostItem extends Component {
     }
   }
 
+//https://source.unsplash.com/random
 
 
-// full heat: <i class="fas fa-heart"></i>
-// full comment: <i class="fas fa-comment"></i>
-// full bookmark: <i class="fas fa-bookmark"></i>
 
   render() {
-    const { post /* showActions */ } = this.props;
+    const { post, /* showActions */ auth } = this.props;
 
     return (
  
@@ -92,7 +93,17 @@ class PostItem extends Component {
       <div className="post-header">
           <img src={ post.avatar } alt="avatar" />
         <div className="username">{ post.handle }</div>
-        <div className="more-options"></div>
+
+        {post.user === auth.user.id ? (
+              <div
+                onClick={this.onDeletePostClick.bind(this, post._id)}
+                type="button"
+                className="post-delete"
+              >
+                <i className="fas fa-times" />
+              </div>
+            ) : null}
+
       </div>     
       <div className="post-container">
       <img src={post.image} alt="instagram post" />
@@ -105,7 +116,7 @@ class PostItem extends Component {
           <i className={classnames('far fa-heart', {'fas fa-heart red-heart': this.findUserId(post.likes)})}></i></div>
 
 
-        <div className="comment-icon"><i className="far fa-comment"></i></div>
+        <Link to={`/comments/${post._id}`} className="comment-icon"><i className="far fa-comment"></i></Link>
 
         <div className="bookmark-icon"
           onClick={this.onAddRemoveBookmarkClick.bind(this, post._id, post.bookmarks)} 
@@ -125,16 +136,16 @@ class PostItem extends Component {
         </Link>
       </div>  
       <div className="input-contanier">
-
-        <div className="input-group mb-3">
-          <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
+          <div className="input-group mb-3">
+          
             <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
               name="text" value={this.state.text}  onChange={this.onChange} required/>
             <div className="input-group-append">
               <button className="btn post-button" type="submit" >Post</button>
             </div>
+          </div>
           </form>
-        </div>
       </div>
     </div>
 
@@ -148,11 +159,11 @@ class PostItem extends Component {
   }; */
   
   PostItem.propTypes = {
-    //deletePost: PropTypes.func.isRequired,
     addBookmark: PropTypes.func.isRequired,
     removeBookmark: PropTypes.func.isRequired,
     addLike: PropTypes.func.isRequired,
     removeLike: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -163,5 +174,5 @@ class PostItem extends Component {
     errors: state.errors
   });
   
-  export default connect(mapStateToProps, { addComment, addLike, removeLike, addBookmark, removeBookmark /* deletePost, removeLike */ })(PostItem);
+  export default connect(mapStateToProps, { addComment, addLike, removeLike, addBookmark, removeBookmark, deletePost  })(PostItem);
   
