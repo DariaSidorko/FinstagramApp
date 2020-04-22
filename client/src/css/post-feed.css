@@ -34,6 +34,11 @@ vertical-align: middle;
   margin-right: auto;
 }
 
+.post-img{
+  height:600px;
+  object-fit:cover;
+}
+
 .post {
   background-color: #ffffff;
   border: 0.5px solid #e0e0e0;

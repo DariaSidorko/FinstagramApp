@@ -29,7 +29,7 @@ class PostItem extends Component {
 
     const { user } = this.props.auth;
     const { post } = this.props;
-    console.log('Post ID: ', post._id)
+
     const newComment = {
       text: this.state.text,
       handle: user.handle,
@@ -106,7 +106,7 @@ class PostItem extends Component {
 
       </div>     
       <div className="post-container">
-      <img src={post.image} alt="instagram post" />
+      <img src={post.image} alt="instagram post" className="post-img"/>
       </div>
       <div className="post-bottom">
 

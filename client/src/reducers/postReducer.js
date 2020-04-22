@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   posts: [],
-  post: []
+  post: [],
+  postLoading: false
 };
 
 export default function(state = initialState, action) {
@@ -16,13 +17,13 @@ export default function(state = initialState, action) {
      case POST_LOADING:
       return {
         ...state,
-        loading: true
+        postLoading: true
       }; 
       case GET_POSTS:
         return {
           ...state,
           posts: action.payload,
-          loading: false
+          postLoading: false
         }
       case ADD_POST:
         return {
@@ -33,7 +34,7 @@ export default function(state = initialState, action) {
         return {
           ...state,
           post: action.payload,
-          loading: false
+          postLoading: false
         }
       case DELETE_POST:
         return {
