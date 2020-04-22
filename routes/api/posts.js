@@ -25,9 +25,11 @@ router.get("/", (req, res) => {
 // @route   GET api/posts/:id
 // @desc    Get post by id
 // @access  Public
-router.get('/post/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(post => {
+      res.json(post)
+    })
     .catch(err =>
       res.status(404).json({ nopostfound: 'No post found with that ID' })
     );
@@ -257,7 +259,6 @@ router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    console.log("Got here!!")
     //const { errors, isValid } = validatePostInput(req.body);
 
     // Check Validation
@@ -266,12 +267,13 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     } */
-    console.log("And here!!")
+
+    console.log("Got Here!")
     Post.findById(req.params.id)
       .then(post => {
         const newComment = {
           text: req.body.text,
-          handle: req.body.hanle,
+          handle: req.body.handle,
           name: req.body.name,
           avatar: req.body.avatar,
           user: req.user.id
@@ -297,7 +299,7 @@ router.delete(
   (req, res) => {
     Post.findById(req.params.id)
       .then(post => {
-
+        
         // Check to see if comment exists
         if (
           post.comments.filter(

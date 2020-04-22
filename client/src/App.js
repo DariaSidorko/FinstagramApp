@@ -58,7 +58,7 @@ class App extends Component {
             <Route exact path="/edit-profile" component={EditProfile} />
             <Route exact path="/post-feed" component={PostFeed} />
             <Route exact path="/create-post" component={PostForm} />
-            <Route exact path="/comments" component={Comments} />
+            <Route exact path="/comments/:id" component={Comments} />
             <Footer />
           </div>
         </Router>
