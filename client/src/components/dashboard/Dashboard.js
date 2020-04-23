@@ -19,11 +19,11 @@ class Dashboard extends Component {
     this.props.getPosts();
   }
 
-   componentWillReceiveProps(nextProps) {
+  /*  componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
       this.props.history.push('/not-found');
     }
-  } 
+  }  */
   //auth.isAuthenticated === true ? 
   
   render() {
@@ -31,7 +31,7 @@ class Dashboard extends Component {
     const { posts, postLoading } = this.props;
     const { user } = this.props.auth;
     let profileContent, postContent;
-    console.log("Profile: ", profile.handle)
+    console.log("Profile: ", this.props.profile.handle)
     console.log("Posts type: ", typeof this.props.posts)
 
     if (profile === null || profileLoading) {
@@ -68,9 +68,7 @@ class Dashboard extends Component {
       postContent = (<div className="loader"></div>)
     } else {
 
-      console.log("Posts: ", posts)
-
-      postContent = <DashboardPosts posts={posts} />;
+      postContent = <DashboardPosts posts={posts}  />;
     }  
 
 
@@ -96,7 +94,7 @@ class Dashboard extends Component {
   getCurrentProfile: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   //posts: PropTypes.array.isRequired,
-  profile: PropTypes.object.isRequired,
+  //profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
