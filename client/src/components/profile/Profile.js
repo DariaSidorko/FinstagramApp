@@ -6,16 +6,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { getCurrentProfile } from '../../actions/profileActions';
+import { getProfileByHandle } from '../../actions/profileActions';
 import { getPosts } from '../../actions/postActions';
-import DashboardPosts from './DashboardPosts';
 
 
-class Dashboard extends Component {
+
+class Profile extends Component {
   
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    if (this.props.match.params.handle) {
+      this.props.getProfileByHandle(this.props.match.params.handle);
+    }
     this.props.getPosts();
   }
 
@@ -28,7 +30,7 @@ class Dashboard extends Component {
   
   render() {
     const  { profile, profileLoading } = this.props;
-    const { posts, postLoading } = this.props.post;
+    const { posts, postLoading } = this.props;
     const { user } = this.props.auth;
     let profileContent, postContent;
     console.log("Profile: ", this.props.profile.handle)
@@ -68,20 +70,19 @@ class Dashboard extends Component {
       postContent = (<div className="loader"></div>)
     } else {
 
-      postContent = <DashboardPosts posts={posts}  />;
-    }  
+      postContent = (<div></div>)    }  
 
 
     return (
       <div>
         <header>
           <div className="container">
-            {profileContent}
+
           </div>
         </header>
 
       <main>
-      {postContent}
+
       </main>
       </div>
     )
@@ -90,8 +91,8 @@ class Dashboard extends Component {
 
  //{postContent}
 
- Dashboard.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
+ Profile.propTypes = {
+  getProfileByHandle: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   //posts: PropTypes.array.isRequired,
   //profile: PropTypes.object.isRequired,
@@ -100,7 +101,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  post: state.post
+  posts: state.post
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, getPosts })(Dashboard);
+export default connect(mapStateToProps, { getProfileByHandle, getPosts })(Profile);
