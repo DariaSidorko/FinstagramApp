@@ -8,6 +8,7 @@ body {
   position: fixed;
   width: 100%;
   border-bottom: 0.5px solid #e7e7e7;
+  z-index: 9999;
 }
 
 .topnav {

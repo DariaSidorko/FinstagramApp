@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 
 import { getCurrentProfile } from '../../actions/profileActions';
 import { getPosts } from '../../actions/postActions';
-import ProfilePosts from './ProfilePosts';
+import DashboardPosts from './DashboardPosts';
 
 
-class Profile extends Component {
+class Dashboard extends Component {
   
 
   componentDidMount() {
@@ -24,13 +24,15 @@ class Profile extends Component {
       this.props.history.push('/not-found');
     }
   } 
+  //auth.isAuthenticated === true ? 
   
   render() {
     const  { profile, profileLoading } = this.props;
     const { posts, postLoading } = this.props;
     const { user } = this.props.auth;
     let profileContent, postContent;
-
+    console.log("Profile: ", profile.handle)
+    console.log("Posts type: ", typeof this.props.posts)
 
     if (profile === null || profileLoading) {
       profileContent = (<div className="loader"></div>)
@@ -58,13 +60,17 @@ class Profile extends Component {
           </div>
         </div>  
       )
+
+      
     }
 
-    if (posts === null || postLoading) {
+    if (posts === null || postLoading || Object.keys(posts).length === 0) {
       postContent = (<div className="loader"></div>)
     } else {
-      console.log(posts)
-      postContent = <ProfilePosts posts={posts} />;
+
+      console.log("Posts: ", posts)
+
+      postContent = <DashboardPosts posts={posts} />;
     }  
 
 
@@ -77,24 +83,26 @@ class Profile extends Component {
         </header>
 
       <main>
-       {postContent}
+      {postContent}
       </main>
       </div>
     )
   }
 }
 
-Profile.propTypes = {
+ //{postContent}
+
+ Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired,
+  //posts: PropTypes.array.isRequired,
   profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  posts: state.posts
+  posts: state.post
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, getPosts })(Profile);
+export default connect(mapStateToProps, { getCurrentProfile, getPosts })(Dashboard);
