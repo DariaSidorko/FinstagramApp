@@ -89,7 +89,7 @@ class PostItem extends Component {
 
     return (
  
-    <div className=" col-8 post padding-bottom:40px;">
+    <div className=" col-8 post">
       <div className="post-header">
           <img src={ post.avatar } alt="avatar" />
         <div className="username">{ post.handle }</div>
@@ -128,7 +128,7 @@ class PostItem extends Component {
           <span className="username-caption">{post.handle}</span><span className="post-caption">{post.text}</span>
         </div>  
 
-        <div className="timestamp">4 Hours Ago</div>
+        <div className="timestamp">{Date.now - post.date}4 Hours Ago</div>
 
         <Link to={`/comments/${post._id}`}>
         { post.comments.length === 1 && ( <div className="comments">View {post.comments.length} comment...</div>)}

@@ -15,13 +15,16 @@ import {
 // Get all the posts
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
+  console.log("Got Here")
   axios
     .get('api/posts')
-    .then(res => 
+    .then(res => {
+      console.log("Response: ", res)
       dispatch({
         type: GET_POSTS,
         payload: res.data
       })
+    }
     )
     .catch(err =>
       dispatch({
@@ -51,6 +54,20 @@ export const getPost = (id) => dispatch => {
       }))
 }
 
+
+
+// Get bookmarked posts
+/* export const getBookmarkedPosts = () => {
+  dispatch(setPostLoading());
+  axios
+    .get("/api/posts/bookmarks")
+    .then(res =>
+      dispatch({
+        type: GET_BOOKMARKED_POSTS,
+        payload: res.data
+      }))
+}
+ */
 
 // Add new post 
 export const addPost = (postData, history) => dispatch => {
@@ -108,12 +125,12 @@ export const addComment = (postId,commentData) => dispatch => {
         payload: res.data
       })
     })
-/*     .catch(err => {
+     .catch(err => {
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
       })
-    }); */
+    }); 
 };
 
 

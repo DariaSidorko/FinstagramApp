@@ -70,7 +70,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
     const authLink = (
       <div className="topnav-contanier">
         <div className="topnav">
-          <Link className="active" to="/post-feed"><img src={require("../../img/instagram_logo.png")}  alt="logo" className="insta-logo"/></Link>
+          <Link className="active" to="/post-feed"><img src={require("../../img/logo-2.png")}  alt="logo" className="insta-logo"/></Link>
           <Link className="add-new-post" to="/create-post"><button className="btn btn-primary button-post"><i className="fas fa-plus"></i></button> </Link>
           <Link to="/post-feed" aria-hidden="true"><i className="fa fa-home home-btn black" aria-hidden="true"></i></Link>
           <Link to="/likes" className="topnav-like-btn" aria-hidden="true"><i className="fas fa-heart like-btn black" aria-hidden="true"></i></Link>

@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   posts: [],
-  post: [],
+  post: {},
   postLoading: false
 };
 

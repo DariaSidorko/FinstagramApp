@@ -3,9 +3,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class ProfilePostItem extends Component {
+class DashboardPostItem extends Component {
   render() {
     const { post, auth } = this.props;
+    console.log("post: ",post)
 
     return (
       <div className="container">
@@ -25,7 +26,7 @@ class ProfilePostItem extends Component {
   }
 }
 
-ProfilePostItem.propTypes = {
+DashboardPostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -34,4 +35,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default ProfilePostItem;
+export default DashboardPostItem;

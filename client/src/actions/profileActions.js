@@ -11,7 +11,6 @@ import {
 //Get profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
-  console.log("got here")
   axios
     .get('/api/profile')
     .then(res => {
@@ -30,6 +29,27 @@ export const getCurrentProfile = () => dispatch => {
 };
 
 
+// Get profile by handle
+export const getProfileByHandle = handle => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/handle/${handle}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
+      })
+    );
+};
+
+
+
 // Profile loading
 export const setProfileLoading = () => {
   return {
@@ -38,7 +58,7 @@ export const setProfileLoading = () => {
 };
 
 
-//Set update profile
+//Set / update profile
 export const updateProfile = (userData, history) => dispatch => {
   axios.post("/api/profile", userData)
   .then(res => history.push('/profile'))

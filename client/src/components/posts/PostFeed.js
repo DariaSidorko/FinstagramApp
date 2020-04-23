@@ -19,9 +19,11 @@ class PostFeed extends Component {
     const { posts, loading } = this.props.posts;
     const { user } = this.props.auth;
     let postContent;
-    // || Object.keys(posts).length === 0
+
+    console.log("Type of posts in the feed: ", typeof posts)
+
     if (posts === null || loading || Object.keys(posts).length === 0) {
-      postContent = <div className="loader"></div>; // NEED TO IMPORT
+      postContent = <div className="loader"></div>;
     } else {
         postContent = <Posts posts={posts} />;
     }
