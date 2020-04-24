@@ -19,7 +19,6 @@ export const getPosts = () => dispatch => {
   axios
     .get('api/posts')
     .then(res => {
-      console.log("Response: ", res)
       dispatch({
         type: GET_POSTS,
         payload: res.data

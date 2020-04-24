@@ -13,18 +13,15 @@ body {
   padding-bottom: 80px;
 }
 
-
-
 .profile-avatar img {
   border-radius: 50%;
   width: 140px;
   margin-left: 20%;
 }
 
-
- :root {
+/*  :root {
   font-size: 9px;
-} 
+}  */
 
 
 .container {
@@ -32,8 +29,6 @@ body {
   margin: 0 auto;
   padding: 0 2rem;
 }
-
-
 
 .visually-hidden {
   position: absolute !important;
@@ -139,8 +134,8 @@ body {
   align-items: center;
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width:250px;
+  height: 250px;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -172,8 +167,8 @@ body {
 }
 
 .gallery-image {
-  width: 100%;
-  height: 100%;
+  width:250px;
+  height: 250px;
   object-fit: cover;
 }
 

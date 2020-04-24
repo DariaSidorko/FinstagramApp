@@ -70,7 +70,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                   
                   <div className="row top-row">
                     <div className="col-3 input-lable-wrapper">
-                      <Link to="/profile"><img src={user.avatar} alt={user.handle} className="avatar"/></Link>
+                      <Link to="/dashboard"><img src={user.avatar} alt={user.handle} className="avatar"/></Link>
                     </div> 
                     <div className="col-9">
                       <div className="username">{user.handle}</div>

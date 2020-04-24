@@ -27,12 +27,11 @@ class Dashboard extends Component {
   //auth.isAuthenticated === true ? 
   
   render() {
-    const  { profile, profileLoading } = this.props;
+    const  { profile, profileLoading } = this.props.profile;
     const { posts, postLoading } = this.props.post;
     const { user } = this.props.auth;
     let profileContent, postContent;
-    console.log("Profile: ", this.props.profile.handle)
-    console.log("Posts type: ", typeof this.props.posts)
+    //console.log("Profile key: ", profile.bio)
 
     if (profile === null || profileLoading) {
       profileContent = (<div className="loader"></div>)
@@ -60,14 +59,12 @@ class Dashboard extends Component {
           </div>
         </div>  
       )
-
-      
     }
+    //state.posts.filter(post => post._id !== action.payload)
 
     if (posts === null || postLoading || Object.keys(posts).length === 0) {
       postContent = (<div className="loader"></div>)
     } else {
-
       postContent = <DashboardPosts posts={posts}  />;
     }  
 
@@ -79,10 +76,11 @@ class Dashboard extends Component {
             {profileContent}
           </div>
         </header>
+        {postContent}
 
-      <main>
-      {postContent}
-      </main>
+       
+
+        
       </div>
     )
   }

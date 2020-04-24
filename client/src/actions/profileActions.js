@@ -61,7 +61,7 @@ export const setProfileLoading = () => {
 //Set / update profile
 export const updateProfile = (userData, history) => dispatch => {
   axios.post("/api/profile", userData)
-  .then(res => history.push('/profile'))
+  .then(res => history.push('/dashboard'))
   .catch(err =>
     dispatch({
       type: SET_ERRORS,
