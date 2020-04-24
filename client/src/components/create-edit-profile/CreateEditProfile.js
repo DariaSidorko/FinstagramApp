@@ -73,8 +73,8 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                       <Link to="/dashboard"><img src={user.avatar} alt={user.handle} className="avatar"/></Link>
                     </div> 
                     <div className="col-9">
-                      <div className="username">{user.handle}</div>
-                      <div className="username-disc">to change your profile picture please use gravatar.com</div>
+                      <div className="edit-profile-username">{user.handle}</div>
+                      <div className="edit-profile-username-disc">to change your profile picture please use gravatar.com</div>
                     </div>    
                   </div>
                   

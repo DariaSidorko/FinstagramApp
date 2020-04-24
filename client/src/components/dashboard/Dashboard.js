@@ -33,9 +33,12 @@ class Dashboard extends Component {
     let profileContent, postContent;
     //console.log("Profile key: ", profile.bio)
 
-    if (profile === null || profileLoading) {
+    if (profile === null || profileLoading || posts === null || postLoading || Object.keys(posts).length === 0) {
       profileContent = (<div className="loader"></div>)
     } else {
+
+      postContent = <DashboardPosts posts={posts}  />;
+
       profileContent = (
         <div className="row main-containier">
           <div className="col-6 profile-avatar ">
@@ -60,14 +63,14 @@ class Dashboard extends Component {
         </div>  
       )
     }
-    //state.posts.filter(post => post._id !== action.payload)
 
-    if (posts === null || postLoading || Object.keys(posts).length === 0) {
+
+/*     if (posts === null || postLoading || Object.keys(posts).length === 0) {
       postContent = (<div className="loader"></div>)
     } else {
       postContent = <DashboardPosts posts={posts}  />;
     }  
-
+ */
 
     return (
       <div>
@@ -76,11 +79,7 @@ class Dashboard extends Component {
             {profileContent}
           </div>
         </header>
-        {postContent}
-
-       
-
-        
+        {postContent}     
       </div>
     )
   }

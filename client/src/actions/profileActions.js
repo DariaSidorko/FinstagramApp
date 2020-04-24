@@ -32,6 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
+  console.log("Handle in Action: ",handle)
   axios
     .get(`/api/profile/handle/${handle}`)
     .then(res =>
@@ -44,6 +45,35 @@ export const getProfileByHandle = handle => dispatch => {
       dispatch({
         type: GET_PROFILE,
         payload: null
+      })
+    );
+};
+
+
+
+// follow
+export const follow = (id, handle) => dispatch => {
+  axios
+    .post(`/api/profile/follow/${id}`)
+    .then(res => dispatch(getProfileByHandle(handle)))
+    .catch(err => 
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+// Remove like
+export const unfollow = (id, handle) => dispatch => {
+  axios
+    .post(`/api/posts/unlike/${id}`)
+    .then(res => dispatch(getProfileByHandle(handle)))
+    .catch(err => 
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
       })
     );
 };

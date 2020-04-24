@@ -18,7 +18,7 @@ const TextFieldGroup = ({
   return (
     <div>
       <input type={type} 
-      className={classnames( {'is-invalid': errors})} 
+      className={classnames('register-login-input', {'is-invalid': errors})} 
       placeholder={placeholder} 
       name={name} value={value}  
       onChange={onChange}  

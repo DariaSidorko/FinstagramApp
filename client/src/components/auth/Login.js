@@ -58,7 +58,7 @@ class Login extends Component {
       <div className="wrapper">
         <div className="main-content">
           <div className="header">
-            <img alt="logo" src={require("../../img/instagram_logo.png")} />
+            <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
           </div>
           <form onSubmit={this.onSubmit}>
             <div>
