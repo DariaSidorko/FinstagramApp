@@ -2,8 +2,9 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className="footer text-center">
-    &copy; {new Date().getFullYear()} from Kal Academy students
-  </footer>
+    <footer className="bg-light text-dark mt-5 p-4 text-center">
+      Copyright &copy; {new Date().getFullYear()} Instagram
+    </footer>
+    
   )
 }

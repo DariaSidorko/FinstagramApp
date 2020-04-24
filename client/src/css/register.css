@@ -1,0 +1,106 @@
+body {
+  background-color: rgb(248, 248, 248);
+  }
+  
+  .wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0px solid #000;
+  margin: 40px auto;
+  
+  }
+  
+  .main-content {
+  width: 350px;
+  height: 70%;
+  margin: 10px auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 30px 50px;
+  }
+  
+  .header {
+  border: 0px solid #000;
+  margin-bottom: 10%;
+  }
+  
+  .header img {
+  width: 70%;
+  margin: auto;
+  position: relative;
+  }
+  
+  input {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 3px;
+  }
+  
+  /* .btn {
+  width: 100%;
+  height: 30px;
+  background-color: #3897f0;
+  border: 1px solid #3897f0;
+  padding: 5px 12px;
+  margin-top: 15px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+  } */
+  
+  .fogot-pass{
+  text-align: center;
+  padding-top: 40px;
+  font-size: 12px;
+  font-weight: normal;
+  color: blue;
+  }
+  
+  .pass-link{
+  text-decoration: none;
+  font-weight: normal;
+  color: #4267b2;
+  }
+  
+  .sub-content {
+  width: 350px;
+  height: 10%;
+  margin: 10px auto;
+  border: 1px solid #e6e6e6;
+  padding: 20px 50px;
+  background-color: #fff;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: none;
+  }
+  
+  .signup-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #3897f0;
+  font-weight: bold;
+  }
+  
+  .signup{
+    margin-top: 5px;
+  }
+  
+  input:focus {
+    background-color: #ffffff;
+  }
+  .password-icon{
+    position: center;
+    top: 20px;
+    right: 5px;
+    cursor: pointer;
+
+  }
+
+  

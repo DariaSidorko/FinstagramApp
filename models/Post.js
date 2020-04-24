@@ -6,11 +6,11 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  text: {
+  handle: {
     type: String,
-    required: true
+    
   },
-  image: {
+  text: {
     type: String,
     required: true
   },
@@ -26,18 +26,16 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
       }
-    }
+    },
   ],
-  tags:[
-    {
-          user: {
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }
-      },
-  ],
-
-
+    tags:[
+      {
+            user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          }
+        },
+    ],
   comments: [
     {
       user: {
@@ -48,6 +46,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
       },
+    
       name: {
         type: String
       },
@@ -60,20 +59,6 @@ const PostSchema = new Schema({
       }
     }
   ],
-
-  bookmarks: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-      },
-      date: {
-        type: Date,
-        default: Date.now
-      }
-    }
-  ],
-
   date: {
     type: Date,
     default: Date.now
