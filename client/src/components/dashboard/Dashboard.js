@@ -27,16 +27,18 @@ class Dashboard extends Component {
   //auth.isAuthenticated === true ? 
   
   render() {
-    const  { profile, profileLoading } = this.props;
-    const { posts, postLoading } = this.props;
+    const  { profile, profileLoading } = this.props.profile;
+    const { posts, postLoading } = this.props.post;
     const { user } = this.props.auth;
     let profileContent, postContent;
-    console.log("Profile: ", this.props.profile.handle)
-    console.log("Posts type: ", typeof this.props.posts)
+    //console.log("Profile key: ", profile.bio)
 
-    if (profile === null || profileLoading) {
+    if (profile === null || profileLoading || posts === null || postLoading || Object.keys(posts).length === 0) {
       profileContent = (<div className="loader"></div>)
     } else {
+
+      postContent = <DashboardPosts posts={posts}  />;
+
       profileContent = (
         <div className="row main-containier">
           <div className="col-6 profile-avatar ">
@@ -60,17 +62,15 @@ class Dashboard extends Component {
           </div>
         </div>  
       )
-
-      
     }
 
-    if (posts === null || postLoading || Object.keys(posts).length === 0) {
+
+/*     if (posts === null || postLoading || Object.keys(posts).length === 0) {
       postContent = (<div className="loader"></div>)
     } else {
-
       postContent = <DashboardPosts posts={posts}  />;
     }  
-
+ */
 
     return (
       <div>
@@ -79,10 +79,7 @@ class Dashboard extends Component {
             {profileContent}
           </div>
         </header>
-
-      <main>
-      {postContent}
-      </main>
+        {postContent}     
       </div>
     )
   }
@@ -100,7 +97,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  posts: state.post
+  post: state.post
 });
 
 export default connect(mapStateToProps, { getCurrentProfile, getPosts })(Dashboard);

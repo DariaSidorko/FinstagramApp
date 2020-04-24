@@ -32,6 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
+  console.log("Handle in Action: ",handle)
   axios
     .get(`/api/profile/handle/${handle}`)
     .then(res =>
@@ -50,6 +51,35 @@ export const getProfileByHandle = handle => dispatch => {
 
 
 
+// follow
+export const follow = (id, handle) => dispatch => {
+  axios
+    .post(`/api/profile/follow/${id}`)
+    .then(res => dispatch(getProfileByHandle(handle)))
+    .catch(err => 
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+// Remove like
+export const unfollow = (id, handle) => dispatch => {
+  axios
+    .post(`/api/posts/unlike/${id}`)
+    .then(res => dispatch(getProfileByHandle(handle)))
+    .catch(err => 
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+
 // Profile loading
 export const setProfileLoading = () => {
   return {
@@ -61,7 +91,7 @@ export const setProfileLoading = () => {
 //Set / update profile
 export const updateProfile = (userData, history) => dispatch => {
   axios.post("/api/profile", userData)
-  .then(res => history.push('/profile'))
+  .then(res => history.push('/dashboard'))
   .catch(err =>
     dispatch({
       type: SET_ERRORS,

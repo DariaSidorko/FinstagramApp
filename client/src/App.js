@@ -10,11 +10,12 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Profile from './components/dashboard/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import EditProfile from './components/create-edit-profile/CreateEditProfile';
 import PostFeed from './components/posts/PostFeed';
 import PostForm from './components/posts/PostForm';
 import Comments from './components/comments/CommentsPage';
+import Profile from './components/profile/Profile';
 
 import PrivateRoute from './components/common/PrivateRoute';
 
@@ -65,7 +66,7 @@ class App extends Component {
               <Route exact path="/profile/:handle" component={Profile} />
               <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
-              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/edit-profile" component={EditProfile} ></PrivateRoute>

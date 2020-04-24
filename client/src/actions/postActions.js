@@ -14,12 +14,12 @@ import {
 
 // Get all the posts
 export const getPosts = () => dispatch => {
-  dispatch(setPostLoading());
   console.log("Got Here")
+  dispatch(setPostLoading());
+  console.log("Got Here clling API")
   axios
     .get('api/posts')
     .then(res => {
-      console.log("Response: ", res)
       dispatch({
         type: GET_POSTS,
         payload: res.data
