@@ -66,12 +66,12 @@ l
       <div className="topnav-contanier">
         <div className="topnav">
           <Link className="active" 
-          to="/post-feed">
+          to="/post-item">
           <img src={require("../../img/Instagram_logo.jpg")}  
           alt="logo" className="insta-logo"/>
           </Link>
           <Link className="add-new-post" 
-          to="/create-post">
+          to="/post-item">
           <button className="btn btn-primary button-post">
           <i className="fas fa-plus">
           </i>

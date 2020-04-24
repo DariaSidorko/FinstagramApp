@@ -1,12 +1,14 @@
 import '../../css/navbar.css';
+import '../../css/create-profile.css';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
-// import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPost } from '../../actions/postActions';
-import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import classnames from "classnames";
 
+import { addPost } from '../../actions/postActions'
 
 class PostForm extends Component {
 
@@ -50,28 +52,35 @@ class PostForm extends Component {
     } 
   }
 
+
+
+
+/* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} 
+placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
+
+//data-dismiss="modal"
+
   render() {
     const { user } = this.props.auth;
     const { errors } = this.state;
-    
-    
+
+
+//{isAuthenticated ? authLink : undefined}
     return (
           <div>
             <div className="wrapper-1">
               <div className="wrapper-2">
-              <div className="content-main">
+              <div className="content-main-post">
 
                   <div className="main-form">
                     <div className="tab-content" >                
                         <div className="row top-row">
                           <div className="col-3 input-lable-wrapper">
-                            <Link to="/profile">
-                            <img src={user.avatar} alt={user.handle} 
-                            className="avatar"/>
-                            </Link>
+                            <Link to="/profile"><img src={user.avatar} alt={user.handle} className="avatar"/></Link>
                           </div> 
                           <div className="col-9">
                             <div className="username">{user.handle}</div>
+                            <div className="name">{user.name}</div>
                           </div>    
                         </div>
                         
@@ -81,9 +90,7 @@ class PostForm extends Component {
                               <lable className="input-lable" >Image URL</lable> 
                             </div> 
                             <div className="col-9">
-                              <input type="text" 
-                              className={classnames('form-control', {'is-invalid': errors.image})} 
-                              placeholder="insert image URL" 
+                              <input type="text" className={classnames('form-control', {'is-invalid': errors.image})} placeholder="..." 
                                 name="image" value={this.state.image}  onChange={this.onChange}/> 
                                 {errors.image && (
                                   <div className="invalid-feedback"> {errors.image}</div>
@@ -92,13 +99,11 @@ class PostForm extends Component {
                           </div>
                           <div className="row input-row">
                             <div className="col-3 input-lable-wrapper">
-                              <lable className="input-lable" >Username</lable> 
+                              <lable className="input-lable" >Caption</lable> 
                             </div> 
                             <div className="col-9">
-                              <input type="text" 
-                              className={classnames('form-control', {'is-invalid': errors.text})} 
-                              placeholder="Caption" name="text"  
-                               value={this.state.text}  onChange={this.onChange}/> 
+                              <input type="text" className={classnames('form-control', {'is-invalid': errors.text})} placeholder="..." 
+                                name="text" value={this.state.text}  onChange={this.onChange}/> 
                                 {errors.text && (
                                   <div className="invalid-feedback"> {errors.text}</div>
                                 )}

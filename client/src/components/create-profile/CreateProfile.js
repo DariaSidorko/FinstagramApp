@@ -6,10 +6,9 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
-// import SelectListGroup from '../common/SelectListGroup';
+// import InputGroup from '../common/InputGroup';
 import { createProfile } from '../../actions/profileActions';
-import { Link } from 'react-router-dom';
+
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class CreateProfile extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps) {
-      this.props.history.push(`/profile/${profile.handle}`);
+      this.props.history.push(`/profile`);
     }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -90,7 +89,7 @@ class CreateProfile extends Component {
                   value={this.state.name}
                   onChange={this.onChange}
                   error={errors.name}
-                  info="Your name."
+                  info="Your name"
                 />  
                            
               <TextFieldGroup
@@ -124,8 +123,7 @@ class CreateProfile extends Component {
                   type="submit"
                   value="Submit"
                   className="btn btn-info btn-block mt-4"
-                 
-                  
+                              
                 />
 
                

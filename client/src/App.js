@@ -20,9 +20,13 @@ import CreateProfile from './components/create-profile/CreateProfile';
 // import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
+import PostFeed from './components/posts/PostFeed';
+import PostForm from './components/posts/PostForm';
+import PostItem from './components/posts/PostFeed';
 // import Post from './components/post/Post';
 // import NotFound from './components/not-found/NotFound';
 import { SET_CURRENT_USER } from './actions/types';
+import {GET_PROFILE} from './actions/types';
 
 if (localStorage.jwtToken){
   //decode
@@ -54,30 +58,27 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" 
+            component={Login} />
             <div className="container">
-              
-              <Route exact path="/login" component={Login} />
               <Switch>
                 <PrivateRoute
-                  exact
-                  path="/create-profile"
+                  exact path="/create-profile"
                   component={CreateProfile}
                 />
               </Switch>
               <Switch>
               <PrivateRoute
-                exact
-                path="/profile/:handle"
-                component={Profile}
+                exact path="/profile}"
+                component= {Profile}
               />
             </Switch>
               
-              <Switch>
-                <PrivateRoute
+               <Switch>
+             <PrivateRoute
                   exact
-                  path="/create-post"
-                  component={CreateProfile}
+                  path="/post-item"
+                  component={PostItem}
                 />
               </Switch>
                 

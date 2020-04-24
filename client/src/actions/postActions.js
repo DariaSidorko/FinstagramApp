@@ -2,94 +2,178 @@ import axios from 'axios';
 
 import {
   ADD_POST,
-  GET_ERRORS,
   CLEAR_ERRORS,
+  GET_ERRORS,
   GET_POSTS,
-  GET_POST,
   POST_LOADING,
+  GET_POST,
   DELETE_POST
 } from './types';
 
-// Add Post
-export const addPost = postData => dispatch => {
+
+
+// Get all the posts
+export const getPosts = () => dispatch => {
+  dispatch(setPostLoading());
+  console.log("Got Here")
+  axios
+    .get('api/posts')
+    .then(res => {
+      console.log("Response: ", res)
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      })
+    }
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POSTS,
+        payload: null
+      })
+    )
+
+}
+
+
+// Get 1 post by ID
+export const getPost = (id) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/${id}`)
+    .then(res => 
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err => 
+      dispatch({
+        type: GET_POST,
+        payload: null
+      }))
+}
+
+
+
+// Get bookmarked posts
+/* export const getBookmarkedPosts = () => {
+  dispatch(setPostLoading());
+  axios
+    .get("/api/posts/bookmarks")
+    .then(res =>
+      dispatch({
+        type: GET_BOOKMARKED_POSTS,
+        payload: res.data
+      }))
+}
+ */
+
+// Add new post 
+export const addPost = (postData, history) => dispatch => {
   dispatch(clearErrors());
   axios
     .post('/api/posts', postData)
-    .then(res =>
+    .then(res => {
+      history.push("/post-feed");
       dispatch({
         type: ADD_POST,
         payload: res.data
       })
-    )
-    .catch(err =>
+    })
+     .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
-    );
+    );  
 };
 
-// Get Posts
-export const getPosts = () => dispatch => {
-  dispatch(setPostLoading());
-  axios
-    .get('/api/posts')
-    .then(res =>
-      dispatch({
-        type: GET_POSTS,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_POSTS,
-        payload: null
-      })
-    );
-};
-// Get Post
-export const getPost = id => dispatch => {
-  dispatch(setPostLoading());
-  axios
-    .get(`/api/posts/${id}`)
-    .then(res =>
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_POST,
-        payload: null
-      })
-    );
-};
 
-// Delete Post
-export const deletePost = id => dispatch => {
+
+// Delet post
+export const deletePost = (postId, commentId) => dispatch => {
+  dispatch(clearErrors());
   axios
-    .delete(`/api/posts/${id}`)
-    .then(res =>
+    .delete(`/api/posts/${postId}`)
+    .then(res => {
       dispatch({
         type: DELETE_POST,
-        payload: id
+        payload: res.data
       })
-    )
-    .catch(err =>
+    })
+    .catch(err => {
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
-    );
+    }); 
 };
 
-// Add Like
-export const addLike = id => dispatch => {
+
+
+// Add new Comment
+export const addComment = (postId,commentData) => dispatch => {
+  dispatch(clearErrors());
+  console.log("output: ", postId, commentData)
+  axios
+    .post(`api/posts/comment/${postId}`, commentData)
+    .then(res => {
+      console.log("Calling")
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    })
+     .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    }); 
+};
+
+
+// Delet comment
+export const deleteComment = (postId, commentId) => dispatch => {
+  dispatch(clearErrors());
+  console.log("Calling")
+  axios
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_POST,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    }); 
+};
+
+// Add like
+export const addLike = (id) => dispatch => {
   axios
     .post(`/api/posts/like/${id}`)
     .then(res => dispatch(getPosts()))
-    .catch(err =>
+    .catch(err => 
+      dispatch({
+        type:GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+// Remove like
+export const removeLike = (id) => dispatch => {
+  axios
+    .post(`/api/posts/unlike/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err => 
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
@@ -97,10 +181,11 @@ export const addLike = id => dispatch => {
     );
 };
 
-// Remove Like
-export const removeLike = id => dispatch => {
+
+// Add bookmark
+export const addBookmark = (id) => dispatch => {
   axios
-    .post(`/api/posts/unlike/${id}`)
+    .post(`/api/posts/bookmark/${id}`)
     .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
@@ -110,17 +195,12 @@ export const removeLike = id => dispatch => {
     );
 };
 
-// Add Comment
-export const addComment = (postId, commentData) => dispatch => {
-  dispatch(clearErrors());
+
+// Remove bookmark
+export const removeBookmark = (id) => dispatch => {
   axios
-    .post(`/api/posts/comment/${postId}`, commentData)
-    .then(res =>
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
-    )
+    .post(`/api/posts/unbookmark/${id}`)
+    .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -129,30 +209,14 @@ export const addComment = (postId, commentData) => dispatch => {
     );
 };
 
-// Delete Comment
-export const deleteComment = (postId, commentId) => dispatch => {
-  axios
-    .delete(`/api/posts/comment/${postId}/${commentId}`)
-    .then(res =>
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
 
 // Set loading state
 export const setPostLoading = () => {
   return {
     type: POST_LOADING
-  };
-};
+  }
+}
+
 
 // Clear errors
 export const clearErrors = () => {

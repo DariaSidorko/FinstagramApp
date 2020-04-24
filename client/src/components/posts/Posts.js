@@ -1,68 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import PostForm from './PostForm';
+import PostItem from './PostItem';
 import PostFeed from './PostFeed';
-import Spinner from '../common/Spinner';
-import { getPosts } from '../../actions/postActions';
 
 class Posts extends Component {
-  componentDidMount() {
-    this.props.getPosts();
-  }
-
   render() {
-    const { posts, loading } = this.props.post;
-    let postContent;
+    const { posts } = this.props;
 
-    if (posts === null || loading) {
-      postContent = <Spinner />;
-    } else {
-      postContent = <PostFeed posts={posts} />;
-    }
-
-    const nickname = this.props.nickname;
-    const avatar = this.props.avatar;
-    const image = this.props.image;
-    const caption = this.props.caption;
+    return 
     
-    return (
-      
-      <article className="Post" ref="Post">
-            ...
-                <img src={avatar} alt={nickname} />
-            ... 
-                  <span>{nickname}</span>
-            ...
-                <img alt={caption} src={image} />
-            ...
-              <strong>{nickname}</strong>{caption}
-            ...
-        
-      <div className="feed">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <PostForm />
-              {postContent}
-            </div>
-          </div>
-        </div>
-      </div>
-      </article>
-      );
-    }
+    posts.map(post => <PostItem key={post._id} post={post} />);
   }
-    
-
+}
 
 Posts.propTypes = {
-  getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  posts: PropTypes.array.isRequired
 };
 
-const mapStateToProps = state => ({
-  post: state.post
-});
-
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default Posts;

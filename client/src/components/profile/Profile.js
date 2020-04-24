@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 import { getCurrentProfile } from '../../actions/profileActions';
-import { getProfileByHandle } from '../../actions/profileActions';
+// import { getProfileByHandle } from '../../actions/profileActions';
+
 
 
 
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
+      this.props.getCurrentProfile(this.props.match.params.user);
     }
   }
 
@@ -22,10 +23,12 @@ class Profile extends Component {
       this.props.history.push('/not-found');
     }
   }
+  
 
   render() {
     const { profile, loading } = this.props.profile;
     
+    const{user} = this.props.user;
     let profileContent;
 
     if (profile === null || loading) {
@@ -37,7 +40,7 @@ class Profile extends Component {
           
             <div className="row profile-user-settings">
             
-              <div className="profile-user-name">{profile.handle}</div>
+              <div className="profile-user-name">{user.handle}</div>
               <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
               <button className="btn profile-settings-btn" aria-label="profile settings">
               <i className="fas fa-cog" aria-hidden="true"></i>
@@ -45,12 +48,12 @@ class Profile extends Component {
             </div>
             <div className="row profile-stats">
                 <div><span className="profile-stat-count">164</span> posts</div>
-                <div><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
-                <div><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
+                <div><span className="profile-stat-count">{profile.followers !== undefined && user.followers.length }</span> followers</div>
+                <div><span className="profile-stat-count">{profile.following !== undefined && user.following.length }</span> following</div>
             </div>
             <div className="profile-bio">
-              <div className="profile-real-name">{profile.name}</div> 
-              <div>{profile.bio}</div>
+              <div className="profile-real-name">{user.name}</div> 
+              <div>{user.bio}</div>
             </div>
           </div> 
       )
@@ -114,7 +117,7 @@ class Profile extends Component {
 }
 }
 Profile.propTypes = {
-  getProfileByHandle: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -122,4 +125,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getProfileByHandle })(Profile);
+export default connect(mapStateToProps, { getCurrentProfile })(Profile);
