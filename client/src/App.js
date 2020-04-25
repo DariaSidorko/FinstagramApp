@@ -19,10 +19,11 @@ import CreateProfile from './components/create-profile/CreateProfile';
 // import EditProfile from './components/edit-profile/EditProfile';
 // import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
-import Posts from './components/posts/Posts';
-import PostFeed from './components/posts/PostFeed';
-import PostForm from './components/posts/PostForm';
-import PostItem from './components/posts/PostFeed';
+import Handle from './components/profile/Handle';
+// import Posts from './components/posts/Posts';
+// import PostFeed from './components/posts/PostFeed';
+// import PostForm from './components/posts/PostForm';
+// import PostItem from './components/posts/PostFeed';
 // import Post from './components/post/Post';
 // import NotFound from './components/not-found/NotFound';
 import { SET_CURRENT_USER } from './actions/types';
@@ -69,12 +70,11 @@ class App extends Component {
               </Switch>
               <Switch>
               <PrivateRoute
-                exact path="/profile}"
+                exact path="//handle/${res.data.handle}"
                 component= {Profile}
               />
             </Switch>
-              
-               <Switch>
+              {/*<Switch>
              <PrivateRoute
                   exact
                   path="/post-item"
@@ -87,7 +87,8 @@ class App extends Component {
               </Switch>
               <Switch>
                 
-              </Switch>
+              </Switch>*/}
+
              
             </div>
             <Footer />

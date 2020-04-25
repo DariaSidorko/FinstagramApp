@@ -58,7 +58,8 @@ class CreateProfile extends Component {
 
   render() {
     const { errors } = this.state;
-    const {profile} = this.props.profile;
+    // const {profile} = this.state.profile;
+   
 
     
 
@@ -71,8 +72,8 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h4 className="display-4 text-center">Create Your Profile</h4>
-              <small className="d-block pb-3">* = required fields</small>
+              <h4 className="display-4 text-center"> Create Your Profile</h4>
+              <small className="d-block pb-3"> * = required fields</small>
               <form onSubmit={this.onSubmit}>
              
               <TextFieldGroup
@@ -141,7 +142,7 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
-  profile: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -151,5 +152,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { createProfile })(
-  withRouter(CreateProfile)
+  (CreateProfile)
 );

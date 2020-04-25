@@ -14,6 +14,7 @@ class PostItem extends Component {
       text: '',
       errors: {}
     };   
+    
   }
 
   onDeleteClick (id) {
