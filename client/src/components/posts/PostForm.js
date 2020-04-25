@@ -1,5 +1,5 @@
 import '../../css/navbar.css';
-import '../../css/create-profile.css';
+import '../../css/create-edit-profile.css';
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -102,7 +102,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                               <lable className="input-lable" >Caption</lable> 
                             </div> 
                             <div className="col-9">
-                              <input type="text" className={classnames('form-control', {'is-invalid': errors.text})} placeholder="..." 
+                              <input type="text" className={classnames('form-control', {'is-invalid': errors.text})} placeholder="..." name="text"  
                                 name="text" value={this.state.text}  onChange={this.onChange}/> 
                                 {errors.text && (
                                   <div className="invalid-feedback"> {errors.text}</div>
@@ -137,3 +137,5 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps, { addPost })(PostForm);
+
+

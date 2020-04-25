@@ -1,0 +1,169 @@
+/* &&&&&&&&&&&& LOGIN &&&&&&&&&&&&&&&&&&&& */
+
+
+body {
+  background-color: #f8f8f8;
+  }
+  
+  .wrapper-1 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0px solid #000;
+  padding: 0px auto;
+
+  }
+
+  .wrapper-2 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 0px solid #000;
+    padding: 0px auto;
+    margin-top: 80px;
+    }
+  
+  .content-main {
+  width: 70%;
+  min-height: 400px;
+  margin: 0px auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  }
+
+  .content-main-post {
+    width: 50%;
+    min-height: 400px;
+    margin: 0px auto;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    }
+
+  .side-bar {
+    margin-right: 20px;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .top-row {
+    padding-bottom: 20px;
+  }
+
+  .avatar{
+    border-radius: 50%;
+    width: 40px;
+    margin-left: 20px;
+    float: right;
+  }
+
+  .edit-profile-username { 
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .edit-profile-username-disc {
+    font-size: 12px;
+    color: #acacac;
+  }
+
+  .input-row {
+    width: 90%;
+    padding: 6px 0px;
+  }
+  
+ .main-form {
+   padding: 0px 80px;
+ }
+
+ .input-lable-wrapper{
+   margin-top: 5px;
+   text-align: right;
+ }
+
+ .input-lable{
+   font-size: 15px;
+   font-weight: 400;
+   width: 100%;
+   height: 38px;
+   margin-bottom: 5px;
+   padding: 8px 12px;
+   border: 1px solid #dbdbdb;
+   box-sizing: border-box;
+   border-radius: 3px;
+ }
+
+  .form-control {
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .submit-btn-row {
+    padding-top: 30px;
+  }
+
+   .submit-btn {
+    width: 40%;
+    height: 38px;
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+  }  
+
+  .submit-btn:hover {
+    background-color: #1783e7;
+  }
+
+  .submit-btn:focus {
+    outline: 0.5rem auto #4d90fe;
+  }
+  
+  .fogot-pass{
+  text-align: center;
+  padding-top: 40px;
+  font-size: 12px;
+  font-weight: normal;
+  color: blue;
+  }
+  
+  .pass-link{
+  text-decoration: none;
+  font-weight: normal;
+  color: #4267b2;
+  }
+  
+  .sub-content {
+  width: 350px;
+  height: 10%;
+  margin: 10px auto;
+  border: 1px solid #e6e6e6;
+  padding: 20px 50px;
+  background-color: #fff;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: none;
+  }
+  
+  .signup-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #3897f0;
+  font-weight: bold;
+  }
+  
+  .signup{
+    margin-top: 5px;
+  }
+  
+  input:focus {
+    background-color: #ffffff;
+  }
+  
+  
+  
+  
+  

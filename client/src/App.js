@@ -1,47 +1,42 @@
+import './App.css';
+
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
-import { logoutUser } from './actions/authActions';
-// import { clearCurrentProfile } from './actions/profileActions';
-
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import store from './store';
-
-import PrivateRoute from './components/common/PrivateRoute';
+import jwt_decode from 'jwt-decode';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-// import Landing from './components/layout/Landing';
-// import Register from './components/auth/Register';
+import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import CreateProfile from './components/create-profile/CreateProfile';
-// import EditProfile from './components/edit-profile/EditProfile';
-// import Profiles from './components/profiles/Profiles';
+import Dashboard from './components/dashboard/Dashboard';
+import EditProfile from './components/create-edit-profile/CreateEditProfile';
+import PostFeed from './components/posts/PostFeed';
+import PostForm from './components/posts/PostForm';
+import Comments from './components/comments/CommentsPage';
 import Profile from './components/profile/Profile';
-import Handle from './components/profile/Handle';
-// import Posts from './components/posts/Posts';
-// import PostFeed from './components/posts/PostFeed';
-// import PostForm from './components/posts/PostForm';
-// import PostItem from './components/posts/PostFeed';
-// import Post from './components/post/Post';
-// import NotFound from './components/not-found/NotFound';
-import { SET_CURRENT_USER } from './actions/types';
-import {GET_PROFILE} from './actions/types';
 
-if (localStorage.jwtToken){
+import PrivateRoute from './components/common/PrivateRoute';
+
+import setAuthToken from './utils/setAuthToken';
+import { logoutUser } from './actions/authActions';
+import { SET_CURRENT_USER } from './actions/types';
+
+
+
+if(localStorage.jwtToken){
+
   //decode
-  const decoded = jwt_decode(localStorage.jwtToken);
-  
-  //Check for expired token
-  const currentTime = Date.now() / 1000;
+  const decoded = jwt_decode(localStorage.jwtToken);  
+  //check for expired token
+  const currentTime = Date.now()/1000;
   if (decoded.exp < currentTime){
-    //Logout user
+    //logout
     store.dispatch(logoutUser());
-    //Redirect user login
+    //redirect user to the login page
     window.location.href = '/login';
   }
-
   //set auth header
   setAuthToken(localStorage.jwtToken);
 
@@ -50,8 +45,13 @@ if (localStorage.jwtToken){
     type: SET_CURRENT_USER,
     payload: decoded
   });
+
+
+
 }
 
+//<Route exact path="/profile/:handle" component={Profile} />
+//<Route exact path="/profiles" component={Profiles} />
 class App extends Component {
   render() {
     return (
@@ -59,37 +59,24 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route exact path="/" 
-            component={Login} />
-            <div className="container">
+            <Route exact path="/" component={Login} /> 
+            <div className="">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/profile/:handle" component={Profile} />
+              <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
-                <PrivateRoute
-                  exact path="/create-profile"
-                  component={CreateProfile}
-                />
+              <Route exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
-              <PrivateRoute
-                exact path="//handle/${res.data.handle}"
-                component= {Profile}
-              />
-            </Switch>
-              {/*<Switch>
-             <PrivateRoute
-                  exact
-                  path="/post-item"
-                  component={PostItem}
-                />
-              </Switch>
-                
-              <Switch>
-                <PrivateRoute exact path="/feed" component={Posts} />
+                <PrivateRoute exact path="/edit-profile" component={EditProfile} ></PrivateRoute>
               </Switch>
               <Switch>
-                
-              </Switch>*/}
-
-             
+                <PrivateRoute exact path="/create-post" component={PostForm} ></PrivateRoute>
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/comments/:id" component={Comments} ></PrivateRoute>
+              </Switch>
             </div>
             <Footer />
           </div>

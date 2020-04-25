@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   ADD_POST,
   CLEAR_ERRORS,
-  GET_ERRORS,
+  SET_ERRORS,
   GET_POSTS,
   POST_LOADING,
   GET_POST,
@@ -14,12 +14,12 @@ import {
 
 // Get all the posts
 export const getPosts = () => dispatch => {
-  dispatch(setPostLoading());
   console.log("Got Here")
+  dispatch(setPostLoading());
+  console.log("Got Here clling API")
   axios
     .get('api/posts')
     .then(res => {
-      console.log("Response: ", res)
       dispatch({
         type: GET_POSTS,
         payload: res.data
@@ -83,7 +83,7 @@ export const addPost = (postData, history) => dispatch => {
     })
      .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     );  
@@ -104,7 +104,7 @@ export const deletePost = (postId, commentId) => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     }); 
@@ -127,7 +127,7 @@ export const addComment = (postId,commentData) => dispatch => {
     })
      .catch(err => {
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     }); 
@@ -148,7 +148,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     }); 
@@ -161,7 +161,7 @@ export const addLike = (id) => dispatch => {
     .then(res => dispatch(getPosts()))
     .catch(err => 
       dispatch({
-        type:GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     );
@@ -175,7 +175,7 @@ export const removeLike = (id) => dispatch => {
     .then(res => dispatch(getPosts()))
     .catch(err => 
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     );
@@ -189,7 +189,7 @@ export const addBookmark = (id) => dispatch => {
     .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     );
@@ -203,7 +203,7 @@ export const removeBookmark = (id) => dispatch => {
     .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: SET_ERRORS,
         payload: err.response.data
       })
     );

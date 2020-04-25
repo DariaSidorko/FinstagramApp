@@ -1,10 +1,16 @@
-import {GET_ERRORS} from '../actions/types';
-const initialState = {};
+import {SET_ERRORS, CLEAR_ERRORS} from '../actions/types';
+
+const initialState ={};
+
+
+
 export default function (state = initialState, action){
-  switch (action.type){
-    case GET_ERRORS:
+  switch(action.type){
+    case SET_ERRORS:
       return action.payload;
-      default:
-        return state;
+    case CLEAR_ERRORS:
+      return  {}
+    default:
+      return state;
   }
 }

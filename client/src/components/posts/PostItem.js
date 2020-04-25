@@ -8,34 +8,81 @@ import { Link } from 'react-router-dom';
 import { addComment, deletePost, addLike, removeLike, addBookmark, removeBookmark } from '../../actions/postActions';
 
 class PostItem extends Component {
+
   constructor() {
     super();
     this.state = {
       text: '',
       errors: {}
     };   
-    
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onDeleteClick (id) {
-    this.props.deletePost(id);
+  onChange(e){
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  onLikeClick(id){
-    this.props.addLike(id);
+  onSubmit(e){
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+    const { post } = this.props;
+
+    const newComment = {
+      text: this.state.text,
+      handle: user.handle,
+      name: user.name,
+      avatar: user.avatar,
+      user: user.user,
+    }
+
+    this.props.addComment(post._id, newComment)
+    this.setState({ text: '' });
   }
 
-  onDislikeClick(id){
-    this.props.removeLike(id);
-  }
-  findUserLike(likes){
-    const{auth} = this.props;
-    if (likes.filter(like => like.user ===auth.user.id).length >0){
+
+  // Checking for user Id in likes and bookmarks
+   findUserId(param) {
+    const { auth } = this.props;
+    if (param.filter(param => param.user === auth.user.id).length > 0) {
       return true;
     } else {
       return false;
     }
   }
+
+  onLikeDislikeClick(id, likes) {
+    if (this.findUserId(likes)) {
+      this.props.removeLike(id);
+    } else {
+      this.props.addLike(id);
+    }
+  }
+
+  onAddRemoveBookmarkClick(id, bookmarks){
+    if(this.findUserId(bookmarks)) {
+      this.props.removeBookmark(id);
+    } else {
+      this.props.addBookmark(id);
+    }
+  }
+
+  onDeletePostClick(id){
+    this.props.deletePost(id);
+  }
+ 
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.errors) {
+      this.setState({ errors: newProps.errors });
+    }
+  }
+
+//https://source.unsplash.com/random
+
+
 
   render() {
     const { post, /* showActions */ auth } = this.props;
@@ -85,7 +132,7 @@ class PostItem extends Component {
 
         <Link to={`/comments/${post._id}`}>
         { post.comments.length === 1 && ( <div className="comments">View {post.comments.length} comment...</div>)}
-        { post.comments.length > 1  && <div className="comments">View all {post.comments.length} comments...</div>}
+        { post.comments.length > 1  && <div className="comments">View all {post.comments.length} comments...</div> || ""}
         </Link>
       </div>  
       <div className="input-contanier">

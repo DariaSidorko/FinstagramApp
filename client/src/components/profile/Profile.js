@@ -1,73 +1,137 @@
-import '../../css/profile.css'
-import React, { Component } from 'react';
+import '../../css/profile.css';
+
+import { Component } from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Spinner from '../common/Spinner';
-import CreateProfile from '../create-profile/CreateProfile';
-import Handle from './Handle';
-import { getProfileByHandle } from '../../actions/profileActions';
 
+import { getProfileByHandle, follow, unfollow } from '../../actions/profileActions';
+import { getPosts } from '../../actions/postActions';
 
 
 
 class Profile extends Component {
+  
+
   componentDidMount() {
+    console.log("HANDLE: ", this.props.match.params.handle)
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
+    //console.log("Here")
+    //this.props.getPosts();
   }
 
-  componentWillReceiveProps(nextProps) {
+  onFollowUnfollowClick(params, id, handle) {
+    if (this.findUserId(params)) {
+      this.props.follow(id, handle);
+    } else {
+      this.props.unfollow(id, handle);
+    }
+  }
+
+ // Checking for user Id in likes and bookmarks
+  findUserId(params) {
+    console.log(typeof params);
+    console.log(params);
+    const { auth } = this.props.auth;
+    if (params.filter(param => param.user === auth.user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+    componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
+      //console.log("Error")
       this.props.history.push('/not-found');
     }
-  }
-
+  }  
+  //auth.isAuthenticated === true ? 
+  
   render() {
-    const { profile, loading } = this.props.profile;
+    const  { profile, profileLoading } = this.props.profile;
+    const { posts, postLoading } = this.props.post;
+    const { user } = this.props.auth;
+    let profileContent, postContent;
     
-    let profileContent;
+    //console.log("User: : ", this.props.auth.isAuthenticated)
 
-    if (profile === null || loading) {
-      profileContent = <Spinner />;
+    if (profile === null || profileLoading) {
+      profileContent = (<div className="loader"></div>)
     } else {
+      console.log("Profile: ", profile)
       profileContent = (
-        <div>
-          <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
-              </Link>
-            </div>
-            <div className="col-md-6" />
+        <div className="row main-containier">
+          <div className="col-6 profile-avatar ">
+            <img src={profile.user.avatar} alt="" />
           </div>
-          <Handle profile={profile} />
-    
-          
-        </div>
-      );
+          <div className="col-6">
+          <div className="row profile-user-settings">
+              <div className="profile-user-name">{this.props.match.params.handle}</div>
+              {this.props.auth.isAuthenticated ? user.handle === this.props.match.params.handle ?
+                <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link> : 
+                
+                <div className="btn profile-edit-btn"
+                  onClick={this.onFollowUnfollowClick.bind( profile.following, profile.user._id, profile.user.handle)} 
+                  type="button">
+                  {this.findUserId(profile.following) ? "Unfollow" : "Follow"}</div>
+                : undefined}
+            </div>
+            <div className="row profile-stats">
+                <div><span className="profile-stat-count">164</span> posts</div>
+                <div><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
+                <div><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
+            </div>
+            <div className="profile-bio">
+              <div className="profile-real-name">{profile.user.name}</div> 
+              <div>{profile.bio}</div>
+            </div>
+          </div>
+        </div>  
+      )
+
+      
     }
 
+   /*  if (posts === null || postLoading || Object.keys(posts).length === 0) {
+      postContent = (<div className="loader"></div>)
+    } else {
+
+      postContent = (<div></div>)    }   */
+
+
     return (
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
-          </div>
-        </div>
+      <div>
+        <header>
+          {profileContent}
+      </header>
+      <main>
+
+      </main>
       </div>
-    );
+    )
   }
 }
 
-Profile.propTypes = {
+ //{postContent}
+
+ Profile.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  getPosts: PropTypes.func.isRequired,
+  follow: PropTypes.func.isRequired,
+  unfollow: PropTypes.func.isRequired,
+  //posts: PropTypes.array.isRequired,
+  //profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  auth: state.auth,
+  profile: state.profile,
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getProfileByHandle })(Profile);
+export default connect(mapStateToProps, { getProfileByHandle, getPosts, follow, unfollow })(Profile);

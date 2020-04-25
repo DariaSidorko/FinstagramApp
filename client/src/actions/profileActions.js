@@ -1,41 +1,24 @@
-import axios from 'axios';
+import axios from "axios";
 
-import {
-  GET_PROFILE,
-  GET_PROFILES,
-  PROFILE_LOADING,
-  CLEAR_CURRENT_PROFILE,
-  GET_ERRORS,
-  SET_CURRENT_USER, 
-  SET_ERRORS
-
-} from './types';
-
-// Create Profile
-export const createProfile = (profileData, history) => dispatch => {
-  axios
-    .post('/api/profile/', profileData)
-    .then(res => history.push(`/profile/handle/${res.data.handle}`))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
+import { 
+  GET_PROFILE, 
+  SET_ERRORS,
+  PROFILE_LOADING
+ } from './types'
 
 
 
-// Get current profile
+//Get profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/profile')
-    .then(res =>
+    .then(res => {
       dispatch({
         type: GET_PROFILE,
         payload: res.data
       })
+    }
     )
     .catch(err =>
       dispatch({
@@ -45,9 +28,11 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
+
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
+  console.log("Handle in Action: ",handle)
   axios
     .get(`/api/profile/handle/${handle}`)
     .then(res =>
@@ -65,53 +50,7 @@ export const getProfileByHandle = handle => dispatch => {
 };
 
 
-// Get all profiles
-export const getProfiles = () => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get('/api/profile/all')
-    .then(res =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: null
-      })
-    );
-};
 
-// Delete account & profile
-export const deleteAccount = () => dispatch => {
-  if (window.confirm('Are you sure? This can NOT be undone!')) {
-    axios
-      .delete('/api/profile')
-      .then(res =>
-        dispatch({
-          type: SET_CURRENT_USER,
-          payload: {}
-        })
-      )
-      .catch(err =>
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        })
-      );
-  }
-};
-
-
-
-// Clear profile
-export const clearCurrentProfile = () => {
-  return {
-    type: CLEAR_CURRENT_PROFILE
-  };
-};
 // follow
 export const follow = (id, handle) => dispatch => {
   axios

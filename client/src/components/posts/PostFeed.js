@@ -1,4 +1,5 @@
 import '../../css/post-feed.css';
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,8 +7,8 @@ import { getPosts } from '../../actions/postActions'
 import Posts from './Posts';
 
 
-
 class PostFeed extends Component {
+
   componentDidMount() {
     this.props.getPosts();
   }
@@ -15,7 +16,7 @@ class PostFeed extends Component {
 //{posts.map(post => postContent)}
   render() {
 
-    const { posts, loading } = this.props;
+    const { posts, loading } = this.props.posts;
     const { user } = this.props.auth;
     let postContent;
 
@@ -27,10 +28,8 @@ class PostFeed extends Component {
         postContent = <Posts posts={posts} />;
     }
 
-
     return (
-    // posts.map(post => <PostItem key={post._id} post={post} />);
-    <div>
+      <div>
         <div className="post-contanier">
           <div className="row">
             {postContent}

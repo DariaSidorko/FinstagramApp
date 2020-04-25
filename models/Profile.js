@@ -6,19 +6,37 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  handle: {
+ /*  handle: {
     type: String,
     required: true,
-    max: 40
-  },
+    max: 30
+  }, */
   website: {
     type: String
   },
-  
   bio: {
     type: String
   },
-
+  //number of profiles this user is following
+  following: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+      },
+    }
+  ],
+  //number of users following this profile
+  followers: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+      },
+    }
+  ]
 });
+
+
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

@@ -1,26 +1,26 @@
 {
-  "name": "instagram",
+  "name": "instagramapp",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "node server.js",
+    "start": "node server js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Liliya Fedyurina",
+  "author": "Daria Sidorko",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
     "express": "^4.17.1",
     "gravatar": "^1.8.0",
-    "instagram-searchtags": "^2.0.9",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.2",
+    "mongoose": "^5.9.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "validator": "^12.2.0"
