@@ -106,8 +106,8 @@ body {
    .submit-btn {
     width: 40%;
     height: 38px;
-    background-color: #3897f0;
-    border: 1px solid #3897f0;
+    background-color: #0095f6;
+    border: 1px solid #0095f6;
     color: #ffffff;
     font-size: 14px;
     font-weight: 600;
@@ -115,13 +115,13 @@ body {
   }  
 
   .submit-btn:hover {
-    background-color: #1783e7;
+    background-color: #0095f6;
   }
 
   .submit-btn:focus {
     outline: 0.5rem auto #4d90fe;
   }
-  
+  /*
   .fogot-pass{
   text-align: center;
   padding-top: 40px;
@@ -154,6 +154,7 @@ body {
   color: #3897f0;
   font-weight: bold;
   }
+  */
   
   .signup{
     margin-top: 5px;
