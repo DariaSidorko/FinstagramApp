@@ -46,105 +46,91 @@ class Register extends Component {
     }
   }
 
-  render() {
-    const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
-    return (
+ // **************password visible-invisible****************
+ state = {
+  isPasswordShown: false
+}
+togglePasswordVisibility = () =>{
+  const {isPasswordShown} = this.state;
+  this.setState ({isPasswordShown :!isPasswordShown});
+}
+// **************************************************
 
- 
-
-      <div className="wrapper">
-
-        <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
-          <ol className="carousel-indicators">
-            <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
-            <li data-target="#backgroundCarousel" data-slide-to="1"></li>
-            <li data-target="#backgroundCarousel" data-slide-to="2"></li>
-          </ol>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              {/*Photo by Jack Church on Unsplash*/}
-            <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1600x825" alt="First slide" />
-            </div>
-            <div className="dark-overlay"></div>
-            <div className="carousel-item">
-              {/*Photo by Chronis Yan on Unsplash*/}
-            <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1600x825" alt="Second slide" />
-            </div>
-            <div className="dark-overlay"></div>
-            <div className="carousel-item">
-              {/*Photo by Anders Jildén on Unsplash*/}
-              <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1600x825"
-              alt="Third slide" />
-              <div className="dark-overlay"></div>
-            </div>
-          </div>
-          </div>
-
-
-
-
-      <div className="main-content">
-        <div className="header">
-          <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
+render() {
+  const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
+  // *******************************
+  const {isPasswordShown} = this.state;
+  // *******************************
+  return (
+    <div className="wrapper">
+    <div className="main-content">
+      <div className="header">
+        <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
+      </div>
+      <form onSubmit={this.onSubmit}>
+        <div>
+          <TextFieldGroup 
+            placeholder="Email Address"
+            name = "email" 
+            value = {this.state.email}
+            onChange = {this.onChange}
+            errors = {errors.email}
+          />
         </div>
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <TextFieldGroup 
-              placeholder="Email Address"
-              name = "email" 
-              value = {this.state.email}
-              onChange = {this.onChange}
-              errors = {errors.email}
-            />
+        <div>
+          <TextFieldGroup 
+            placeholder="Full Name"
+            name = "name" 
+            value = {this.state.name}
+            onChange = {this.onChange}
+            errors = {errors.name}
+          />
           </div>
           <div>
-            <TextFieldGroup 
-              placeholder="Full Name"
-              name = "name" 
-              value = {this.state.name}
-              onChange = {this.onChange}
-              errors = {errors.name}
-            />
-            </div>
-            <div>
-            <TextFieldGroup 
-              placeholder="Username"
-              name = "handle" 
-              value = {this.state.handle}
-              onChange = {this.onChange}
-              errors = {errors.handle}
-            />
+          <TextFieldGroup 
+            placeholder="Username"
+            name = "handle" 
+            value = {this.state.handle}
+            onChange = {this.onChange}
+            errors = {errors.handle}
+          />
+        </div>
+        <div>
+          {/* ************************ */ }
+          <i className = "fa fa-eye password-icon" 
+          onClick= {this.togglePasswordVisibility} />
+          {/* ************************ */ }
+          <TextFieldGroup 
+            placeholder="Password"
+            name = "password" 
+            // *********************************
+            type = {(isPasswordShown) ? "text": "password"}
+            // *********************************}
+            value = {this.state.password}
+            onChange = {this.onChange}
+            errors = {errors.password}
+          />
           </div>
-          <div>
-            <TextFieldGroup 
-              placeholder="Password"
-              name = "password" 
-              value = {this.state.password}
-              onChange = {this.onChange}
-              errors = {errors.password}
-            />
-            </div>
-          <input type="submit" value="Sign up" className="btn-signup" />
-        </form>
-      
-      <div className="sub-content">
-          Have an account? <Link className="sub-link" to="/login">Log in</Link>
-      </div>
-      </div>
+        <input type="submit" value="Sign up" className="btn" />
+      </form>
     </div>
-    )
-  }
+    <div className="sub-content">
+        Have an account? <Link className="sub-link" to="/login">Log in</Link>
+    </div>
+  </div>
+  )
+}
 }
 
 Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+registerUser: PropTypes.func.isRequired,
+auth: PropTypes.object.isRequired,
+errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors
+auth: state.auth,
+errors: state.errors
 });
 
 
