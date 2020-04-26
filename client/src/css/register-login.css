@@ -84,13 +84,13 @@
   padding-top: 20px;
   font-size: 12px;
   font-weight: normal;
-  color: #4267b2;
+  color: #0095f6;
   }
   
   .pass-link{
   text-decoration: none;
   font-weight: normal;
-  color: #4267b2;
+  color: #0095f6;
   }
   
   .sub-content {
@@ -103,6 +103,14 @@
   .sub-link {
   text-decoration: none;
   color: #0095f6;
+  }
+
+  .btn-signup {
+    background-color: #0095f6;
+    color: #ffffff;
+  }
+  .main-link {
+    color: #0095f6;
   }
  
   /*
@@ -126,27 +134,11 @@
     margin-top: -20px;
   }
 
- 
 
   @media(min-width: 500px) and (max-width: 665px) {
     .main-content {
-      margin-left: 20%;
-    }
-    .carousel-indicators {
-      visibility: hidden;
-    }
-    #backgroundCarousel {
-      visibility: hidden;
-    }
-    .footer {
-      margin: 0;
-    }
-  }
-
-  @media(min-width: 666px) and (max-width: 800px) {
-    .main-content {
-      margin-left: 25%;
-      height: 31%;
+      margin-left: 17%;
+      height: 33%;
     }
     .header {
       margin-bottom: 7px;
@@ -158,26 +150,63 @@
     .carousel-indicators {
       visibility: hidden;
     }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .footer {
+      position: absolute;
+      margin-top: 100px;
+      width: 100%;
+      bottom: 20px;
+    }
   }
 
-  @media(min-width: 801px) and (max-width: 1000px) {
+  @media(min-width: 666px) and (max-width: 849px) {
+    .main-content {
+      margin-left: 25%;
+      height: 33%;
+    }
+    .header {
+      margin-bottom: 7px;
+      margin-top: -3px;
+    }
+    .sub-content {
+      margin-top: 6px;
+    }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 850px) and (max-width: 1000px) {
     .main-content {
       margin-left: 29%;
-      height: 36%;
+      height: 35%;
+    }
+    .carousel-indicators {
+      visibility: hidden;
     }
   }
 
   @media(min-width: 1001px) and (max-width: 1200px) {
     .main-content {
       margin-left: 35%;
-      height: 40%;
+      height: 36%;
     }
   }
 
   @media(min-width: 1201px) {
     .main-content {
-      margin-left: 36%;
-      height: 40%;
+      margin-left: 40.5%;
+      height: 36%;
     }
   }
 
