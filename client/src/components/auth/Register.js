@@ -45,9 +45,21 @@ class Register extends Component {
       this.setState({errors: nextProps.errors});
     }
   }
+  // **************password visible-invisible****************
+  state = {
+    isPasswordShown: false
+  }
+  togglePasswordVisibility = () =>{
+    const {isPasswordShown} = this.state;
+    this.setState ({isPasswordShown :!isPasswordShown});
+  }
+  // **************************************************
 
   render() {
     const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
+    // *******************************
+    const {isPasswordShown} = this.state;
+    // *******************************
     return (
       <div className="wrapper">
       <div className="main-content">
@@ -83,9 +95,16 @@ class Register extends Component {
             />
           </div>
           <div>
+            {/* ************************ */ }
+            <i className = "fa fa-eye password-icon" 
+            onClick= {this.togglePasswordVisibility} />
+            {/* ************************ */ }
             <TextFieldGroup 
               placeholder="Password"
               name = "password" 
+              // *********************************
+              type = {(isPasswordShown) ? "text": "password"}
+              // *********************************}
               value = {this.state.password}
               onChange = {this.onChange}
               errors = {errors.password}
