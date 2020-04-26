@@ -6,119 +6,139 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { getCurrentProfile } from '../../actions/profileActions';
+import { getProfileByHandle, follow, unfollow } from '../../actions/profileActions';
+import { getPosts } from '../../actions/postActions';
+
 
 
 class Profile extends Component {
+
+  constructor(){
+    super();
+    this.onFollowUnfollowClick.bind(this);
+    this.findUserId.bind(this);
+  }
   
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    if (this.props.match.params.handle) {
+      this.props.getProfileByHandle(this.props.match.params.handle);
+    }
+    //console.log("Here")
+    this.props.getPosts();
   }
 
-   componentWillReceiveProps(nextProps) {
+  onFollowUnfollowClick(params, id, handle) {
+    //console.log(params)
+    if (this.findUserId(params)) {
+      console.log("GOT TO HERE")
+      this.props.unfollow(id, handle);
+    } else {
+      console.log("OR HERE")
+      this.props.follow(id, handle);
+      
+    } 
+  }
+
+ // Checking for user Id in likes and bookmarks
+  findUserId(params) {
+    const { user } = this.props.auth;
+    //console.log(user)
+    //console.log(params.filter(param => param.user === user.id).length > 0)
+    if (params.filter(param => param.user === user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+    componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
       this.props.history.push('/not-found');
     }
-  } 
+  }  
+  //auth.isAuthenticated === true ? 
   
-  //const { profile, loading } = this.props.profile;
-  //{profile.handle && profile.handle || ""}
-  // {profile.bio && profile.bio || ""}
-  // console.log("print: ", this.props.profile)
   render() {
-    const  { profile, loading } = this.props.profile;
+    const  { profile, profileLoading } = this.props.profile;
+    const { posts, postLoading } = this.props.post;
     const { user } = this.props.auth;
+    let profileContent, postContent;
+    
+    //console.log("User: : ", this.props.auth.isAuthenticated)
 
-    let profileContent;
-
-    if (profile === null || loading) {
+    if (profile === null || profileLoading) {
       profileContent = (<div className="loader"></div>)
     } else {
       profileContent = (
-        <div className="profile">
-          <div className="profile-image">
-            <img src={user.avatar} alt="" />
+        <div className="row main-containier">
+          <div className="col-6 profile-avatar ">
+            <img src={profile.user.avatar} alt="" />
           </div>
-          <div className="profile-user-settings">
-            <h1 className="profile-user-name">{profile.handle}</h1>
-            <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
-            <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
-          </div>
-          <div className="profile-stats">
-            <ul>
-              <li><span className="profile-stat-count">164</span> posts</li>
-              <li><span className="profile-stat-count">{profile.followers.length}</span> followers</li>
-              <li><span className="profile-stat-count">{profile.following.length}</span> following</li>
-            </ul>
-          </div>
-          <div className="profile-bio">
-            <div className="profile-real-name">{user.name}</div> 
-            <div>{profile.bio}</div>
+          <div className="col-6">
+          <div className="row profile-user-settings">
+              <div className="profile-user-name">{this.props.match.params.handle}</div>
+              {this.props.auth.isAuthenticated ? user.handle === this.props.match.params.handle ?
+                <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link> : 
+                
+                <div className="btn profile-edit-btn"
+                  onClick={this.onFollowUnfollowClick.bind( this, profile.followers, profile.user._id, profile.user.handle)} 
+                  type="button">
+                  {this.findUserId(profile.followers) ? "Unfollow" : "Follow"}</div>
+                : undefined}
+            </div>
+            <div className="row profile-stats">
+                <div><span className="profile-stat-count">164</span> posts</div>
+                <div><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
+                <div><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
+            </div>
+            <div className="profile-bio">
+              <div className="profile-real-name">{profile.user.name}</div> 
+              <div>{profile.bio}</div>
+            </div>
           </div>
         </div>  
       )
+
+      
     }
 
+   /*  if (posts === null || postLoading || Object.keys(posts).length === 0) {
+      postContent = (<div className="loader"></div>)
+    } else {
+
+      postContent = (<div></div>)    }   */
 
 
     return (
       <div>
         <header>
-          <div className="container">
-            {profileContent}
-          </div>
-        </header>
-
+          {profileContent}
+      </header>
       <main>
-      <div className="container">
-      <div className="gallery">
-        <div className="gallery-item" tabIndex="0">
-          <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" className="gallery-image" alt="" />
-          <div className="gallery-item-info"> 
-            <ul>
-              <li className="gallery-item-likes"><span className="visually-hidden">Likes:</span><i className="fas fa-heart" aria-hidden="true"></i> 56</li>
-              <li className="gallery-item-comments"><span className="visually-hidden">Comments:</span><i className="fas fa-comment" aria-hidden="true"></i> 2</li>
-            </ul>  
-          </div> 
-        </div> 
-        <div className="gallery-item" tabIndex="0">
-          <img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" className="gallery-image" alt="" />
-          <div className="gallery-item-info"> 
-            <ul>
-              <li className="gallery-item-likes"><span className="visually-hidden">Likes:</span><i className="fas fa-heart" aria-hidden="true"></i> 89</li>
-              <li className="gallery-item-comments"><span className="visually-hidden">Comments:</span><i className="fas fa-comment" aria-hidden="true"></i> 5</li>
-            </ul>
-          </div>
-        </div>
-        <div className="gallery-item" tabIndex="0"> 
-          <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop" className="gallery-image" alt="" />
-          <div className="gallery-item-type">
-            <span className="visually-hidden">Gallery</span><i className="fas fa-clone" aria-hidden="true"></i>
-          </div> 
-          <div className="gallery-item-info">
-            <ul>
-              <li className="gallery-item-likes"><span className="visually-hidden">Likes:</span><i className="fas fa-heart" aria-hidden="true"></i> 42</li>
-              <li className="gallery-item-comments"><span className="visually-hidden">Comments:</span><i className="fas fa-comment" aria-hidden="true"></i> 1</li>
-            </ul>
-          </div> 
-        </div>  
-        </div>  
-      </div>
+
       </main>
       </div>
     )
   }
 }
 
-Profile.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+ //{postContent}
+
+ Profile.propTypes = {
+  getProfileByHandle: PropTypes.func.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  follow: PropTypes.func.isRequired,
+  unfollow: PropTypes.func.isRequired,
+  //posts: PropTypes.array.isRequired,
+  //profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Profile);
+export default connect(mapStateToProps, { getProfileByHandle, getPosts, follow, unfollow })(Profile);

@@ -50,7 +50,6 @@ class CreateEditProfile extends Component {
 placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
   render() {
     const { user } = this.props.auth;
-    const  { profile } = this.props.profile;
 
     return (
       <div className="wrapper-1">
@@ -71,11 +70,11 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                   
                   <div className="row top-row">
                     <div className="col-3 input-lable-wrapper">
-                      <Link to="/profile"><img src={user.avatar} alt={profile.handle} className="avatar"/></Link>
+                      <Link to="/dashboard"><img src={user.avatar} alt={user.handle} className="avatar"/></Link>
                     </div> 
                     <div className="col-9">
-                      <div className="username">{profile.handle}</div>
-                      <div className="username-disc">to change your profile picture please use gravatar.com</div>
+                      <div className="edit-profile-username">{user.handle}</div>
+                      <div className="edit-profile-username-disc">to change your profile picture please use gravatar.com</div>
                     </div>    
                   </div>
                   
@@ -86,7 +85,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                         <lable className="input-lable" >Name</lable> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.name && user.name } name="email" disabled/> 
+                        <input type="email" className="form-control" placeholder={ user.name  } name="email" disabled/> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -94,7 +93,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
                         <lable className="input-lable" >Username</lable> 
                       </div> 
                       <div className="col-9">
-                        <input type="handle" className="form-control" placeholder={ user.name && user.name } name="handle"  disabled/> 
+                        <input type="handle" className="form-control" placeholder={ user.handle } name="handle"  disabled/> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -130,6 +129,10 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
 
         </div>
         </div>
+
+
+
+        
       </div>
   
     )

@@ -34,9 +34,15 @@ vertical-align: middle;
   margin-right: auto;
 }
 
+.post-img{
+  height:600px;
+  object-fit:cover;
+}
+
 .post {
   background-color: #ffffff;
   border: 0.5px solid #e0e0e0;
+  margin-bottom: 60px;
 }
     
 .post-header {
@@ -58,15 +64,18 @@ font-size: 14px;
 padding-left: 15px;
 }
 
-.more-options {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-position: -78px -210px;
+.post-delete {
   float: right;
-  height: 24px;
-  width: 24px;
-  margin-top: 6px;
+  font-size: 20px;
+  margin-top: 4px;
+  margin-right: 10px;
+  color: #c5c5c5;
   vertical-align: middle;
   display: inline;
+}
+
+.post-delete:hover {
+  color: #ff5c5c;
 }
 
 .col-8 {
@@ -78,48 +87,58 @@ width: 100%;
 }
 
 .post-bottom {
-padding: 12px 12px 0px 12px;  
+padding: 8px 12px 0px 12px;  
 }
 
 .like-icon {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-repeat: no-repeat;
-  background-position: -72px -138px;
   display: inline;
   float: left;
   height: 24px;
   margin-right: 20px;
   width: 24px;  
+  font-size: 26px;
+  color: #464646;
+}
+
+.red-heart{
+  color: #ff5c5c;
 }
 
 .comment-icon {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-repeat: no-repeat;
-  background-position: -184px -52px;
   display: inline;
   float: left;
   height: 24px;
   vertical-align: middle;
-  width: 24px;   
+  width: 24px;  
+  font-size: 26px; 
+  color: #464646;
 }
 
 .bookmark-icon {
-  background: url(https://res.cloudinary.com/jorpdesigns/image/upload/v1533421516/sprite.png);
-  background-repeat: no-repeat;
-  background-position: -182px -184px;
   display: inline;
   float: right;
   height: 24px;
   vertical-align: middle;
-  width: 24px;   
+  width: 24px;  
+  font-size: 26px; 
+  color: #464646;
 }
 
 .likes {
   font-weight: 600;
   font-size: 13px;
-  padding-top: 35px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.comments {
+  font-weight: 600;
+  font-size: 13px;
+  padding-top: 0px;
   padding-bottom: 8px;
   text-align: left;
+  color: #464646;
 }
 
 .username-caption {
@@ -139,26 +158,34 @@ padding: 12px 12px 0px 12px;
 .timestamp {
 font-size: 10px;
 text-transform: uppercase;
-padding-top: 8px;
+padding-top: 5px;
 padding-bottom: 10px;
 color: #8a8a8a;
 }
 
 .input-contanier{
-  padding-top: 3px;
+  padding-top: 8px;
   border-top: 0.5px solid #e7e7e7;
 }
 
 .comment-input{
+  display: inline;
   border: none;
   width: 99%;
   margin-left: 5px;
-  height: 45px;
+  height: 20px;
   font-size: 14px;
 }
 
 input:focus {
   border-color: yellow;
+}
+
+.post-button {
+  font-size: 14px;
+  margin-right: 15px;
+  font-weight: 600;
+  color: #0095f6;
 }
 
 .side-bar-header{

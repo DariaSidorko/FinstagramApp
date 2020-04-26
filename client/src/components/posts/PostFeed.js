@@ -1,43 +1,57 @@
 import '../../css/post-feed.css';
 
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getPosts } from '../../actions/postActions'
+import { getCurrentProfile } from '../../actions/profileActions'
+import  isEmpty  from '../../validation/is-empty'
+import Posts from './Posts';
 
-import React, { Component } from 'react'
 
 class PostFeed extends Component {
+
+  componentDidMount() {
+    this.props.getPosts();
+    this.props.getCurrentProfile();
+  }
+
+/*   componentWillReceiveProps(nextProps) {
+    if (nextProps.profiles.profile === null && this.props.profiles.profileLoading) {
+      this.props.history.push('/not-found');
+    }
+  } */
+
+//{posts.map(post => postContent)}
   render() {
+
+    const { posts, loading } = this.props.posts;
+    const { user } = this.props.auth;
+    const { profile, profileLoading } = this.props.profiles;
+    let postContent;
+
+    //console.log("PROFILE: ", this.props.profiles.profile)
+
+    console.log("Type of posts in the feed: ", posts)
+
+    if (posts === null || loading || Object.keys(posts).length === 0 || profile === null || profileLoading ) {
+      postContent = <div className="loader"></div>;
+    } else if (isEmpty(posts) || isEmpty(profile)) {
+      postContent = <div></div>
+    } else {
+        postContent = <Posts posts={posts} />;
+    }
+
     return (
       <div>
         <div className="post-contanier">
           <div className="row">
-            <div className=" col-8 post">
-              <div className="post-header">
-                  <img src="https://res.cloudinary.com/jorpdesigns/image/upload/v1533122246/profile-picture.jpg" alt="avatar" />
-                <div className="username">johnjames.21</div>
-                <div className="more-options"></div>
-              </div>     
-              <div className="post-container">
-              <img src="https://res.cloudinary.com/jorpdesigns/image/upload/v1532848922/samples/food/spices.jpg" alt="instagram post" />
-              </div>
-              <div className="post-bottom">
-                <div className="like-icon"></div>
-                <div className="comment-icon"></div>
-                <div className="bookmark-icon"></div>  
-
-                <div className="likes">455 likes</div>
-                <div>
-                  <span className="username-caption">johnjames.21</span><span className="post-caption">This is my first post #haha #firstpost</span>
-                </div>  
-
-                <div className="timestamp">4 Hours Ago</div>
-              </div>  
-              <div className="input-contanier">
-                <input className="comment-input" placeholder="Add a comment..."/>
-              </div>
-            </div> 
+            {postContent}
+            
             <div className="col-4">
               <div className="side-bar-header">
-                <img src="https://res.cloudinary.com/jorpdesigns/image/upload/v1533122246/profile-picture.jpg" alt="avatar" />
-                <div className="username">johnjames.21</div>
+                <img src={ user.avatar } alt="avatar" />
+                <div className="username">{ user.handle }</div>
               </div>     
             </div>
           </div>
@@ -46,4 +60,18 @@ class PostFeed extends Component {
     )
   }
 }
-export default PostFeed
+
+
+PostFeed.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  posts: state.post,
+  auth: state.auth,
+  profiles: state.profile
+});
+
+export default connect(mapStateToProps, { getPosts, getCurrentProfile })(PostFeed);

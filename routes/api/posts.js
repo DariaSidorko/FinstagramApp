@@ -12,9 +12,10 @@ const Profile = require('../../models/Profile');
 const validatePostInput = require('../../validation/post');
 
 // @route   GET api/posts
-// @desc    Get posts
+// @desc    Get ALL posts
 // @access  Public
 router.get("/", (req, res) => {
+  console.log("On the server")
   Post.find()
     .sort({date: -1})
     .then(posts => res.json(posts))
@@ -25,9 +26,11 @@ router.get("/", (req, res) => {
 // @route   GET api/posts/:id
 // @desc    Get post by id
 // @access  Public
-router.get('/post/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(post => {
+      res.json(post)
+    })
     .catch(err =>
       res.status(404).json({ nopostfound: 'No post found with that ID' })
     );
@@ -70,16 +73,16 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
-
+    console.log(errors)
     // Check Validation
     if (!isValid) {
-
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
     const newPost = new Post({
       text: req.body.text,
       image: req.body.image,
+      handle: req.body.handle,
       name: req.body.name,
       avatar: req.body.avatar,
       user: req.user.id
@@ -257,18 +260,21 @@ router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+    //const { errors, isValid } = validatePostInput(req.body);
 
     // Check Validation
-    if (!isValid) {
+   /*  if (!isValid) {
       
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
-    }
+    } */
+
+    console.log("Got Here!")
     Post.findById(req.params.id)
       .then(post => {
         const newComment = {
           text: req.body.text,
+          handle: req.body.handle,
           name: req.body.name,
           avatar: req.body.avatar,
           user: req.user.id
@@ -276,7 +282,7 @@ router.post(
 
         // Add to comments array
         post.comments.unshift(newComment);
-
+        console.log(newComment)
         // Save
         post.save().then(post => res.json(post));
       })
@@ -294,7 +300,7 @@ router.delete(
   (req, res) => {
     Post.findById(req.params.id)
       .then(post => {
-
+        
         // Check to see if comment exists
         if (
           post.comments.filter(

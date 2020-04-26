@@ -31,7 +31,7 @@ app.get('/', (req, res) => res.send('Hello'));
 
 app.use('/api/users', users);
 app.use('/api/profile', profile);
-app.use('/api/post', post);
+app.use('/api/posts', post);
 
 
 const port = 8050;

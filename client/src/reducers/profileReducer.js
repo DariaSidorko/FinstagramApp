@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   profile: null,
-  loading: false
+  profileLoading: false
 };
 
 export default function(state = initialState, action) {
@@ -13,13 +13,13 @@ export default function(state = initialState, action) {
     case PROFILE_LOADING:
       return {
         ...state,
-        loading: true
+        profileLoading: true
       };
     case GET_PROFILE:
       return {
         ...state,
         profile: action.payload,
-        loading: false
+        profileLoading: false
       };
       default:
       return state;

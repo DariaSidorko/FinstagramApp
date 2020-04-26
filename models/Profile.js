@@ -22,7 +22,7 @@ const ProfileSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'profile'
+        ref: 'user'
       },
     }
   ],
@@ -31,7 +31,7 @@ const ProfileSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'profile'
+        ref: 'user'
       },
     }
   ]

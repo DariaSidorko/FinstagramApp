@@ -38,13 +38,13 @@ class Login extends Component {
 
   componentDidMount(){
     if(this.props.auth.isAuthenticated){
-      this.props.history.push('/profile');
+      this.props.history.push('/post-feed');
     }
   }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.auth.isAuthenticated){
-      this.props.history.push('/profile');
+      this.props.history.push('/post-feed');
     }
     if(nextProps.errors){
       this.setState({errors: nextProps.errors});
@@ -87,7 +87,7 @@ class Login extends Component {
 
         <div className="main-content">
           <div className="header">
-            <img alt="logo" src={require("../../img/instagram_logo.png")} />
+            <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
           </div>
           <form onSubmit={this.onSubmit}>
             <div>
