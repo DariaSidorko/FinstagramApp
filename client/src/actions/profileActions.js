@@ -68,7 +68,7 @@ export const follow = (id, handle) => dispatch => {
 // Remove like
 export const unfollow = (id, handle) => dispatch => {
   axios
-    .post(`/api/posts/unlike/${id}`)
+    .post(`/api/profile/unfollow/${id}`)
     .then(res => dispatch(getProfileByHandle(handle)))
     .catch(err => 
       dispatch({

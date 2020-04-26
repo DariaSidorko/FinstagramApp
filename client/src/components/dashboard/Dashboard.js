@@ -36,7 +36,6 @@ class Dashboard extends Component {
     if (profile === null || profileLoading || posts === null || postLoading || Object.keys(posts).length === 0) {
       profileContent = (<div className="loader"></div>)
     } else {
-
       postContent = <DashboardPosts posts={posts}  />;
 
       profileContent = (

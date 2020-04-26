@@ -171,7 +171,6 @@ router.post(
   '/follow/:user_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    console.log(req.user)
     Profile.findOne({user: req.user.id})
     .then(profile => {
       if (profile.following.filter(follow => follow.user.toString() === req.params.user_id).length > 0) {

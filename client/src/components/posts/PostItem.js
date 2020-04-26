@@ -91,7 +91,10 @@ class PostItem extends Component {
  
     <div className=" col-8 post">
       <div className="post-header">
-          <img src={ post.avatar } alt="avatar" />
+        { auth.isAuthenticated && auth.user.handle === post.handle ? 
+          <Link to="/dashboard"><img src={ post.avatar } alt="avatar" /></Link> :
+          <Link to={`/profile/${post.handle}`}><img src={ post.avatar } alt="avatar" /></Link>
+        }
         <div className="username">{ post.handle }</div>
 
         {post.user === auth.user.id ? (
