@@ -12,11 +12,20 @@ class Posts extends Component {
 
 
       if (profile.following.length > 0) {
-        profile.following.filter(follow => {
-            userPosts = posts.filter(post => post.user === follow.user || post.user === user.id)
+        for (let i = 0; i < profile.following.length; i++){
+          userPosts = userPosts.concat(posts.filter(post => post.user === profile.following[i].user))
+          console.log("User Posts: ", userPosts)
+        }
+        userPosts = userPosts.concat(posts.filter(post => post.user === user.id));
+
+        //Sorting array by date
+        userPosts.sort(function(a,b){
+          if (a.date < b.date) return 1;
+          if (a.date > b.date) return -1;
+          return 0;
         })
       }
-          else {
+      else {
         userPosts = posts.filter(post => post.user === user.id)
       }
 

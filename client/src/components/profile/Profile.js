@@ -62,13 +62,14 @@ class Profile extends Component {
   
   render() {
     const  { profile, profileLoading } = this.props.profile;
-    const { posts, postLoading } = this.props.post;
+    //const { posts, postLoading } = this.props.post;
     const { user } = this.props.auth;
     let profileContent, postContent;
     
     //console.log("User: : ", this.props.auth.isAuthenticated)
-
-    if (profile === null || profileLoading) {
+    //profile === null ||
+    if ( profile === null || profileLoading) {
+      console.log(profile)
       profileContent = (<div className="loader"></div>)
     } else {
       profileContent = (
@@ -138,7 +139,7 @@ class Profile extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  post: state.post
+  post: state.posts
 });
 
 export default connect(mapStateToProps, { getProfileByHandle, getPosts, follow, unfollow })(Profile);
