@@ -12,31 +12,40 @@ import { getPosts } from '../../actions/postActions';
 
 
 class Profile extends Component {
+
+  constructor(){
+    super();
+    this.onFollowUnfollowClick.bind(this);
+    this.findUserId.bind(this);
+  }
   
 
   componentDidMount() {
-    console.log("HANDLE: ", this.props.match.params.handle)
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
     //console.log("Here")
-    //this.props.getPosts();
+    this.props.getPosts();
   }
 
   onFollowUnfollowClick(params, id, handle) {
+    //console.log(params)
     if (this.findUserId(params)) {
-      this.props.follow(id, handle);
-    } else {
+      console.log("GOT TO HERE")
       this.props.unfollow(id, handle);
-    }
+    } else {
+      console.log("OR HERE")
+      this.props.follow(id, handle);
+      
+    } 
   }
 
  // Checking for user Id in likes and bookmarks
   findUserId(params) {
-    console.log(typeof params);
-    console.log(params);
-    const { auth } = this.props.auth;
-    if (params.filter(param => param.user === auth.user.id).length > 0) {
+    const { user } = this.props.auth;
+    //console.log(user)
+    //console.log(params.filter(param => param.user === user.id).length > 0)
+    if (params.filter(param => param.user === user.id).length > 0) {
       return true;
     } else {
       return false;
@@ -46,7 +55,6 @@ class Profile extends Component {
 
     componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
-      //console.log("Error")
       this.props.history.push('/not-found');
     }
   }  
@@ -63,7 +71,6 @@ class Profile extends Component {
     if (profile === null || profileLoading) {
       profileContent = (<div className="loader"></div>)
     } else {
-      console.log("Profile: ", profile)
       profileContent = (
         <div className="row main-containier">
           <div className="col-6 profile-avatar ">
@@ -76,9 +83,9 @@ class Profile extends Component {
                 <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link> : 
                 
                 <div className="btn profile-edit-btn"
-                  onClick={this.onFollowUnfollowClick.bind( profile.following, profile.user._id, profile.user.handle)} 
+                  onClick={this.onFollowUnfollowClick.bind( this, profile.followers, profile.user._id, profile.user.handle)} 
                   type="button">
-                  {this.findUserId(profile.following) ? "Unfollow" : "Follow"}</div>
+                  {this.findUserId(profile.followers) ? "Unfollow" : "Follow"}</div>
                 : undefined}
             </div>
             <div className="row profile-stats">
