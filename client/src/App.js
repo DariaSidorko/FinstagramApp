@@ -16,6 +16,7 @@ import PostFeed from './components/posts/PostFeed';
 import PostForm from './components/posts/PostForm';
 import Comments from './components/comments/CommentsPage';
 import Profile from './components/profile/Profile';
+import Explore from './components/explore/exploreProfiles';
 
 import PrivateRoute from './components/common/PrivateRoute';
 
@@ -64,6 +65,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/explore" component={Explore} />
               <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
               <Route exact path="/dashboard" component={Dashboard} />
