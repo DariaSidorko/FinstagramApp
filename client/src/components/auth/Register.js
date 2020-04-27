@@ -67,7 +67,7 @@ class Register extends Component {
             </div>
             <div className="dark-overlay"></div>
             <div className="carousel-item">
-              {/*Photo by Chronis Yan on Unsplash*/}
+              {/*Photo by Luis Alfonso Orellana on Unsplash*/}
             <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1600x825" alt="Second slide" />
             </div>
             <div className="dark-overlay"></div>
