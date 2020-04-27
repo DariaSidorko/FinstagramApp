@@ -61,7 +61,6 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Login} /> 
-
             <div className="">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
@@ -81,7 +80,6 @@ class App extends Component {
                 <PrivateRoute exact path="/comments/:id" component={Comments} ></PrivateRoute>
               </Switch>
             </div>
-      
             <Footer />
           </div>
         </Router>
