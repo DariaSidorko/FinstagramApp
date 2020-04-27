@@ -10,11 +10,10 @@ class Posts extends Component {
     const { user } = this.props.auth;
     let userPosts = [];
 
-
       if (profile.following.length > 0) {
         for (let i = 0; i < profile.following.length; i++){
           userPosts = userPosts.concat(posts.filter(post => post.user === profile.following[i].user))
-          console.log("User Posts: ", userPosts)
+          
         }
         userPosts = userPosts.concat(posts.filter(post => post.user === user.id));
 
@@ -37,7 +36,7 @@ class Posts extends Component {
 
 Posts.propTypes  = {
   posts: PropTypes.array.isRequired,
-  //profile: PropTypes.object.isRequired
+  profiles: PropTypes.object.isRequired
 };
 //(posts.filter(post => profile.followin.filter(follow => follow.user === post.user).length > 0).map(post => <PostItem key={post._id} post={post} />));
 

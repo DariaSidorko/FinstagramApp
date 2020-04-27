@@ -36,7 +36,7 @@ if(localStorage.jwtToken){
     //logout
     store.dispatch(logoutUser());
     //redirect user to the login page
-    window.location.href = '/login';
+    window.location.href = '/';
   }
   //set auth header
   setAuthToken(localStorage.jwtToken);

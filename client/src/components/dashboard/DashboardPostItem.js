@@ -10,6 +10,7 @@ class DashboardPostItem extends Component {
     return (
       <div className="container">
         <div className="gallery">
+        <Link to={`/comments/${post._id}`}>
           <div className="gallery-item" tabIndex="0">
             <img src={post.image} className="gallery-image" alt="" />
             <div className="gallery-item-info"> 
@@ -23,6 +24,7 @@ class DashboardPostItem extends Component {
               </ul>  
             </div> 
           </div> 
+          </Link>
         </div>  
       </div>
     )
@@ -33,9 +35,5 @@ DashboardPostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
-
-/* const mapStateToProps = state => ({
-  auth: state.auth
-}); */
 
 export default DashboardPostItem;

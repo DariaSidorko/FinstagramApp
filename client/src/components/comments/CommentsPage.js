@@ -14,7 +14,6 @@ import CommentFeed from './CommentFeed';
  class CommentsPage extends Component {
 
   componentDidMount() {
-    console.log(this.props.match.params.id)
     this.props.getPost(this.props.match.params.id);
   }
 
@@ -37,7 +36,7 @@ import CommentFeed from './CommentFeed';
   onSubmit(e){
     e.preventDefault();
 
-    const { post } = this.props;
+    const { post } = this.props.post;
     const { user } = this.props.auth;
 
     const newComment = {
@@ -45,10 +44,10 @@ import CommentFeed from './CommentFeed';
       handle: user.handle,
       name: user.name,
       avatar: user.avatar,
-      user: user.user,
+      user: user.id,
     }
-    console.log(newComment)
-    this.props.addComment(this.props.match.params.id, newComment)
+    console.log("NEW COMMENT: ",newComment)
+    this.props.addComment(post._id, newComment)
     this.setState({ text: '' });
   }
 
@@ -71,7 +70,7 @@ import CommentFeed from './CommentFeed';
         <CommentFeed postId={post._id} comments={post.comments} />
       )
     }
-
+//<Link to="/profile"><img src={post.avatar} alt="img" className="comments-avatar"/></Link>
 
     return (
       <div>
@@ -87,20 +86,25 @@ import CommentFeed from './CommentFeed';
 
                         <div className="col-5 comments-side-wrapper">
                           <div className="comments-side-header">
-                            <Link to="/profile"><img src={post.avatar} alt="img" className="comments-avatar"/></Link>
+                          { user.handle === post.handle ? 
+                            <Link to="/dashboard"><img src={ post.avatar } alt="avatar" className="comments-avatar" /></Link> :
+                            <Link to={`/profile/${post.handle}`}><img src={ post.avatar } alt="avatar" className="comments-avatar" /></Link>
+                          }
+                            
                             <div className="comments-username">{post.handle}</div>
+                            <div className="comments-username">{post.text}</div>
                           </div>
                           <div className="overflow-auto comments-scrolling">
                             {postContent}
                           </div>    
 
                           <form className="comments-sidebar-input" onSubmit={this.onSubmit}>
-                            <div class="input-group mb-3">
+                            <div className="input-group mb-3">                        
                               <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
                               name="text" value={this.state.text}  onChange={this.onChange} required/>
                               <div className="input-group-append">
                                 <button className="btn post-button" type="submit" >Post</button>
-                              </div>
+                              </div> 
                             </div>
                           </form>
 
@@ -120,6 +124,7 @@ import CommentFeed from './CommentFeed';
 
 CommentsPage.propTypes = {
   getPost: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
