@@ -14,9 +14,10 @@
   }
 
   .img-size {
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    
   }
 
   .dark-overlay {
@@ -30,7 +31,7 @@
   width: 350px;
   height: 55%;
   /*margin: 10px auto;*/
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, .965);
   border: 1px solid #e0e0e0;
   padding: 30px 50px;
   position: absolute;
@@ -51,6 +52,7 @@
   width: 100%;
   margin: auto;
   position: relative;
+  
   }
   
 /*
@@ -65,10 +67,16 @@
   }
 */
 
-  .btn-login {
+  .btn-login-register {
     background-color: #0095f6;
     color: white;
-
+    width: 100%;
+    border-radius: 3px;
+    height: 35px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+  }
 
   .register-login-input {
     width: 100%;
@@ -79,7 +87,6 @@
     box-sizing: border-box;
     border-radius: 3px;
     font-size: 12px; 
-
   }
   
   /* .btn {
@@ -149,20 +156,14 @@
 
   .footer {
     margin-top: -20px;
+    bottom: 20px;
   }
 
 
   @media(min-width: 500px) and (max-width: 665px) {
     .main-content {
       margin-left: 17%;
-      height: 33%;
-    }
-    .header {
-      margin-bottom: 7px;
-      margin-top: -3px;
-    }
-    .sub-content {
-      margin-top: 6px;
+      height: 36%;
     }
     .carousel-indicators {
       visibility: hidden;
@@ -174,21 +175,13 @@
       position: absolute;
       margin-top: 100px;
       width: 100%;
-      bottom: 20px;
     }
   }
 
   @media(min-width: 666px) and (max-width: 849px) {
     .main-content {
       margin-left: 25%;
-      height: 33%;
-    }
-    .header {
-      margin-bottom: 7px;
-      margin-top: -3px;
-    }
-    .sub-content {
-      margin-top: 6px;
+      height: 36%;
     }
     #backgroundCarousel {
       visibility: hidden;
@@ -198,7 +191,6 @@
     }
     .footer {
       position: absolute;
-      bottom: 20px;
       width: 100%;
     }
   }
@@ -206,7 +198,7 @@
   @media(min-width: 850px) and (max-width: 1000px) {
     .main-content {
       margin-left: 29%;
-      height: 35%;
+      height: 36%;
     }
     .carousel-indicators {
       visibility: hidden;

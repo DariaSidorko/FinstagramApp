@@ -62,7 +62,7 @@ class Register extends Component {
           </ol>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              {/*Photo by Jack Church on Unsplash*/}
+              {/*Photo by Muhd Asyraaf on Unsplash*/}
             <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1600x825" alt="First slide" />
             </div>
             <div className="dark-overlay"></div>
@@ -124,7 +124,7 @@ class Register extends Component {
               errors = {errors.password}
             />
             </div>
-          <input type="submit" value="Sign up" className="btn-signup" />
+          <input type="submit" value="Sign up" className="btn-login-register" />
         </form>
       
       <div className="sub-content">

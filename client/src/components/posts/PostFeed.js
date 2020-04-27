@@ -25,7 +25,7 @@ class PostFeed extends Component {
 //{posts.map(post => postContent)}
   render() {
 
-    const { posts, loading } = this.props.posts;
+    const { posts, postLoading } = this.props.posts;
     const { user } = this.props.auth;
     const { profile, profileLoading } = this.props.profiles;
     let postContent;
@@ -34,7 +34,8 @@ class PostFeed extends Component {
 
     console.log("Type of posts in the feed: ", posts)
 
-    if (posts === null || loading || Object.keys(posts).length === 0 || profile === null || profileLoading ) {
+
+    if (posts === null || postLoading ||  profile === null || profileLoading ) {
       postContent = <div className="loader"></div>;
     } else if (isEmpty(posts) || isEmpty(profile)) {
       postContent = <div></div>

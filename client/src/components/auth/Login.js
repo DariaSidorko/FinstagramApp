@@ -66,7 +66,7 @@ class Login extends Component {
           </ol>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              {/*Photo by Jack Church on Unsplash*/}
+              {/*Photo by Muhd Asyraaf on Unsplash*/}
             <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1600x825" alt="First slide" />
             </div>
             <div className="dark-overlay"></div>
@@ -108,7 +108,7 @@ class Login extends Component {
               errors = {errors.password}
             />
             </div>
-            <input type="submit" value="Log in" className="btn-login" />
+            <input type="submit" value="Log in" className="btn-login-register" />
           </form>
           <div className="fogot-pass">
             <Link className="main-link" to="/register">Forgot password?</Link>
