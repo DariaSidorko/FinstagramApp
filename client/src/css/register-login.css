@@ -11,14 +11,13 @@ body {
   overflow: hidden;
   border: 0px solid #000;
   margin: 40px auto;
-  
   }
   
   .main-content {
   width: 350px;
-  height: 70%;
-  margin: 10px auto;
-  background-color: #ffffff;
+  height: 55%;
+  /*margin: 10px auto;*/
+  background: rgba(255, 255, 255, .965);
   border: 1px solid #e0e0e0;
   padding: 30px 50px;
   }
@@ -35,8 +34,33 @@ body {
   width: 100%;
   margin: auto;
   position: relative;
+  
   }
   
+
+/*
+  input {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  }
+*/
+
+  .btn-login-register {
+    background-color: #0095f6;
+    color: white;
+    width: 100%;
+    border-radius: 3px;
+    height: 35px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+  }
+
   .register-login-input {
     width: 100%;
     height: 35px;
@@ -45,7 +69,7 @@ body {
     border: 1px solid #dbdbdb;
     box-sizing: border-box;
     border-radius: 3px;
-    font-size: 12px;
+    font-size: 12px; 
   }
   
   /* .btn {
@@ -102,6 +126,72 @@ body {
   input:focus {
     background-color: #ffffff;
   }
+
+  .footer {
+    margin-top: -20px;
+    bottom: 20px;
+  }
+
+
+  @media(min-width: 500px) and (max-width: 665px) {
+    .main-content {
+      margin-left: 17%;
+      height: 36%;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .footer {
+      position: absolute;
+      margin-top: 100px;
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 666px) and (max-width: 849px) {
+    .main-content {
+      margin-left: 25%;
+      height: 36%;
+    }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    .footer {
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 850px) and (max-width: 1000px) {
+    .main-content {
+      margin-left: 29%;
+      height: 36%;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+  }
+
+  @media(min-width: 1001px) and (max-width: 1200px) {
+    .main-content {
+      margin-left: 35%;
+      height: 36%;
+    }
+  }
+
+  @media(min-width: 1201px) {
+    .main-content {
+      margin-left: 40.5%;
+      height: 36%;
+    }
+  }
+
   
   
   

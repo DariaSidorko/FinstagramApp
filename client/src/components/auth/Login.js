@@ -56,6 +56,36 @@ class Login extends Component {
     const {errors} = this.state; 
     return (
       <div className="wrapper">
+
+
+        <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
+          <ol className="carousel-indicators">
+            <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
+            <li data-target="#backgroundCarousel" data-slide-to="1"></li>
+            <li data-target="#backgroundCarousel" data-slide-to="2"></li>
+          </ol>
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              {/*Photo by Muhd Asyraaf on Unsplash*/}
+            <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1600x825" alt="First slide" />
+            </div>
+            <div className="dark-overlay"></div>
+            <div className="carousel-item">
+              {/*Photo by Luis Alfonso Orellana on Unsplash*/}
+            <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1600x825" alt="Second slide" />
+            </div>
+            <div className="dark-overlay"></div>
+            <div className="carousel-item">
+              {/*Photo by Anders Jildén on Unsplash*/}
+              <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1600x825"
+              alt="Third slide" />
+              <div className="dark-overlay"></div>
+            </div>
+          </div>
+          </div>
+
+
+
         <div className="main-content">
           <div className="header">
             <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
@@ -79,7 +109,8 @@ class Login extends Component {
               errors = {errors.password}
             />
             </div>
-            <input type="submit" value="Log in" className="btn" />
+<input type="submit" value="Log in" className="btn-login-register" />
+
           </form>
           <div className="fogot-pass">
             <Link className="main-link" to="/register">Forgot password?</Link>
