@@ -50,95 +50,78 @@ class Login extends Component {
       this.setState({errors: nextProps.errors});
     }
   }
-// **************password visible-invisible****************
-state = {
-  isPasswordShown: false
-}
-togglePasswordVisibility = () =>{
-  const {isPasswordShown} = this.state;
-  this.setState ({isPasswordShown :!isPasswordShown});
-}
-// **************************************************
-render() {
-  const { errors } = this.state;
-  // *******************************
-  const {isPasswordShown} = this.state;
-  // *******************************
-  return (
-    <div className="wrapper">
-      <div className="main-content">
-        <div className="header">
-          <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
-        </div>
-        <form onSubmit={this.onSubmit}>
-          <div>
-          <TextFieldGroup 
-            placeholder="Email Address"
-            name = "email" 
-            value = {this.state.email}
-            onChange = {this.onChange}
-            errors = {errors.email}
-          />
-          </div>
-          <div>
-          {/* ************************ */ }
-          <i className = "fa fa-eye password-icon" 
-          onClick= {this.togglePasswordVisibility} />
-          {/* ************************ */ }
-          <TextFieldGroup 
-            placeholder="Password"
-            name = "password" 
-            // *********************************
-            type = {(isPasswordShown) ? "text": "password"}
-            // *********************************}
-            value = {this.state.password}
-            onChange = {this.onChange}
-            errors = {errors.password}
-          />
-          </div>
-          <input type="submit" value="Log in" className="btn" />
-        </form>
-        <div className="fogot-pass">
-          <Link className="main-link" to="/register">Forgot password?</Link>
-        </div>
-      </div>
-      <div className="sub-content">
-          Don't have an account? <Link className="sub-link" to="/register">Sign up</Link>
-      </div>
-    </div>
-/*       <div className="login">
-    <div className="container">
-      <div className="row">
-        <div className="col-md-8 m-auto">
-          <h1 className="display-4 text-center">Log In</h1>
-          <p className="lead text-center">Sign in to your DevConnector account</p>
-          <form action="dashboard.html">
-            <div className="form-group">
-              <input type="email" className="form-control form-control-lg" placeholder="Email Address" name="email" />
-            </div>
-            <div className="form-group">
-              <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" />
-            </div>
-            <input type="submit" className="btn btn-info btn-block mt-4" />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> */
 
-  )
-}
+
+  render() {
+    const {errors} = this.state; 
+    return (
+      <div className="wrapper">
+        <div className="main-content">
+          <div className="header">
+            <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
+          </div>
+          <form onSubmit={this.onSubmit}>
+            <div>
+            <TextFieldGroup 
+              placeholder="Email Address"
+              name = "email" 
+              value = {this.state.email}
+              onChange = {this.onChange}
+              errors = {errors.email}
+            />
+            </div>
+            <div>
+            <TextFieldGroup 
+              placeholder="Password"
+              name = "password" 
+              value = {this.state.password}
+              onChange = {this.onChange}
+              errors = {errors.password}
+            />
+            </div>
+            <input type="submit" value="Log in" className="btn" />
+          </form>
+          <div className="fogot-pass">
+            <Link className="main-link" to="/register">Forgot password?</Link>
+          </div>
+        </div>
+        <div className="sub-content">
+            Don't have an account? <Link className="sub-link" to="/register">Sign up</Link>
+        </div>
+      </div>
+/*       <div className="login">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center">Log In</h1>
+            <p className="lead text-center">Sign in to your DevConnector account</p>
+            <form action="dashboard.html">
+              <div className="form-group">
+                <input type="email" className="form-control form-control-lg" placeholder="Email Address" name="email" />
+              </div>
+              <div className="form-group">
+                <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" />
+              </div>
+              <input type="submit" className="btn btn-info btn-block mt-4" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> */
+  
+    )
+  }
 }
 
 Login.propTypes = {
-loginUser: PropTypes.func.isRequired,
-auth: PropTypes.object.isRequired,
-errors: PropTypes.object.isRequired
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-auth: state.auth,
-errors: state.errors
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, {loginUser})(Login);
