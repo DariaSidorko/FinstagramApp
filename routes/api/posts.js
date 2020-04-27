@@ -15,7 +15,6 @@ const validatePostInput = require('../../validation/post');
 // @desc    Get ALL posts
 // @access  Public
 router.get("/", (req, res) => {
-  console.log("On the server")
   Post.find()
     .sort({date: -1})
     .then(posts => res.json(posts))
@@ -73,7 +72,6 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
-    console.log(errors)
     // Check Validation
     if (!isValid) {
       // If any errors, send 400 with errors object

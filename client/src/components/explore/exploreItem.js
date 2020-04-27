@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class exploreItem extends Component {
 
@@ -10,7 +11,8 @@ class exploreItem extends Component {
       <div className="container">
         <div className="gallery">
           <div className="gallery-item" tabIndex="0">
-            <img src={post.image} className="gallery-image" alt="" />
+            <Link to={`/profile/${post.handle}`}>
+              <img src={post.image} className="gallery-image" alt="" />
             <div className="gallery-item-info"> 
               <ul>
                 <li className="gallery-item-likes">
@@ -21,6 +23,7 @@ class exploreItem extends Component {
                   <i className="fas fa-comment" aria-hidden="true"></i> {post.comments !== undefined && post.comments.length }</li>
               </ul>  
             </div> 
+            </Link>
           </div> 
         </div>  
       </div>

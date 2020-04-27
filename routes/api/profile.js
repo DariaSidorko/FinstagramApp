@@ -59,7 +59,6 @@ router.get("/all", (req, res) => {
 
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
-  console.log("handle: ", req.params.handle)
   Profile.findOne({handle: req.params.handle})
     .populate("user", ["name", "avatar", "handle"])
     .then(profile => {
@@ -79,7 +78,6 @@ router.get("/handle/:handle", (req, res) => {
 
 router.get("/user/:user_id", (req, res) => {
   const errors = {};
-
   Profile.findOne({ user: req.params.user_id })
     .populate("user", ["name", "avatar"])
     .then(profile => {
@@ -213,7 +211,7 @@ router.post(
           // Get remove index
           const removeIndex = profile.following
             .map(item => item.user.toString())
-            .indexOf(req.user.id);
+            .indexOf(req.params.user_id);
           // Splice out of array
           profile.following.splice(removeIndex, 1);
           // Save

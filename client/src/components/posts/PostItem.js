@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { addComment, deletePost, addLike, removeLike, addBookmark, removeBookmark } from '../../actions/postActions';
+import moment from 'moment';
 
 class PostItem extends Component {
 
@@ -82,6 +83,12 @@ class PostItem extends Component {
 
 //https://source.unsplash.com/random
 
+/*
+  const currentTime = Date.now()/1000;
+  if (decoded.exp < currentTime){
+*/
+//moment().format('YYYY/MM/D hh:mm:ss SSS')
+
 
 
   render() {
@@ -131,7 +138,7 @@ class PostItem extends Component {
           <span className="username-caption">{post.handle}</span><span className="post-caption">{post.text}</span>
         </div>  
 
-        <div className="timestamp">{Date.now - post.date}4 Hours Ago</div>
+        <div className="timestamp">{moment(post.date).startOf('hour').fromNow()}</div>
 
         <Link to={`/comments/${post._id}`}>
         { post.comments.length === 1 && ( <div className="comments">View {post.comments.length} comment...</div>)}
