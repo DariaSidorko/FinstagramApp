@@ -67,17 +67,17 @@ class Login extends Component {
           <div className="carousel-inner">
             <div className="carousel-item active">
               {/*Photo by Muhd Asyraaf on Unsplash*/}
-            <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1600x825" alt="First slide" />
+            <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1920x1080" alt="First slide" />
             </div>
             <div className="dark-overlay"></div>
             <div className="carousel-item">
               {/*Photo by Luis Alfonso Orellana on Unsplash*/}
-            <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1600x825" alt="Second slide" />
+            <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1920x1080" alt="Second slide" />
             </div>
             <div className="dark-overlay"></div>
             <div className="carousel-item">
               {/*Photo by Anders Jildén on Unsplash*/}
-              <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1600x825"
+              <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1920x1080"
               alt="Third slide" />
               <div className="dark-overlay"></div>
             </div>
@@ -115,10 +115,11 @@ class Login extends Component {
           <div className="fogot-pass">
             <Link className="main-link" to="/register">Forgot password?</Link>
           </div>
-        </div>
+        
         <div className="sub-content">
             Don't have an account? <Link className="sub-link" to="/register">Sign up</Link>
         </div>
+      </div>
       </div>
 /*       <div className="login">
       <div className="container">
