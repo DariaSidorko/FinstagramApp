@@ -70,6 +70,7 @@ router.post('/register', (req, res) => {
           newUser.save()
           .then(user => {
             profileFields.user = user._id;
+            profileFields.handle = req.body.handle;
             new Profile(profileFields).save().then(profile => res.json(profile));
             res.json(user)
           })

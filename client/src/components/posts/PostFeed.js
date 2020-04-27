@@ -34,8 +34,10 @@ class PostFeed extends Component {
 
     console.log("Type of posts in the feed: ", posts)
 
-
     if (posts === null || postLoading ||  profile === null || profileLoading ) {
+
+    //Object.keys(posts).length === 0 ||
+
       postContent = <div className="loader"></div>;
     } else if (isEmpty(posts) || isEmpty(profile)) {
       postContent = <div></div>

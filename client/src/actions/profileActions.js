@@ -35,17 +35,21 @@ export const getProfileByHandle = handle => dispatch => {
   console.log("Handle in Action: ",handle)
   axios
     .get(`/api/profile/handle/${handle}`)
-    .then(res =>
+    .then(res =>{
+      console.log("RES: ", res)
       dispatch({
         type: GET_PROFILE,
         payload: res.data
       })
+    }
     )
-    .catch(err =>
+    .catch(err =>{
+      console.log("ERR: ", err)
       dispatch({
         type: GET_PROFILE,
         payload: null
       })
+    }
     );
 };
 
