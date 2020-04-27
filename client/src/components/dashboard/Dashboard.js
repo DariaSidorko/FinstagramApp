@@ -50,7 +50,7 @@ class Dashboard extends Component {
               <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
             </div>
             <div className="row profile-stats">
-                <div><span className="profile-stat-count">164</span> posts</div>
+                <div><span className="profile-stat-count">{posts.filter(post => post.user === user.id).length}</span> posts</div>
                 <div><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
                 <div><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
             </div>

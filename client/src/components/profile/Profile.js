@@ -24,7 +24,6 @@ class Profile extends Component {
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
-    //console.log("Here")
     this.props.getPosts();
   }
 

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { deleteComment } from '../../actions/postActions'
+import moment from 'moment';
 
 class CommentItem extends Component {
 
@@ -37,6 +38,7 @@ class CommentItem extends Component {
         </div>
         <div className="row">
           <div className="comments-content">{comment.text}</div>
+          <div className="timestamp">{moment(comment.date).startOf('hour').fromNow()}</div>
         </div>
       </div>
     )

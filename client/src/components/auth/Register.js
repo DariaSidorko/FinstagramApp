@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {registerUser} from '../../actions/authActions';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; 
 import TextFieldGroup from '../common/TextFieldGroup'
 
 

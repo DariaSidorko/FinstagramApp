@@ -16,23 +16,23 @@ import {
 export const getPosts = () => dispatch => {
   console.log("Got Here")
   dispatch(setPostLoading());
-  console.log("Got Here clling API")
+  console.log(setPostLoading())
   axios
     .get('api/posts')
     .then(res => {
+      console.log("RES: ", res)
       dispatch({
         type: GET_POSTS,
         payload: res.data
       })
     }
     )
-    .catch(err =>
+    .catch(err =>    
       dispatch({
         type: GET_POSTS,
         payload: null
       })
     )
-
 }
 
 
