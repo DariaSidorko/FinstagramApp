@@ -45,7 +45,6 @@ class PostForm extends Component {
     this.props.addPost(newPost, this.props.history)
   }
 
-
   componentWillReceiveProps(nextProps){
     if(nextProps.errors){
       this.setState({errors: nextProps.errors});
@@ -53,19 +52,10 @@ class PostForm extends Component {
   }
 
 
-
-
-/* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} 
-placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
-
-//data-dismiss="modal"
-
   render() {
     const { user } = this.props.auth;
     const { errors } = this.state;
 
-
-//{isAuthenticated ? authLink : undefined}
     return (
           <div>
             <div className="wrapper-1">

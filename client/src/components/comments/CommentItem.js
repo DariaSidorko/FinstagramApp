@@ -16,15 +16,20 @@ class CommentItem extends Component {
     this.props.deleteComment(postId, commentId);
   }
 
+  //<Link to="/profile"><img src={comment.avatar} alt="img" className="comments-avatar"/></Link>
   render() {
     const { comment, postId, auth } = this.props;
 
+    console.log(auth.user.handle === comment.handle)
     return (
       <div className="comments-each-comment-wrapper">
         <div className="row">
-          <Link to="/profile"><img src={comment.avatar} alt="img" className="comments-avatar"/></Link>
-          <div className="comments-username">{comment.handle}</div>
+        { auth.isAuthenticated && auth.user.handle === comment.handle ? 
+          <Link to="/dashboard"><img src={ comment.avatar } alt="avatar" className="comments-avatar" /></Link> :
+          <Link to={`/profile/${comment.handle}`}><img src={ comment.avatar } alt="avatar" className="comments-avatar" /></Link>
+        }
           
+          <div className="comments-username">{comment.handle}</div>
           {comment.user === auth.user.id ? (
               <div
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}

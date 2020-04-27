@@ -36,7 +36,7 @@ class PostItem extends Component {
       handle: user.handle,
       name: user.name,
       avatar: user.avatar,
-      user: user.user,
+      user: user.id,
     }
 
     this.props.addComment(post._id, newComment)
@@ -73,7 +73,6 @@ class PostItem extends Component {
   onDeletePostClick(id){
     this.props.deletePost(id);
   }
- 
 
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
@@ -81,18 +80,11 @@ class PostItem extends Component {
     }
   }
 
+// site for the random image to post:
 //https://source.unsplash.com/random
 
-/*
-  const currentTime = Date.now()/1000;
-  if (decoded.exp < currentTime){
-*/
-//moment().format('YYYY/MM/D hh:mm:ss SSS')
-
-
-
   render() {
-    const { post, /* showActions */ auth } = this.props;
+    const { post, auth } = this.props;
 
     return (
  

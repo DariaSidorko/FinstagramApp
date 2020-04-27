@@ -30,9 +30,6 @@ class PostFeed extends Component {
     const { profile, profileLoading } = this.props.profiles;
     let postContent;
 
-    //console.log("PROFILE: ", this.props.profiles.profile)
-
-    console.log("Type of posts in the feed: ", posts)
     //Object.keys(posts).length === 0 ||
     
     if (posts === null || loading ||  profile === null || profileLoading ) {
@@ -66,7 +63,7 @@ class PostFeed extends Component {
 PostFeed.propTypes = {
   getPosts: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profiles: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

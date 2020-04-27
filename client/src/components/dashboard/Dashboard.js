@@ -63,14 +63,6 @@ class Dashboard extends Component {
       )
     }
 
-
-/*     if (posts === null || postLoading || Object.keys(posts).length === 0) {
-      postContent = (<div className="loader"></div>)
-    } else {
-      postContent = <DashboardPosts posts={posts}  />;
-    }  
- */
-
     return (
       <div>
         <header>
@@ -84,13 +76,10 @@ class Dashboard extends Component {
   }
 }
 
- //{postContent}
 
  Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
-  //posts: PropTypes.array.isRequired,
-  //profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
