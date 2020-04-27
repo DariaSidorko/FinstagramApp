@@ -55,8 +55,8 @@ class Login extends Component {
   render() {
     const {errors} = this.state; 
     return (
-
       <div className="wrapper">
+
 
         <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
@@ -85,6 +85,7 @@ class Login extends Component {
           </div>
 
 
+
         <div className="main-content">
           <div className="header">
             <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
@@ -108,16 +109,16 @@ class Login extends Component {
               errors = {errors.password}
             />
             </div>
-            <input type="submit" value="Log in" className="btn-login-register" />
+<input type="submit" value="Log in" className="btn-login-register" />
+
           </form>
           <div className="fogot-pass">
             <Link className="main-link" to="/register">Forgot password?</Link>
           </div>
-          <div className="sub-content">
+        </div>
+        <div className="sub-content">
             Don't have an account? <Link className="sub-link" to="/register">Sign up</Link>
         </div>
-        </div>
-        
       </div>
 /*       <div className="login">
       <div className="container">

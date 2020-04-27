@@ -49,10 +49,8 @@ class Register extends Component {
   render() {
     const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
     return (
-
- 
-
       <div className="wrapper">
+
 
         <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
@@ -79,8 +77,6 @@ class Register extends Component {
             </div>
           </div>
           </div>
-
-
 
 
       <div className="main-content">
@@ -124,12 +120,13 @@ class Register extends Component {
               errors = {errors.password}
             />
             </div>
+
           <input type="submit" value="Sign up" className="btn-login-register" />
+
         </form>
-      
+      </div>
       <div className="sub-content">
           Have an account? <Link className="sub-link" to="/login">Log in</Link>
-      </div>
       </div>
     </div>
     )

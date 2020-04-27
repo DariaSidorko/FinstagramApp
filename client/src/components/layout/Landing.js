@@ -7,26 +7,6 @@ class Landing extends Component {
   render() {
     return (
     <div className="landing">
-      <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              {/*Photo by Jack Church on Unsplash*/}
-            <img className="d-block w-100" src="https://source.unsplash.com/jKGFqL3llv0/1600x900" alt="First slide" />
-            </div>
-            <div className="carousel-item">
-              {/*Photo by Chronis Yan on Unsplash*/}
-            <img className="d-block w-100" src="https://source.unsplash.com/aDFJ5Fm50IA/1600x900" alt="Second slide" />
-            </div>
-            <div className="carousel-item">
-              {/*Photo by Anders Jildén on Unsplash*/}
-              <img className="d-block w-100" src="https://source.unsplash.com/uwbajDCODj4/1600x900"
-              alt="Third slide" />
-            </div>
-          </div>
-          </div>
-
-
-
       <div className="dark-overlay landing-inner text-light">
         <div className="container">
           <div className="row">
