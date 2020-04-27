@@ -11,16 +11,34 @@ body {
   overflow: hidden;
   border: 0px solid #000;
   margin: 40px auto;
-  
+  }
+
+  .img-size {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+
+  }
+
+  .dark-overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, .2);
+    height: 100%;
+    width: 100%;
   }
   
   .main-content {
   width: 350px;
-  height: 70%;
-  margin: 10px auto;
-  background-color: #ffffff;
+  height: 55%;
+  /*margin: 10px auto;*/
+  background: rgba(255, 255, 255, .965);
   border: 1px solid #e0e0e0;
   padding: 30px 50px;
+  position: absolute;
+  margin: 10% 2% 10% 40%;
+  top: 0;
+  border-radius: 5px;
   }
   
   .header {
@@ -37,6 +55,29 @@ body {
   position: relative;
   }
   
+/*
+  input {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  }
+*/
+
+  .btn-login-register {
+    background-color: #0095f6;
+    color: white;
+    width: 100%;
+    border-radius: 3px;
+    height: 35px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+  }
+
   .register-login-input {
     width: 100%;
     height: 35px;
@@ -45,7 +86,7 @@ body {
     border: 1px solid #dbdbdb;
     box-sizing: border-box;
     border-radius: 3px;
-    font-size: 12px;
+    font-size: 12px; 
   }
   
   /* .btn {
@@ -64,44 +105,123 @@ body {
   
   .fogot-pass{
   text-align: center;
-  padding-top: 40px;
+  padding-top: 20px;
   font-size: 12px;
   font-weight: normal;
-  color: blue;
+  color: #0095f6;
   }
   
   .pass-link{
   text-decoration: none;
   font-weight: normal;
-  color: #4267b2;
+  color: #0095f6;
   }
   
   .sub-content {
-  width: 350px;
-  height: 10%;
-  margin: 10px auto;
-  border: 1px solid #e6e6e6;
-  padding: 20px 50px;
-  background-color: #fff;
-  text-align: center;
-  font-size: 14px;
-  text-decoration: none;
+    margin: 10% auto;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
   }
-  
+
+  .sub-link {
+    text-decoration: none;
+    color: #0095f6;
+  }
+
+  .btn-signup {
+    background-color: #0095f6;
+    color: #ffffff;
+  }
+  .main-link {
+    color: #0095f6;
+  }
+
+ /*
   .signup-link {
   text-decoration: none;
   cursor: pointer;
   color: #3897f0;
   font-weight: bold;
   }
-  
-  .signup{
+  */
+
+  /*
+  .signup {
     margin-top: 5px;
   }
-  
+  */
+
   input:focus {
     background-color: #ffffff;
   }
+
+  .footer {
+    margin-top: -20px;
+    bottom: 20px;
+  }
+
+
+  @media(min-width: 500px) and (max-width: 665px) {
+    .main-content {
+      margin-left: 17%;
+      height: 36%;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .footer {
+      position: absolute;
+      margin-top: 100px;
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 666px) and (max-width: 849px) {
+    .main-content {
+      margin-left: 25%;
+      height: 36%;
+    }
+    #backgroundCarousel {
+      visibility: hidden;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    .footer {
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 850px) and (max-width: 1000px) {
+    .main-content {
+      margin-left: 29%;
+      height: 36%;
+    }
+    .carousel-indicators {
+      visibility: hidden;
+    }
+    
+  }
+
+  @media(min-width: 1001px) and (max-width: 1200px) {
+    .main-content {
+      margin-left: 35%;
+      height: 36%;
+    }
+  }
+
+  @media(min-width: 1201px) {
+    .main-content {
+      margin-left: 40.5%;
+      height: 36%;
+    }
+  }
+
   
   
   

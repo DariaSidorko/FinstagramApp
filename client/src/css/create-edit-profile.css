@@ -121,7 +121,7 @@ body {
   .submit-btn:focus {
     outline: 0.5rem auto #4d90fe;
   }
-  
+  /*
   .fogot-pass{
   text-align: center;
   padding-top: 40px;
@@ -135,7 +135,7 @@ body {
   font-weight: normal;
   color: #4267b2;
   }
-  
+ 
   .sub-content {
   width: 350px;
   height: 10%;
@@ -147,7 +147,8 @@ body {
   font-size: 14px;
   text-decoration: none;
   }
-  
+  */
+  /*
   .signup-link {
   text-decoration: none;
   cursor: pointer;
@@ -158,6 +159,8 @@ body {
   .signup{
     margin-top: 5px;
   }
+  */
+
   
   input:focus {
     background-color: #ffffff;
