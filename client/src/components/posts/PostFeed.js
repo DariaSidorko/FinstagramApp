@@ -33,7 +33,6 @@ class PostFeed extends Component {
 
     if (posts === null || postLoading ||  profile === null || profileLoading ) {
 
-    //Object.keys(posts).length === 0 ||
 
       postContent = <div className="loader"></div>;
     } else if (isEmpty(posts) || isEmpty(profile)) {
