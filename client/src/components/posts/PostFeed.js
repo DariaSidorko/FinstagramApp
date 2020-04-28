@@ -30,9 +30,10 @@ class PostFeed extends Component {
     const { profile, profileLoading } = this.props.profiles;
     let postContent;
 
-    //Object.keys(posts).length === 0 ||
-    
+
     if (posts === null || postLoading ||  profile === null || profileLoading ) {
+
+
       postContent = <div className="loader"></div>;
     } else if (isEmpty(posts) || isEmpty(profile)) {
       postContent = <div></div>
