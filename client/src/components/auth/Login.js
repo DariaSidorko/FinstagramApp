@@ -50,10 +50,23 @@ class Login extends Component {
       this.setState({errors: nextProps.errors});
     }
   }
+  // **********visible-invisible password*******
+  state = {
+    isPasswordShown: false
+  }
+  togglePasswordVisibility = () =>{
+    const {isPasswordShown} = this.state;
+    this.setState ({isPasswordShown :!isPasswordShown});
+  }
+
+  // **********visible-invisible password*******
 
 
   render() {
     const {errors} = this.state; 
+    // **********visible-invisible password*******
+    const {isPasswordShown} = this.state;
+    // **********visible-invisible password*******
     return (
       <div className="wrapper">
 
@@ -100,15 +113,23 @@ class Login extends Component {
               errors = {errors.email}
             />
             </div>
+
+            {/**********visible-invisible password*******/}
             <div>
-            <TextFieldGroup 
-              placeholder="Password"
-              name = "password" 
-              value = {this.state.password}
-              onChange = {this.onChange}
-              errors = {errors.password}
-            />
-            </div>
+          <i className = "fa fa-eye password-icon" 
+          onClick= {this.togglePasswordVisibility} />
+          <TextFieldGroup 
+            placeholder="Password"
+            name = "password" 
+            type = {(isPasswordShown) ? "text": "password"}
+            value = {this.state.password}
+            onChange = {this.onChange}
+            errors = {errors.password}
+          />
+          </div>
+          {/**********visible-invisible password*******/}
+
+          
 <input type="submit" value="Log in" className="btn-login-register" />
 
           </form>

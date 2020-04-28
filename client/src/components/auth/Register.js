@@ -45,9 +45,22 @@ class Register extends Component {
       this.setState({errors: nextProps.errors});
     }
   }
+   // **********visible-invisible password*******
+   state = {
+    isPasswordShown: false
+  }
+  togglePasswordVisibility = () =>{
+    const {isPasswordShown} = this.state;
+    this.setState ({isPasswordShown :!isPasswordShown});
+  }
+
+  // **********visible-invisible password*******
 
   render() {
     const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
+    // **********visible-invisible password*******
+    const {isPasswordShown} = this.state;
+    // **********visible-invisible password*******
     return (
       <div className="wrapper">
 
@@ -111,19 +124,27 @@ class Register extends Component {
               errors = {errors.handle}
             />
           </div>
+          {/**********visible-invisible password*******/}
           <div>
-            <TextFieldGroup 
-              placeholder="Password"
-              name = "password" 
-              value = {this.state.password}
-              onChange = {this.onChange}
-              errors = {errors.password}
-            />
-            </div>
+          <i className = "fa fa-eye password-icon" 
+          onClick= {this.togglePasswordVisibility} />
+          <TextFieldGroup 
+            placeholder="Password"
+            name = "password" 
+            type = {(isPasswordShown) ? "text": "password"}
+            value = {this.state.password}
+            onChange = {this.onChange}
+            errors = {errors.password}
+          />
+          </div>
+          {/**********visible-invisible password*******/}
 
           <input type="submit" value="Sign up" className="btn-login-register" />
 
         </form>
+        <div className="fogot-pass">
+        <Link className="main-link" to="/register">Forgot password?</Link>
+      </div>
       
       <div className="sub-content">
           Have an account? <Link className="sub-link" to="/login">Log in</Link>
