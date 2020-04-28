@@ -17,6 +17,7 @@ import PostForm from './components/posts/PostForm';
 import Comments from './components/comments/CommentsPage';
 import Profile from './components/profile/Profile';
 import Explore from './components/explore/exploreProfiles';
+import LikesCommentsFeed from './components/likes-and-comments/likesCommentsFeed'
 
 import PrivateRoute from './components/common/PrivateRoute';
 
@@ -78,6 +79,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/comments/:id" component={Comments} ></PrivateRoute>
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/likes-comments" component={LikesCommentsFeed} ></PrivateRoute>
               </Switch>
             </div>
             <Footer />

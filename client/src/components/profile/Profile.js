@@ -138,7 +138,7 @@ class Profile extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  post: state.posts
+  posts: state.post
 });
 
 export default connect(mapStateToProps, { getProfileByHandle, getPosts, follow, unfollow })(Profile);
