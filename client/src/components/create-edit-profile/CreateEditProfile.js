@@ -130,9 +130,6 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
         </div>
         </div>
 
-
-
-        
       </div>
   
     )

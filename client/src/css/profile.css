@@ -200,15 +200,15 @@ body {
   object-fit: cover;
 }
 
-.comment-like {
+.gallery-hover-items {
   color: #ffffff;
 }
 
-.comment-like:hover {
+.gallery-hover-items:hover {
   color: #ffffff;
 }
 
-.comment-like:active {
+.gallery-hover-items:active {
   color: rgba(211, 211, 212, 0.3);
 }
 

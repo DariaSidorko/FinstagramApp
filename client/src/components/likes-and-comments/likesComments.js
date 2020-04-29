@@ -69,8 +69,8 @@ class likesComments extends Component {
     })
 
     userComments.sort(function(a,b){
-      if (a.date > b.date) return 1;
-      if (a.date < b.date) return -1;
+      if (a.date < b.date) return 1;
+      if (a.date > b.date) return -1;
       return 0;
     })
 
@@ -106,7 +106,7 @@ class likesComments extends Component {
     return <div>
         <div className="likes-comments-header">New comments for the past week:</div>
         {commentsContent}
-        <div className="likes-comments-header">New likes for the past week::</div>
+        <div className="likes-comments-header">New likes for the past week:</div>
         {likesContent}
       </div>
   }
