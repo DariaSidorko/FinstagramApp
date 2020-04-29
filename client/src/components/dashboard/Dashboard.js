@@ -32,6 +32,7 @@ class Dashboard extends Component {
     const { user } = this.props.auth;
     let profileContent, postContent;
     //console.log("Profile key: ", profile.bio)
+    //<i className="fas fa-cog" aria-hidden="true"></i>
 
     if (profile === null || profileLoading || posts === null || postLoading || Object.keys(posts).length === 0) {
       profileContent = (<div className="loader"></div>)
@@ -39,25 +40,28 @@ class Dashboard extends Component {
       postContent = <DashboardPosts posts={posts}  />;
 
       profileContent = (
-        <div className="row main-containier">
-          <div className="col-6 profile-avatar ">
+        <div className="main-containier">
+          <div className="row">
+          <div className="col-5 profile-avatar ">
             <img src={user.avatar} alt="" />
           </div>
-          <div className="col-6">
+          <div className="col-7">
             <div className="row profile-user-settings">
               <div className="profile-user-name">{user.handle}</div>
               <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
-              <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
+              <button className="btn profile-settings-btn" aria-label="profile settings"></button>
             </div>
             <div className="row profile-stats">
-                <div><span className="profile-stat-count">{posts.filter(post => post.user === user.id).length}</span> posts</div>
-                <div><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
-                <div><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
+                <div className="profile-stat"><span className="profile-stat-count">{posts.filter(post => post.user === user.id).length}</span> posts</div>
+                <div className="profile-stat"><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
+                <div className="profile-stat"><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
             </div>
             <div className="profile-bio">
               <div className="profile-real-name">{user.name}</div> 
+              <div><a href={profile.website} target="_blank">{profile.website}</a></div> 
               <div>{profile.bio}</div>
             </div>
+          </div>
           </div>
         </div>  
       )

@@ -72,30 +72,33 @@ class Profile extends Component {
       profileContent = (<div className="loader"></div>)
     } else {
       profileContent = (
-        <div className="row main-containier">
-          <div className="col-6 profile-avatar ">
-            <img src={profile.user.avatar} alt="" />
-          </div>
-          <div className="col-6">
-          <div className="row profile-user-settings">
-              <div className="profile-user-name">{this.props.match.params.handle}</div>
-              {this.props.auth.isAuthenticated ? user.handle === this.props.match.params.handle ?
-                <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link> : 
-                
-                <div className="btn profile-edit-btn"
-                  onClick={this.onFollowUnfollowClick.bind( this, profile.followers, profile.user._id, profile.user.handle)} 
-                  type="button">
-                  {this.findUserId(profile.followers) ? "Unfollow" : "Follow"}</div>
-                : undefined}
+        <div className="top-wrapper">
+          <div className="row">
+            <div className="col-4 profile-avatar ">
+              <img src={profile.user.avatar} alt="" />
             </div>
-            <div className="row profile-stats">
-                <div><span className="profile-stat-count">164</span> posts</div>
-                <div><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
-                <div><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
-            </div>
-            <div className="profile-bio">
-              <div className="profile-real-name">{profile.user.name}</div> 
-              <div>{profile.bio}</div>
+            <div className="col-8">
+            <div className="row profile-user-settings">
+                <div className="profile-user-name">{this.props.match.params.handle}</div>
+                {this.props.auth.isAuthenticated ? user.handle === this.props.match.params.handle ?
+                  <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link> : 
+                  
+                  <div className="btn profile-edit-btn"
+                    onClick={this.onFollowUnfollowClick.bind( this, profile.followers, profile.user._id, profile.user.handle)} 
+                    type="button">
+                    {this.findUserId(profile.followers) ? "Unfollow" : "Follow"}</div>
+                  : undefined}
+              </div>
+              <br></br>
+              <div className="row profile-stats">
+                  <div className="profile-stat"><span className="profile-stat-count">164</span> posts</div>
+                  <div className="profile-stat"><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
+                  <div className="profile-stat"><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
+              </div>
+              <div className="profile-bio">
+                <div className="profile-real-name">{profile.user.name}</div> 
+                <div>{profile.bio}</div>
+              </div>
             </div>
           </div>
         </div>  
