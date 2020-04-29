@@ -18,12 +18,12 @@ class DashboardPosts extends Component {
       <ul className="nav nav-tabs dashboard-post-containier" id="myTab" role="tablist">
         <li className="nav-item">
           <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-          <i class="fas fa-border-all tab-icons"></i>
+          <i className="fas fa-border-all tab-icons"></i>
             POSTS</a>
         </li>
         <li className="nav-item">
           <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-          <i class="far fa-bookmark tab-icons"></i>
+          <i className="far fa-bookmark tab-icons"></i>
             SAVED</a>
         </li>
       </ul>

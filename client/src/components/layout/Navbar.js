@@ -89,6 +89,27 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
       
 
 
+
+</div>
+    )
+  }
+}
+
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, {logoutUser, addPost})(Navbar);
+
+
+/*
 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content">
@@ -113,23 +134,9 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
     </div>
   </div>
 </div>
-</div>
-    )
-  }
-}
+*/
 
-Navbar.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  addPost: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-}
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(mapStateToProps, {logoutUser, addPost})(Navbar);
 
 
 /*

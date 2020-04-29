@@ -100,3 +100,35 @@ margin-right: auto;
   font-size: 23px;
   padding-top: 9px;
 }
+
+.home-btn:hover,
+.like-btn:hover,
+.logout-btn:hover {
+  color: rgba(85, 85, 85, 0.85);
+}
+
+.button-post:hover {
+  background-color: rgba(85, 85, 85, 0.85);
+  border-color: rgba(85, 85, 85, 0.3);
+}
+
+.topnav-avatar:hover {
+  opacity: 0.8;
+}
+
+.home-btn:active,
+.like-btn:active,
+.logout-btn:active {
+  color: rgba(85, 85, 85, 0.85);
+}
+
+.button-post:link {
+  background-color: rgba(85, 85, 85, 0.85);
+  border-color: rgba(85, 85, 85, 0.3);
+}
+
+.home-btn:link,
+.like-btn:link,
+.logout-btn:link  {
+  color: rgba(85, 85, 85, 0.85);
+}

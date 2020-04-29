@@ -158,11 +158,11 @@ body {
     background-color: #ffffff;
   }
 
-  .footer {
+/*   .footer {
     margin-top: -20px;
     bottom: 20px;
   }
-
+ */
 
   @media(min-width: 500px) and (max-width: 665px) {
     .main-content {
@@ -175,11 +175,11 @@ body {
     #backgroundCarousel {
       visibility: hidden;
     }
-    .footer {
+/*     .footer {
       position: absolute;
       margin-top: 100px;
       width: 100%;
-    }
+    } */
   }
 
   @media(min-width: 666px) and (max-width: 849px) {
@@ -193,10 +193,10 @@ body {
     .carousel-indicators {
       visibility: hidden;
     }
-    .footer {
+/*     .footer {
       position: absolute;
       width: 100%;
-    }
+    } */
   }
 
   @media(min-width: 850px) and (max-width: 1000px) {

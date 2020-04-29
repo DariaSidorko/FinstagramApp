@@ -69,7 +69,7 @@ class PostForm extends Component {
                             <Link to="/profile"><img src={user.avatar} alt={user.handle} className="avatar"/></Link>
                           </div> 
                           <div className="col-9">
-                            <div className="username">{user.handle}</div>
+                            <div className="post-form-username">{user.handle}</div>
                             <div className="name">{user.name}</div>
                           </div>    
                         </div>

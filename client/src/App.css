@@ -7,10 +7,9 @@
 
 .footer {
   position: relative;
-  margin-top: -180px;
+  width: 100%;
+  bottom: 0;
   height: 20px;
-  clear: both;
-
   text-align: center;
   color: grey;
 }
