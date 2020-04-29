@@ -6,27 +6,26 @@ import { Link } from 'react-router-dom';
 class DashboardPostItem extends Component {
   render() {
     const { post, auth } = this.props;
-
+    //tabIndex="0"
     return (
-      <div className="container">
-        <div className="gallery">
-        <Link to={`/comments/${post._id}`}>
-          <div className="gallery-item" tabIndex="0">
+      
+          <div className="gallery-item" >
+            <Link to={`/comments/${post._id}`}>
             <img src={post.image} className="gallery-image" alt="" />
             <div className="gallery-item-info"> 
               <ul>
-                <li className="gallery-item-likes">
-                  <span className="visually-hidden">Likes:</span>
+                <li className="gallery-item-likes comment-like">
+                  <span className="visually-hidden ">Likes:</span>
                 <i className="fas fa-heart" aria-hidden="true"></i> {post.likes !== undefined && post.likes.length }</li>
-                <li className="gallery-item-comments">
-                  <span className="visually-hidden">Comments:</span>
+                <li className="gallery-item-comments comment-like">
+                  <span className="visually-hidden ">Comments:</span>
                   <i className="fas fa-comment" aria-hidden="true"></i> {post.comments !== undefined && post.comments.length }</li>
               </ul>  
             </div> 
+            </Link>
           </div> 
-          </Link>
-        </div>  
-      </div>
+          
+
     )
   }
 }

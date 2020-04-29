@@ -57,7 +57,7 @@ class PostItem extends Component {
   onLikeDislikeClick(id, likes) {
     if (this.findUserId(likes)) {
       this.props.removeLike(id);
-    } else {
+    } else {;
       this.props.addLike(id);
     }
   }

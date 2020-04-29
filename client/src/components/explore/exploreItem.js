@@ -8,8 +8,7 @@ class exploreItem extends Component {
     const { post } = this.props;
 
     return (
-      <div className="container">
-        <div className="gallery">
+
           <div className="gallery-item" tabIndex="0">
             <Link to={`/profile/${post.handle}`}>
               <img src={post.image} className="gallery-image" alt="" />
@@ -25,8 +24,6 @@ class exploreItem extends Component {
             </div> 
             </Link>
           </div> 
-        </div>  
-      </div>
     )
   }
 }

@@ -11,6 +11,7 @@ body {
   overflow: hidden;
   border: 0px solid #000;
   padding: 0px auto;
+  padding-bottom: 60px;
   }
 
   .comments-wrapper-content {

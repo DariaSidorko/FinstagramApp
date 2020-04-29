@@ -30,7 +30,6 @@ body {
   
   .main-content {
   width: 350px;
-  height: 55%;
   /*margin: 10px auto;*/
   background: rgba(255, 255, 255, .965);
   border: 1px solid #e0e0e0;
@@ -183,7 +182,7 @@ body {
   @media(min-width: 666px) and (max-width: 849px) {
     .main-content {
       margin-left: 25%;
-      height: 36%;
+
     }
     #backgroundCarousel {
       visibility: hidden;
@@ -200,7 +199,7 @@ body {
   @media(min-width: 850px) and (max-width: 1000px) {
     .main-content {
       margin-left: 29%;
-      height: 36%;
+
     }
     .carousel-indicators {
       visibility: hidden;
@@ -211,14 +210,14 @@ body {
   @media(min-width: 1001px) and (max-width: 1200px) {
     .main-content {
       margin-left: 35%;
-      height: 36%;
+
     }
   }
 
   @media(min-width: 1201px) {
     .main-content {
       margin-left: 40.5%;
-      height: 36%;
+
     }
   }
 

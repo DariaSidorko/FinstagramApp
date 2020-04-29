@@ -1,0 +1,16 @@
+.top-wrapper {
+  max-width: 70%;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+
+.footer {
+  position: relative;
+  margin-top: -180px;
+  height: 20px;
+  clear: both;
+
+  text-align: center;
+  color: grey;
+}
