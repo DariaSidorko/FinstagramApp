@@ -17,8 +17,10 @@ body {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    
+  }
 
+  .carousel-indicators {
+    margin-bottom: 100px;
   }
 
   .dark-overlay {
@@ -38,6 +40,7 @@ body {
   margin: 10% 2% 10% 40%;
   top: 0;
   border-radius: 5px;
+  z-index: 1;
   }
   
   .header {
