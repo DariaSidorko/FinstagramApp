@@ -30,7 +30,7 @@ body {
   
   .main-content {
   width: 350px;
-  height: 55%;
+  height: 80%;
   /*margin: 10px auto;*/
   background: rgba(255, 255, 255, .965);
   border: 1px solid #e0e0e0;
@@ -224,5 +224,14 @@ body {
   .fa fa-eye password-icon{
     color: white;
   }
+  #main {
+    height:70%;
+  }
+
+  #main-register {
+    height: 65%;
+  }
+
+  
 
   

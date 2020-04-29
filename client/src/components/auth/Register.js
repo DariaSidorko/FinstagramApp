@@ -62,6 +62,7 @@ class Register extends Component {
     const {isPasswordShown} = this.state;
     // **********visible-invisible password*******
     return (
+    
       <div className="wrapper">
 
 
@@ -74,24 +75,25 @@ class Register extends Component {
           <div className="carousel-inner">
             <div className="carousel-item active">
               {/*Photo by Muhd Asyraaf on Unsplash*/}
-            <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1920x1080" alt="First slide" />
-            </div>
-            <div className="dark-overlay"></div>
-            <div className="carousel-item">
-              {/*Photo by Luis Alfonso Orellana on Unsplash*/}
-            <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1920x1080"  alt="Second slide" />
-            </div>
-            <div className="dark-overlay"></div>
-            <div className="carousel-item">
-              {/*Photo by Anders Jildén on Unsplash*/}
-              <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1920x1080"
-              alt="Third slide" />
+              {/*Photo by Muhd Asyraaf on Unsplash*/}
+              <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1920x1080" alt="First slide" />
+              </div>
               <div className="dark-overlay"></div>
+              <div className="carousel-item">
+                {/*Photo by Luis Alfonso Orellana on Unsplash*/}
+              <img className="d-block w-100 img-size" src="https://source.unsplash.com/WjIB-6UxA5Q/1920x1080" alt="Second slide" />
+              </div>
+              <div className="dark-overlay"></div>
+              <div className="carousel-item">
+                {/*Photo by Anders Jildén on Unsplash*/}
+                <img className="d-block w-100 img-size" src="https://source.unsplash.com/uwbajDCODj4/1920x1080"
+                alt="Third slide" />
+                <div className="dark-overlay"></div>
             </div>
           </div>
           </div>
 
-
+          
       <div className="main-content">
         <div className="header">
           <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
@@ -151,6 +153,8 @@ class Register extends Component {
       </div>
     </div>
     </div>
+    
+   
     )
   }
 }
@@ -170,19 +174,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {registerUser})(Register);
 
 
-/* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  />
-{errors.email && (
-<div className="invalid-feedback"> {errors.email}</div>
-)}
-<input type="text" className={classnames('form-control', {'is-invalid': errors.name})}  placeholder="Full Name" name="name" value={this.state.name} onChange={this.onChange} />
-{errors.name && (
-<div className="invalid-feedback"> {errors.name}</div>
-)}
-<input type="text" className={classnames('form-control', {'is-invalid': errors.handle})}  placeholder="Username" name="handle" value={this.state.handle} onChange={this.onChange} />
-{errors.handle && (
-<div className="invalid-feedback"> {errors.handle}</div>
-)}
-<input type="password" className={classnames('form-control', {'is-invalid': errors.password})}  placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
-{errors.password && (
-<div className="invalid-feedback"> {errors.password}</div>
-)} */
