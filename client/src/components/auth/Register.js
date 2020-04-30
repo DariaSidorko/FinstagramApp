@@ -74,7 +74,7 @@ class Register extends Component {
           </ol>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              {/*Photo by Muhd Asyraaf on Unsplash*/}
+             
               {/*Photo by Muhd Asyraaf on Unsplash*/}
               <img className="d-block w-100 img-size" src="https://source.unsplash.com/9B-y0oNTbXo/1920x1080" alt="First slide" />
               </div>

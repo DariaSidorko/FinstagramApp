@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { addComment, deletePost, addLike, removeLike, addBookmark, removeBookmark } from '../../actions/postActions';
+import { addComment, deletePost, addLike, removeLike, addBookmark, removeBookmark, addEmoji, removeEmoji } from '../../actions/postActions';
+
 import moment from 'moment';
+
+
 
 class PostItem extends Component {
 
@@ -69,9 +72,15 @@ class PostItem extends Component {
       this.props.addBookmark(id);
     }
   }
-
   onDeletePostClick(id){
     this.props.deletePost(id);
+  }
+  onAddRmoveEmojiClick(id, emoji){
+    if(this.findUserId(emoji)) {
+      this.props.removeEmoji(id);
+    } else {
+      this.props.addEmoji(id);
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -80,10 +89,7 @@ class PostItem extends Component {
     }
   }
 
-// site for the random image to post:
-//https://source.unsplash.com/random
-
-  render() {
+ render() {
     const { post, auth } = this.props;
 
     return (
@@ -126,7 +132,22 @@ class PostItem extends Component {
           <i className={classnames("far fa-bookmark", {'fas fa-bookmark': this.findUserId(post.bookmarks)})}></i></div>  
 
         <div className="likes">{post.likes.length} likes</div>
-        <div>
+        
+    
+        <div className="emoji"
+          onClick={this.onAddRemoveEmojiClick.bind(this, post.emojis)} 
+          type="button">
+          <i className={classnames('far fa-imoji', {'fas fa-emoji': this.findUserId(post.emoji)})}></i></div>
+        
+        <div className="emoji"> {post.emojis.length} emojis
+      
+        <span aria-label="a rocket blasting off" role="img">🚀</span>
+          <span aria-hidden="true" role="img">🤫</span>
+          <span role="img" aria-label="sheep">🐑</span>
+          </div>
+    
+        
+      <div>
           <span className="username-caption">{post.handle}</span><span className="post-caption">{post.text}</span>
         </div>  
 
@@ -168,7 +189,9 @@ class PostItem extends Component {
     deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    addEmoji:PropTypes.object.isRequired, 
+    removeEmoji:PropTypes.object.isRequired,
   };
   
   const mapStateToProps = state => ({
@@ -176,5 +199,5 @@ class PostItem extends Component {
     errors: state.errors
   });
   
-  export default connect(mapStateToProps, { addComment, addLike, removeLike, addBookmark, removeBookmark, deletePost  })(PostItem);
+  export default connect(mapStateToProps, { addComment, addLike, removeLike, addBookmark, removeBookmark, deletePost, addEmoji, removeEmoji  })(PostItem);
   

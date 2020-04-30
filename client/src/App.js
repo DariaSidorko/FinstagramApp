@@ -18,9 +18,8 @@ import Comments from './components/comments/CommentsPage';
 import Profile from './components/profile/Profile';
 import Explore from './components/explore/exploreProfiles';
 import LikesCommentsFeed from './components/likes-and-comments/likesCommentsFeed'
-
+import Emoji from './components/posts/Emoji';
 import PrivateRoute from './components/common/PrivateRoute';
-
 import setAuthToken from './utils/setAuthToken';
 import { logoutUser } from './actions/authActions';
 import { SET_CURRENT_USER } from './actions/types';
@@ -61,6 +60,8 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
+            <Emoji symbol="🐑" label="sheep"/>
+
             <Route exact path="/" component={Login} /> 
             <div className="">
               <Route exact path="/register" component={Register} />

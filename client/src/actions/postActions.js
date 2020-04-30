@@ -224,3 +224,28 @@ export const clearErrors = () => {
     type: CLEAR_ERRORS
   };
 };
+
+// Add Emojis
+export const addEmoji = (id)=>dispatch =>{
+  axios
+  .post (`/api/posts/emoji/${id}`)
+  .then(res=>dispatch(getPosts()))
+  .catch(err=>
+    dispatch({
+      type:SET_ERRORS, 
+      payload:err.response.data
+    })
+    );
+};
+// Remove Emoji
+export const removeEmoji = (id) => dispatch => {
+  axios
+    .post(`/api/posts/unemoji/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err => 
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};

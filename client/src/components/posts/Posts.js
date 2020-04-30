@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PostItem from './PostItem';
 import { connect } from 'react-redux';
+import {Emoji} from './Emoji';
 
 class Posts extends Component {
   render() {
