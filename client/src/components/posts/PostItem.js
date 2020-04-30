@@ -144,16 +144,16 @@ class PostItem extends Component {
         </Link>
       </div>  
       <div className="input-contanier">
-      <form onSubmit={this.onSubmit}>
-          <div className="input-group mb-3">
-          
-            <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
-              name="text" value={this.state.text}  onChange={this.onChange} required/>
-            <div className="input-group-append">
-              <button className="btn post-button" type="submit" >Post</button>
+        <form onSubmit={this.onSubmit}>
+            <div className="input-group mb-3">
+            
+              <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
+                name="text" value={this.state.text}  onChange={this.onChange} required/>
+              <div className="input-group-append">
+                <button className="btn post-button" type="submit" >Post</button>
+              </div>
             </div>
-          </div>
-          </form>
+        </form>
       </div>
     </div>
 
