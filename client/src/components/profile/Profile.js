@@ -69,7 +69,7 @@ class Profile extends Component {
     //profile === null ||
     if ( profile === null || profileLoading) {
       console.log(profile)
-      profileContent = (<div className="loader"></div>)
+      profileContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
       profileContent = (
         <div className="top-wrapper">

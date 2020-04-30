@@ -35,7 +35,7 @@ class Dashboard extends Component {
     //<i className="fas fa-cog" aria-hidden="true"></i>
 
     if (profile === null || profileLoading || posts === null || postLoading || Object.keys(posts).length === 0) {
-      profileContent = (<div className="loader"></div>)
+      profileContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
       postContent = <DashboardPosts posts={posts}  />;
 

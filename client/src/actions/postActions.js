@@ -115,11 +115,9 @@ export const deletePost = (postId, commentId) => dispatch => {
 // Add new Comment
 export const addComment = (postId,commentData) => dispatch => {
   dispatch(clearErrors());
-  console.log("output: ", postId, commentData)
   axios
     .post(`api/posts/comment/${postId}`, commentData)
     .then(res => {
-      console.log("Calling")
       dispatch({
         type: GET_POST,
         payload: res.data

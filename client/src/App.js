@@ -67,6 +67,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/explore" component={Explore} />
+                <Route exact path="/comments/:id" component={Comments} ></Route>
               <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
               <Route exact path="/dashboard" component={Dashboard} />
@@ -77,9 +78,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/create-post" component={PostForm} ></PrivateRoute>
               </Switch>
-              <Switch>
-                <PrivateRoute exact path="/comments/:id" component={Comments} ></PrivateRoute>
-              </Switch>
+              
               <Switch>
                 <PrivateRoute exact path="/likes-comments" component={LikesCommentsFeed} ></PrivateRoute>
               </Switch>

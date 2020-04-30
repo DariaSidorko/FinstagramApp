@@ -62,7 +62,15 @@ vertical-align: middle;
 display: inline;
 font-size: 14px;
 padding-left: 15px;
+color: #262626;
 }
+
+.username:hover {
+  color: #262626;
+  text-decoration: underline; 
+  text-decoration-color: white;
+  }
+
 
 .post-delete {
   float: right;
@@ -164,7 +172,7 @@ color: #8a8a8a;
 }
 
 .input-contanier{
-  padding-top: 8px;
+  padding-top: 15px;
   border-top: 0.5px solid #e7e7e7;
 }
 
@@ -174,31 +182,67 @@ color: #8a8a8a;
   width: 99%;
   margin-left: 5px;
   height: 20px;
+  padding-top: 14px;
   font-size: 14px;
 }
 
-input:focus {
-  border-color: yellow;
+.comment-input:focus {
+  border: 1px solid #ffffff;
 }
+
+.mb-3, .my-3 {
+  margin-bottom: 8px!important;
+}
+
 
 .post-button {
   font-size: 14px;
   margin-right: 15px;
   font-weight: 600;
+  padding-top: 3px;
   color: #0095f6;
 }
 
-.side-bar-header{
- padding: 0 25px 0 25px;
+
+
+.post-side-bar {
+  padding-top: 5px;
 }
 
-.side-bar-header img {
+.fixed {
+  position:fixed;
+  padding-left: 52%;
+  z-index: -1;
+}
+
+.post-side-avatar {
   border-radius: 50%;
   display: inline;
   vertical-align: middle;
-  max-width: 55px;
+  width: 55px;
+  height: 55px;
   }
+   
+.post-side-username {
+  font-weight: 600;
+  font-size: 14px;
+  padding-left: 15px;
+  padding-top: 8px;  
+}
 
+.post-side-name {
+  font-weight: 400;
+  font-size: 13px;
+  padding-left: 15px; 
+  color: #8a8a8a;
+}
 
+.post-noposts {
+  min-height: 600px;
+  color: #9b9b9b;
+  font-style: italic;
+  font-size: 14px;
+  margin: 3% 15%;
+}
 
 

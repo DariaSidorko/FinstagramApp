@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PostItem from './PostItem';
 import { connect } from 'react-redux';
+import  isEmpty  from '../../validation/is-empty'
 
 class Posts extends Component {
   render() {
@@ -28,8 +29,11 @@ class Posts extends Component {
         userPosts = posts.filter(post => post.user === user.id)
       }
 
+      console.log(userPosts)
 
-    return userPosts.map(post => <PostItem key={post._id} post={post} />)
+    return  (!isEmpty(userPosts) ?  userPosts.map(post => <PostItem key={post._id} post={post} />) :
+    <div className="post-noposts"> Post your first post or start following other profiles.</div>
+    )
 
 }
 }

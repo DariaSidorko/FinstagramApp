@@ -15,6 +15,7 @@ const validatePostInput = require('../../validation/post');
 // @desc    Get ALL posts
 // @access  Public
 router.get("/", (req, res) => {
+  console.log("At the server")
   Post.find()
     .sort({date: -1})
     .then(posts => res.json(posts))

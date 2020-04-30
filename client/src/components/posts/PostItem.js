@@ -10,8 +10,8 @@ import moment from 'moment';
 
 class PostItem extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: '',
       errors: {}
@@ -77,7 +77,7 @@ class PostItem extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
-    }
+    } 
   }
 
 // site for the random image to post:
@@ -91,10 +91,16 @@ class PostItem extends Component {
     <div className=" col-8 post">
       <div className="post-header">
         { auth.isAuthenticated && auth.user.handle === post.handle ? 
-          <Link to="/dashboard"><img src={ post.avatar } alt="avatar" /></Link> :
-          <Link to={`/profile/${post.handle}`}><img src={ post.avatar } alt="avatar" /></Link>
+          <Link className="avatar-username-link" to="/dashboard">
+            <img src={ post.avatar } alt="avatar" />
+            <div className="username">{ post.handle }</div>
+          </Link> :
+          <Link className="avatar-username-link" to={`/profile/${post.handle}`}>
+            <img src={ post.avatar } alt="avatar" />
+            <div className="username">{ post.handle }</div>
+          </Link>
         }
-        <div className="username">{ post.handle }</div>
+        
 
         {post.user === auth.user.id ? (
               <div

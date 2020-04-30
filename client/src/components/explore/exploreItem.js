@@ -10,7 +10,7 @@ class exploreItem extends Component {
     return (
 
           <div className="gallery-item" tabIndex="0">
-            <Link to={`/profile/${post.handle}`}>
+            <Link to={`/comments/${post._id}`}>
               <img src={post.image} className="gallery-image" alt="" />
             <div className="gallery-item-info"> 
               <ul>
