@@ -46,8 +46,24 @@ class Register extends Component {
     }
   }
 
+    // **************password visible-invisible**********
+    state = {
+      isPasswordShown: false
+    }
+    togglePasswordVisibility = () =>{
+      const {isPasswordShown} = this.state;
+      this.setState ({isPasswordShown :!isPasswordShown});
+    }
+    // **************************************************
+
+
   render() {
     const {errors} = this.state; //SAME AS const errors = this.state.errors; (deconstruction)
+
+    // *******************************
+    const {isPasswordShown} = this.state;
+    // *******************************
+
     return (
       <div className="wrapper">
 
@@ -115,11 +131,18 @@ class Register extends Component {
             <TextFieldGroup 
               placeholder="Password"
               name = "password" 
+              type = {(isPasswordShown) ? "text": "password"}
               value = {this.state.password}
               onChange = {this.onChange}
               errors = {errors.password}
             />
             </div>
+
+            <i onClick= {this.togglePasswordVisibility}>
+              {isPasswordShown ? 
+                <i className = "far fa-eye password-icon-show" /> :
+                <i className = "fas fa-eye-slash password-icon-hide" /> 
+              } </i>
 
           <input type="submit" value="Sign up" className="btn-login-register" />
 
