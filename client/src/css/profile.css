@@ -152,6 +152,7 @@ body {
   margin: 1rem;
   color: #fff;
   width: 0;
+  padding-bottom: 20px;
 }
 
  .gallery-item:hover .gallery-item-info,
@@ -239,7 +240,7 @@ body {
   .profile-bio,
   .profile-stats {
       float: none;
-      width: auto;
+ 
   }
 
   .profile-image img {
@@ -324,8 +325,8 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
   .gallery {
       display: grid;
-      grid-template-columns: auto auto auto;
-      grid-gap: 20px;
+      grid-template-columns: 33% 33% 33%;
+      grid-gap: 0px;
   }
 
   .profile-image,
