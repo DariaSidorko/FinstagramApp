@@ -97,10 +97,11 @@ body {
  }
 
   .form-control {
-    padding: 0 10px;
-    font-size: 14px;
+    padding: 10px 10px;
+    font-size: 16px;
     font-weight: 400;
   }
+
 
   .submit-btn-row {
     padding-top: 30px;
@@ -123,6 +124,18 @@ body {
 
   .submit-btn:focus {
     outline: 0.5rem auto #4d90fe;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #262626;
+    background-color: #ffff;
+  }
+
+  .profile-nav-link {
+    margin: 0 40px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
   }
   /*
   .fogot-pass{

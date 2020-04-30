@@ -26,7 +26,7 @@ class exploreProfiles extends Component {
   
     //|| Object.keys(posts).length === 0
     if ( posts === null || postLoading ) {
-      postContent = (<div className="loader"></div>)
+      postContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
       postContent = <ExplorePosts posts={posts} />
     }

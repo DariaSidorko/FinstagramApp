@@ -24,7 +24,7 @@ export class likesCommentsFeed extends Component {
      //console.log("POSTS: ", posts)
 
      if (posts === null || postLoading) {
-      postContent = <div className="loader"></div>;
+      postContent = (<div className="post-loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
      } else {
         postContent = <LikesComments posts={posts} />;
       }

@@ -11,7 +11,7 @@ body {
   overflow: hidden;
   border: 0px solid #000;
   padding: 0px auto;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   }
 
   .comments-wrapper-content {
@@ -43,6 +43,18 @@ body {
     float: left;
   }
 
+  .comments-header-username {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 42px;
+  }
+
+  .comments-header-text {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 42px;
+  }
+
    .comments-username { 
     font-size: 14px;
     font-weight: 600;
@@ -55,9 +67,21 @@ body {
  }
 
  .comments-side-header {
-  padding-top: 12px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
   border-bottom: 1px solid #e0e0e0;
+ }
+
+ .comments-heat-icon {
+   padding-right: 5px;
+ }
+
+ .comments-likes {
+  font-weight: 600;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-left: 5px;
  }
 
   .comments-scrolling{
@@ -72,14 +96,14 @@ body {
   }
   
   .comments-content{
-    margin-left: 45px;
+    margin-left: 32px;
     margin-top: -10px;
     font-size: 14px;
   }
 
   .comments-delete {
     position: absolute;
-    right: 60px;
+    right: 40px;
     color: #c5c5c5;
     font-size: 18px;
   }
@@ -91,12 +115,20 @@ body {
   .comments-sidebar-input{
     position: absolute;
     bottom: 0;
+    width: 92%;
   }
 
   .comments-post-button {
     display: inline-block;
     width: 100%;
   }
+
+  .comments-timestamp {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #8a8a8a;
+    padding-left: 65%;
+}
   
   
   

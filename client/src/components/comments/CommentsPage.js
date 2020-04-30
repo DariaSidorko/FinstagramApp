@@ -46,7 +46,7 @@ import CommentFeed from './CommentFeed';
       avatar: user.avatar,
       user: user.id,
     }
-    console.log("NEW COMMENT: ",newComment)
+    console.log("NEW COMMENT: ", post._id)
     this.props.addComment(post._id, newComment)
     this.setState({ text: '' });
   }
@@ -63,8 +63,9 @@ import CommentFeed from './CommentFeed';
     const { post, loading } = this.props.post;
     let postContent;
 
+
     if (post === null || loading || Object.keys(post).length === 0) {
-      postContent = <div className="loader"></div>
+      postContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
       postContent = (
         <CommentFeed postId={post._id} comments={post.comments} />
@@ -87,13 +88,20 @@ import CommentFeed from './CommentFeed';
                         <div className="col-5 comments-side-wrapper">
                           <div className="comments-side-header">
                           { user.handle === post.handle ? 
-                            <Link to="/dashboard"><img src={ post.avatar } alt="avatar" className="comments-avatar" /></Link> :
-                            <Link to={`/profile/${post.handle}`}><img src={ post.avatar } alt="avatar" className="comments-avatar" /></Link>
+                            <Link to="/dashboard" className="avatar-username-link">
+                              <img src={ post.avatar } alt="avatar" className="comments-avatar" />
+                              <div className="comments-header-username">{post.handle}</div>
+                            </Link> :
+                            <Link to={`/profile/${post.handle}`} className="avatar-username-link">
+                              <img src={ post.avatar } alt="avatar" className="comments-avatar" />
+                              <div className="comments-header-username">{post.handle}</div>
+                              </Link>
                           }
                             
-                            <div className="comments-username">{post.handle}</div>
-                            <div className="comments-username">{post.text}</div>
+                            
+                            <div className="comments-header-text">{post.text}</div>                
                           </div>
+                          <div className="comments-likes"><i className="fas fa-heart red-heart comments-heat-icon"></i>{post.likes ? post.likes.length : 0} likes</div>
                           <div className="overflow-auto comments-scrolling">
                             {postContent}
                           </div>    

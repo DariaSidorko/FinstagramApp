@@ -25,11 +25,17 @@ class CommentItem extends Component {
       <div className="comments-each-comment-wrapper">
         <div className="row">
         { auth.isAuthenticated && auth.user.handle === comment.handle ? 
-          <Link to="/dashboard"><img src={ comment.avatar } alt="avatar" className="comments-avatar" /></Link> :
-          <Link to={`/profile/${comment.handle}`}><img src={ comment.avatar } alt="avatar" className="comments-avatar" /></Link>
+          <Link to="/dashboard" className="avatar-username-link">
+            <img src={ comment.avatar } alt="avatar" className="comments-avatar" />
+            <span className="comments-username">{comment.handle}</span>
+            </Link> :
+          <Link to={`/profile/${comment.handle}`} className="avatar-username-link">
+            <img src={ comment.avatar } alt="avatar" className="comments-avatar" />
+            <span className="comments-username">{comment.handle}</span>
+            </Link>
         }
           
-          <div className="comments-username">{comment.handle}</div>
+          
           {comment.user === auth.user.id ? (
               <div
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}
@@ -41,9 +47,9 @@ class CommentItem extends Component {
             ) : null}
           
         </div>
-        <div className="row">
+        <div>
           <div className="comments-content">{comment.text}</div>
-          <div className="timestamp">{moment(comment.date).startOf('hour').fromNow()}</div>
+          <div className="comments-timestamp">{moment(comment.date).startOf('hour').fromNow()}</div>
         </div>
       </div>
     )

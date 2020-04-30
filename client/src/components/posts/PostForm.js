@@ -13,8 +13,8 @@ import { addPost } from '../../actions/postActions'
 class PostForm extends Component {
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: '',
       image: '',
@@ -42,7 +42,7 @@ class PostForm extends Component {
       user: user.user,
     }
 
-    this.props.addPost(newPost, this.props.history)
+    this.props.addPost(newPost, this.props.history);
   }
 
   componentWillReceiveProps(nextProps){

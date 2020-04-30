@@ -4,6 +4,7 @@ import '../../css/profile.css';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import  isEmpty  from '../../validation/is-empty'
 
 import DashboardPostItem from './DashboardPostItem'
 
@@ -30,12 +31,20 @@ class DashboardPosts extends Component {
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active dashboard-nav-tabs" id="home" role="tabpanel" aria-labelledby="home-tab">
           <div className="gallery">
-            {posts.filter(post => post.user === user.user.id).map(post => <DashboardPostItem key={post._id} post={post} />)}
-          </div>
+            {!isEmpty(posts.filter(post => post.user === user.user.id)) ?  
+              posts.filter(post => post.user === user.user.id).map(post => <DashboardPostItem key={post._id} post={post} />) :
+            < div className="gallery-noposts"> You have no posts. Create your first post.</div>
+              }
+            </div>
         </div>
         <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <div className="gallery">
-            {posts.filter(post => post.bookmarks.filter(bookmark => bookmark.user === user.user.id).length > 0).map(post => <DashboardPostItem key={post._id} post={post} />) }
+            {!isEmpty(posts.filter(post => post.bookmarks.filter(bookmark => bookmark.user === user.user.id).length > 0)) ?  
+              posts.filter(post => post.bookmarks.filter(bookmark => bookmark.user === user.user.id).length > 0).map(post => <DashboardPostItem key={post._id} post={post} />) :
+            < div className="gallery-noposts"> You have no saved posts yet. </div>
+              }
+          
+          
           </div>
         </div>
       </div>
