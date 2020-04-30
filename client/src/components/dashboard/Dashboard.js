@@ -51,7 +51,7 @@ class Dashboard extends Component {
               <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
               <button className="btn profile-settings-btn" aria-label="profile settings"></button>
             </div>
-            <div className="row profile-stats">
+            <div className="profile-stats">
                 <div className="profile-stat"><span className="profile-stat-count">{posts.filter(post => post.user === user.id).length}</span> posts</div>
                 <div className="profile-stat"><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
                 <div className="profile-stat"><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>

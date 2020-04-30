@@ -52,8 +52,23 @@ class Login extends Component {
   }
 
 
+    // **************password visible-invisible**********
+    state = {
+      isPasswordShown: false
+    }
+    togglePasswordVisibility = () =>{
+      const {isPasswordShown} = this.state;
+      this.setState ({isPasswordShown :!isPasswordShown});
+    }
+    // **************************************************
+
   render() {
     const {errors} = this.state; 
+
+    // *******************************
+    const {isPasswordShown} = this.state;
+    // *******************************
+
     return (
       <div className="wrapper">
 
@@ -84,8 +99,6 @@ class Login extends Component {
           </div>
           </div>
 
-
-
         <div className="main-content">
           <div className="header">
             <img className="header-cover" alt="logo" src={require("../../img/logo-3.png")} />
@@ -101,15 +114,24 @@ class Login extends Component {
             />
             </div>
             <div>
+
             <TextFieldGroup 
               placeholder="Password"
               name = "password" 
+              type = {(isPasswordShown) ? "text": "password"}
               value = {this.state.password}
               onChange = {this.onChange}
               errors = {errors.password}
             />
+
+            <i onClick= {this.togglePasswordVisibility}>
+              {isPasswordShown ? 
+                <i className = "far fa-eye password-icon-show" /> :
+                <i className = "fas fa-eye-slash password-icon-hide" /> 
+              } </i>
+
             </div>
-<input type="submit" value="Log in" className="btn-login-register" />
+          <input type="submit" value="Log in" className="btn-login-register" />
 
           </form>
           <div className="fogot-pass">
