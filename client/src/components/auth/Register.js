@@ -68,7 +68,7 @@ class Register extends Component {
       <div className="wrapper">
 
 
-        <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
+        <div id="backgroundCarousel" className="carousel slide carousel-fade" data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
             <li data-target="#backgroundCarousel" data-slide-to="1"></li>
@@ -136,14 +136,13 @@ class Register extends Component {
               onChange = {this.onChange}
               errors = {errors.password}
             />
-            
-
             <i onClick= {this.togglePasswordVisibility}>
               {isPasswordShown ? 
                 <i className = "far fa-eye password-icon-show" /> :
                 <i className = "fas fa-eye-slash password-icon-hide" /> 
               } </i>
-            </div>
+          </div>
+
           <input type="submit" value="Sign up" className="btn-login-register" />
 
         </form>

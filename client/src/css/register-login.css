@@ -17,6 +17,11 @@ body {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+
+  }
+
+  .carousel-indicators {
+    margin-bottom: 100px;
   }
 
   .dark-overlay {
@@ -36,6 +41,7 @@ body {
   margin: 10% 2% 10% 40%;
   top: 0;
   border-radius: 5px;
+  z-index: 1;
   }
   
   .header {
@@ -84,6 +90,7 @@ body {
     width: 250px;
     height: 35px;
     margin-bottom: 5px;
+    
     padding: 6px 12px;
     border: 1px solid #dbdbdb;
     box-sizing: border-box;
@@ -96,14 +103,18 @@ body {
     display: flex;
   }
   
+.password-wrapper {
+  position: relative;
+  display: flex;
+}
 
 .password-icon-show {
   color: #ff5c5c;
   margin-left: -30px;
   margin-top: 10px;
   position: absolute;
-
 }
+
 
 .password-icon-hide {
   color: grey;
