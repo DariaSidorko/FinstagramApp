@@ -19,6 +19,7 @@ class Profile extends Component {
     super(props);
     this.onFollowUnfollowClick.bind(this);
     this.findUserId.bind(this);
+    localStorage.setItem("posts", JSON.stringify(this.props.post.posts));
   }
 
   saveStateToLocalStorage() {

@@ -9,6 +9,10 @@ import PropTypes from 'prop-types';
 import { addComment, getPost } from '../../actions/postActions'
 import CommentFeed from './CommentFeed';
 
+/***************** 
+Outputting group of comments for each individual post 
+/comments/:id
+*****************/
 
  class CommentsPage extends Component {
 

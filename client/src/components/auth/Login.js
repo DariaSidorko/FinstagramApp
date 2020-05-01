@@ -73,7 +73,7 @@ class Login extends Component {
 
 
 
-        <div id="backgroundCarousel" className="carousel slide " data-ride="carousel">
+        <div id="backgroundCarousel" className="carousel slide carousel-fade" data-ride="carousel">
 
           <ol className="carousel-indicators">
             <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
@@ -107,7 +107,7 @@ class Login extends Component {
           <form onSubmit={this.onSubmit}>
             <div>
             <TextFieldGroup 
-              placeholder="Email Address or Username"
+              placeholder="Email or Username"
               name = "email" 
               value = {this.state.email}
               onChange = {this.onChange}

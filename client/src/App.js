@@ -50,12 +50,8 @@ if(localStorage.jwtToken){
     payload: decoded
   });
 
-
-
 }
 
-//<Route exact path="/profile/:handle" component={Profile} />
-//<Route exact path="/profiles" component={Profiles} />
 class App extends Component {
   render() {
     return (
@@ -68,9 +64,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:handle" component={Profile} />
-              <Route exact path="/explore" component={Explore} />
-
-                <Route exact path="/comments/:id" component={Comments} ></Route>
+              <Route exact path="/comments/:id" component={Comments} ></Route>
               <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
               <Route exact path="/dashboard" component={Dashboard} />
@@ -80,10 +74,12 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/create-post" component={PostForm} ></PrivateRoute>
-              </Switch>
-              
+              </Switch>            
               <Switch>
                 <PrivateRoute exact path="/likes-comments" component={LikesCommentsFeed} ></PrivateRoute>
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/explore" component={Explore} ></PrivateRoute>
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
             </div>

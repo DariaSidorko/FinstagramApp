@@ -9,7 +9,10 @@ import { Link } from 'react-router-dom';
 import { updateProfile } from '../../actions/profileActions';
 import classnames from "classnames";
 
-
+/***************** 
+Form to edit profile 
+/edit-profile
+******************/
 
 class CreateEditProfile extends Component {
 

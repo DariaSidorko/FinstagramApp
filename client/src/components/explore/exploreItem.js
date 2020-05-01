@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 
 class exploreItem extends Component {
 
+/***************** 
+Explore navbar icone to find new profiles 
+/explore
+*****************/
+
   render() {
     const { post } = this.props;
 
