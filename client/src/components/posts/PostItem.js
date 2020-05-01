@@ -72,8 +72,9 @@ class PostItem extends Component {
   }
 
   onDeletePostClick(id){
+
     this.props.deletePost(id);
-   window.location.reload(false);
+   //window.location.reload(false);
   }
 
   componentWillReceiveProps(nextProps){
@@ -109,8 +110,7 @@ class PostItem extends Component {
               <div
                 onClick={this.onDeletePostClick.bind(this, post._id)}
                 type="button"
-                className="post-delete"
-              >
+                className="post-delete">
                 <i className="fas fa-times" />
               </div>
             ) : null}
@@ -150,7 +150,7 @@ class PostItem extends Component {
       <div className="input-contanier">
         <form onSubmit={this.onSubmit}>
             <div className="input-group mb-3">
-              <input type="text" className="comment-input" className={classnames('form-control', {'is-invalid': errors.bio})} placeholder="Add a comment..." 
+              <input type="text" className="comment-input" className={classnames('form-control gallery-form-control', {'is-invalid': errors.bio})} placeholder="Add a comment..." 
                 name="text" value={this.state.text}  onChange={this.onChange} autoComplete="off" required/>
                 {errors.text && (
                   <div className="invalid-feedback"> {errors.text}</div>

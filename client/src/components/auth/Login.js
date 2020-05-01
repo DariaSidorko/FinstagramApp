@@ -105,15 +105,14 @@ class Login extends Component {
           <form onSubmit={this.onSubmit}>
             <div>
             <TextFieldGroup 
-              placeholder="Email Address"
+              placeholder="Email Address or Username"
               name = "email" 
               value = {this.state.email}
               onChange = {this.onChange}
               errors = {errors.email}
             />
             </div>
-            <div>
-
+            <div className="password-wrapper">
             <TextFieldGroup 
               placeholder="Password"
               name = "password" 

@@ -36,7 +36,7 @@ class Dashboard extends Component {
           <div className="col-5 profile-avatar ">
             <img src={user.avatar} alt="" />
           </div>
-          <div className="col-7">
+          <div className=" col-7">
             <div className="profile-user-settings">
               <span className="profile-user-name">{user.handle}</span>
               <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
@@ -48,9 +48,9 @@ class Dashboard extends Component {
                 <div className="profile-stat"><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
             </div>
             <div className="profile-bio">
-              <div className="profile-real-name">{user.name}</div> 
+              <div className="profile-real-name">{user.name}  </div> 
               <div><a href={profile.website} target="_blank">{profile.website}</a></div> 
-              <div>{profile.bio}</div>
+              <div>{profile.bio}  </div>
             </div>
           </div>
           </div>

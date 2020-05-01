@@ -137,7 +137,6 @@ router.post('/login', (req, res) => {
 }
 
 /*  ******* NEW PART -- LOGIN VIA HANDLE OR EMAIL *******  */
-
 else {
 
   User.findOne({handle: req.body.email})
