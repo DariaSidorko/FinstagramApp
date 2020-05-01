@@ -14,13 +14,12 @@ class CommentItem extends Component {
 
   onDeleteClick(postId, commentId) {
     this.props.deleteComment(postId, commentId);
+    window.location.reload(false);
   }
 
-  //<Link to="/profile"><img src={comment.avatar} alt="img" className="comments-avatar"/></Link>
   render() {
     const { comment, postId, auth } = this.props;
 
-    console.log(auth.user.handle === comment.handle)
     return (
       <div className="comments-each-comment-wrapper">
         <div className="row">
@@ -34,8 +33,7 @@ class CommentItem extends Component {
             <span className="comments-username">{comment.handle}</span>
             </Link>
         }
-          
-          
+           
           {comment.user === auth.user.id ? (
               <div
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}
@@ -57,7 +55,6 @@ class CommentItem extends Component {
 }
 
 CommentItem.propTypes = {
-  //addComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
 }

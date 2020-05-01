@@ -5,10 +5,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-//import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import { updateProfile } from '../../actions/profileActions';
-
+import classnames from "classnames";
 
 
 
@@ -18,7 +17,6 @@ class CreateEditProfile extends Component {
   constructor() {
     super();
     this.state = {
-      //handle: '',
       name: '',
       website: '',
       bio: '',
@@ -36,7 +34,6 @@ class CreateEditProfile extends Component {
   onSubmit(e){
     e.preventDefault();
     const userData = {
-      //handle: this.state.handle,
       name: this.state.name,
       website: this.state.website,
       bio: this.state.bio,
@@ -45,11 +42,15 @@ class CreateEditProfile extends Component {
     this.props.updateProfile(userData, this.props.history)
   }
 
-  //<a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</a>
-
+  componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+      this.setState({errors: nextProps.errors});
+    } 
+  }
 
   render() {
     const { user } = this.props.auth;
+    const { errors } = this.state;
 
     return (
       <div className="wrapper-1">
@@ -82,34 +83,42 @@ class CreateEditProfile extends Component {
                   <form  onSubmit={this.onSubmit}>
                     <div className="row input-row">
                       <div className="col-3 input-lable-wrapper">
-                        <lable className="input-lable" >Name</lable> 
+                        <div className="input-lable" >Name</div> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.name  } name="email" disabled/> 
+                        <input type="email" className="form-control" placeholder={ user.name  } name="email" disabled autoComplete="off"/> 
                       </div>
                     </div>
                     <div className="row input-row">
                       <div className="col-3 input-lable-wrapper">
-                        <lable className="input-lable" >Username</lable> 
+                        <div className="input-lable" >Username</div> 
                       </div> 
                       <div className="col-9">
-                        <input type="handle" className="form-control" placeholder={ user.handle } name="handle"  disabled/> 
+                        <input type="handle" className="form-control" placeholder={ user.handle } name="handle"  disabled autoComplete="off"/> 
                       </div>
                     </div>
                     <div className="row input-row">
                       <div className="col-3 input-lable-wrapper">
-                        <lable className="input-lable" >Website</lable> 
+                        <div className="input-lable" >Website</div> 
                       </div> 
                       <div className="col-9">
-                        <input type="website" className="form-control" placeholder={ user.website && user.website }  name="website" value={this.state.website}  onChange={this.onChange}/> 
+                        <input type="website" className={classnames('form-control', {'is-invalid': errors.website})} placeholder={ user.website && user.website }  
+                        name="website" value={this.state.website}  onChange={this.onChange}/> 
+                          {errors.website && (
+                            <div className="invalid-feedback"> {errors.website}</div>
+                          )}
                       </div>
                     </div>
                     <div className="row input-row">
                       <div className="col-3 input-lable-wrapper">
-                        <lable className="input-lable" >bio</lable> 
+                        <div className="input-lable" >bio</div> 
                       </div> 
                       <div className="col-9">
-                        <input type="bio" className="form-control" placeholder={ user.bio && user.bio }  name="bio" value={this.state.bio}  onChange={this.onChange}/> 
+                        <input type="bio" className={classnames('form-control', {'is-invalid': errors.bio})} placeholder={ user.bio && user.bio }  
+                        name="bio" value={this.state.bio}  onChange={this.onChange}/> 
+                        {errors.bio && (
+                            <div className="invalid-feedback"> {errors.bio}</div>
+                          )}
                       </div>
                     </div>
                     <div className="row justify-content-center submit-btn-row">
@@ -124,9 +133,6 @@ class CreateEditProfile extends Component {
               </div>
             </div>
           </div>
-
-
-
         </div>
         </div>
 
@@ -138,23 +144,13 @@ class CreateEditProfile extends Component {
 
 CreateEditProfile.propTypes = {
   updateProfile: PropTypes.func.isRequired,
-  //profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, { updateProfile })(CreateEditProfile);
 
-
-
-
-            /* {errors.email && (
-          <div className="invalid-feedback"> {errors.email}</div>)} 
-          
-          
-                    <input type="email" className='form-control'
-            placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  />
-            */

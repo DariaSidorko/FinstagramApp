@@ -19,20 +19,11 @@ class Dashboard extends Component {
     this.props.getPosts();
   }
 
-  /*  componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile === null && this.props.profile.loading) {
-      this.props.history.push('/not-found');
-    }
-  }  */
-  //auth.isAuthenticated === true ? 
-  
   render() {
     const  { profile, profileLoading } = this.props.profile;
     const { posts, postLoading } = this.props.post;
     const { user } = this.props.auth;
     let profileContent, postContent;
-    //console.log("Profile key: ", profile.bio)
-    //<i className="fas fa-cog" aria-hidden="true"></i>
 
     if (profile === null || profileLoading || posts === null || postLoading || Object.keys(posts).length === 0) {
       profileContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
@@ -41,13 +32,13 @@ class Dashboard extends Component {
 
       profileContent = (
         <div className="main-containier">
-          <div className="row">
+          <div className="row ">
           <div className="col-5 profile-avatar ">
             <img src={user.avatar} alt="" />
           </div>
           <div className="col-7">
-            <div className="row profile-user-settings">
-              <div className="profile-user-name">{user.handle}</div>
+            <div className="profile-user-settings">
+              <span className="profile-user-name">{user.handle}</span>
               <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link>
               <button className="btn profile-settings-btn" aria-label="profile settings"></button>
             </div>

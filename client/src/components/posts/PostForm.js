@@ -77,11 +77,11 @@ class PostForm extends Component {
                         <form  onSubmit={this.onSubmit}>
                           <div className="row input-row">
                             <div className="col-3 input-lable-wrapper">
-                              <lable className="input-lable" >Image URL</lable> 
+                              <div className="input-lable" >Image URL</div> 
                             </div> 
                             <div className="col-9">
                               <input type="text" className={classnames('form-control', {'is-invalid': errors.image})} placeholder="..." 
-                                name="image" value={this.state.image}  onChange={this.onChange}/> 
+                                name="image" value={this.state.image}  onChange={this.onChange} autoComplete="off"/> 
                                 {errors.image && (
                                   <div className="invalid-feedback"> {errors.image}</div>
                                 )}
@@ -89,11 +89,11 @@ class PostForm extends Component {
                           </div>
                           <div className="row input-row">
                             <div className="col-3 input-lable-wrapper">
-                              <lable className="input-lable" >Caption</lable> 
+                              <div className="input-lable" >Caption</div> 
                             </div> 
                             <div className="col-9">
-                              <input type="text" className={classnames('form-control', {'is-invalid': errors.text})} placeholder="..." name="text"  
-                                name="text" value={this.state.text}  onChange={this.onChange}/> 
+                              <input type="text" className={classnames('form-control', {'is-invalid': errors.text})} placeholder="..."  
+                                name="text" value={this.state.text}  onChange={this.onChange} autoComplete="off"/> 
                                 {errors.text && (
                                   <div className="invalid-feedback"> {errors.text}</div>
                                 )}

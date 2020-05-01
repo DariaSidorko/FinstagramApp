@@ -172,6 +172,27 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {registerUser})(Register);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  />
 {errors.email && (
 <div className="invalid-feedback"> {errors.email}</div>

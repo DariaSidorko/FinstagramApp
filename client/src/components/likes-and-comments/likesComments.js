@@ -10,24 +10,19 @@ import moment from 'moment';
 class likesComments extends Component {
   render() {
     const { posts } = this.props;
-    //const { profile } = this.props.profiles;
     const { user } = this.props.auth;
     let userLikes = [];
     let userComments = [];
-    let obj;
-    //console.log("Posts!!!: ", posts);
-    //console.log("Posts!!!: ", posts.posts.length);
+
  
 
     // Users like
     for (let i=0; i < posts.posts.length; i++){
       if (posts.posts[i].user === user.id){
-        for (let j=0; j < posts.posts[i].likes.length; j++){
-          
+        for (let j=0; j < posts.posts[i].likes.length; j++){        
           let days = (moment(posts.posts[i].likes[j].date).startOf('day').fromNow()).split(' '); 
-          //console.log("POSTS: ", posts.posts[i].likes[j].user)
-          //console.log(temp)
-          if (days[0] == 'a' || days[0] < 8){
+          let minutes = (moment(posts.posts[i].likes[j].date).startOf('hour').fromNow()).split(' '); 
+          if (days[0] == 'a' || days[0] < 8 || minutes[1] === 'minutes'){
 
           let obj = {
               _id:  posts.posts[i].likes[j]._id,
@@ -37,14 +32,15 @@ class likesComments extends Component {
               post_id: posts.posts[i]._id,
               image: posts.posts[i].image
             }
-            userLikes .push(obj);
+            userLikes.push(obj);
           }
         } 
 
         for (let j=0; j < posts.posts[i].comments.length; j++){  
             
           let days = (moment(posts.posts[i].comments[j].date).startOf('day').fromNow()).split(' '); 
-          if (days[0] === 'a' || days[0] < 10){
+          let minutes = (moment(posts.posts[i].comments[j].date).startOf('hour').fromNow()).split(' '); 
+          if (days[0] === 'a' || days[0] < 10 || minutes[1] === 'minutes'){
           
           let obj = {
               _id:  posts.posts[i].comments[j]._id,
@@ -52,11 +48,10 @@ class likesComments extends Component {
               date: posts.posts[i].comments[j].date,
               handle: posts.posts[i].comments[j].handle,
               text: posts.posts[i].comments[j].text,
-              //text: posts.posts[i].text,
               post_id: posts.posts[i]._id,
               image: posts.posts[i].image
             }
-            userComments .push(obj);
+            userComments.push(obj);
           }
         }
       }
@@ -75,12 +70,6 @@ class likesComments extends Component {
     })
 
 
-    
-
-    //console.log("LIKES: ", userComments);
-
-
-
     let likesContent = userLikes.map((like, index) => (
       <div key={index} >
         <Link to={`/comments/${like.post_id}`} className="likes-comments-string">
@@ -95,11 +84,12 @@ class likesComments extends Component {
       <div key={index}>
         <Link to={`/comments/${comment.post_id}`} className="likes-comments-string">
         <span><img className="likes-comments-img" src={comment.image} /></span>
-        <span className="likes-comments-handle"> <a className="likes-comments-handle" href={`/profile/${comment.handle}`}> {comment.handle} </a></span> 
+        </Link>
+        <span className="likes-comments-handle"> <Link className="likes-comments-handle" to={`/profile/${comment.handle}`}> {comment.handle} </Link></span> 
         <span className="likes-comments-generic-text"> comented:</span>        
         <span className="likes-comments-comment"> "{comment.text}"</span> 
         <span className="likes-comments-date"> - {moment(comment.date).startOf('hour').fromNow()}</span> 
-        </Link>
+        
         <hr></hr>
         </div>) )
 
@@ -115,13 +105,10 @@ class likesComments extends Component {
 
 likesComments.propTypes  = {
   posts: PropTypes.array.isRequired,
-  //profiles: PropTypes.object.isRequired
 };
-//(posts.filter(post => profile.followin.filter(follow => follow.user === post.user).length > 0).map(post => <PostItem key={post._id} post={post} />));
 
 
 const mapStateToProps = state => ({
-  //profiles: state.profile,
   auth: state.auth,
   post: state.posts
 });

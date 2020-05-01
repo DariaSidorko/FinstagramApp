@@ -22,6 +22,7 @@ const TextFieldGroup = ({
       placeholder={placeholder} 
       name={name} value={value}  
       onChange={onChange}  
+      autoComplete="off"
       />
       {info && <smal className="form-text text-muted">{info}</smal>}
       {errors && (

@@ -32,11 +32,9 @@ export const getCurrentProfile = () => dispatch => {
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
-  console.log("Handle in Action: ",handle)
   axios
     .get(`/api/profile/handle/${handle}`)
     .then(res =>{
-      console.log("RES: ", res)
       dispatch({
         type: GET_PROFILE,
         payload: res.data
@@ -44,7 +42,6 @@ export const getProfileByHandle = handle => dispatch => {
     }
     )
     .catch(err =>{
-      console.log("ERR: ", err)
       dispatch({
         type: GET_PROFILE,
         payload: null

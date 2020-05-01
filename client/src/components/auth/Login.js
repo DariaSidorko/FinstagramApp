@@ -1,7 +1,6 @@
 import '../../css/register-login.css';
 
 import React, { Component } from 'react'
-//import classnames from "classnames";
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {loginUser} from '../../actions/authActions';
@@ -73,7 +72,7 @@ class Login extends Component {
       <div className="wrapper">
 
 
-        <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
+        <div id="backgroundCarousel" className="carousel slide " data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
             <li data-target="#backgroundCarousel" data-slide-to="1"></li>
@@ -143,26 +142,6 @@ class Login extends Component {
         </div>
       </div>
       </div>
-/*       <div className="login">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <h1 className="display-4 text-center">Log In</h1>
-            <p className="lead text-center">Sign in to your DevConnector account</p>
-            <form action="dashboard.html">
-              <div className="form-group">
-                <input type="email" className="form-control form-control-lg" placeholder="Email Address" name="email" />
-              </div>
-              <div className="form-group">
-                <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" />
-              </div>
-              <input type="submit" className="btn btn-info btn-block mt-4" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> */
-  
     )
   }
 }

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import PostItem from '../posts/PostItem';
 import { addComment, getPost } from '../../actions/postActions'
 import CommentFeed from './CommentFeed';
 
@@ -16,7 +15,6 @@ import CommentFeed from './CommentFeed';
   componentDidMount() {
     this.props.getPost(this.props.match.params.id);
   }
-
 
   constructor() {
     super();
@@ -46,7 +44,6 @@ import CommentFeed from './CommentFeed';
       avatar: user.avatar,
       user: user.id,
     }
-    console.log("NEW COMMENT: ", post._id)
     this.props.addComment(post._id, newComment)
     this.setState({ text: '' });
   }
@@ -71,7 +68,6 @@ import CommentFeed from './CommentFeed';
         <CommentFeed postId={post._id} comments={post.comments} />
       )
     }
-//<Link to="/profile"><img src={post.avatar} alt="img" className="comments-avatar"/></Link>
 
     return (
       <div>
@@ -96,20 +92,18 @@ import CommentFeed from './CommentFeed';
                               <img src={ post.avatar } alt="avatar" className="comments-avatar" />
                               <div className="comments-header-username">{post.handle}</div>
                               </Link>
-                          }
-                            
-                            
+                          }    
                             <div className="comments-header-text">{post.text}</div>                
                           </div>
                           <div className="comments-likes"><i className="fas fa-heart red-heart comments-heat-icon"></i>{post.likes ? post.likes.length : 0} likes</div>
                           <div className="overflow-auto comments-scrolling">
                             {postContent}
                           </div>    
-
+                          
                           <form className="comments-sidebar-input" onSubmit={this.onSubmit}>
                             <div className="input-group mb-3">                        
                               <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
-                              name="text" value={this.state.text}  onChange={this.onChange} required/>
+                              name="text" value={this.state.text}  onChange={this.onChange} required autoComplete="off"/>
                               <div className="input-group-append">
                                 <button className="btn post-button" type="submit" >Post</button>
                               </div> 
@@ -145,7 +139,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { addComment, getPost })(CommentsPage);
 
-//connect(mapStateToProps, { getPost })
 
 
 

@@ -18,13 +18,6 @@ class PostFeed extends Component {
     this.props.getCurrentProfile();
   }
 
-/*   componentWillReceiveProps(nextProps) {
-    if (nextProps.profiles.profile === null && this.props.profiles.profileLoading) {
-      this.props.history.push('/not-found');
-    }
-  } */
-
-//{posts.map(post => postContent)}
   render() {
 
     const { posts, postLoading } = this.props.posts;

@@ -38,9 +38,10 @@ class PostItem extends Component {
       avatar: user.avatar,
       user: user.id,
     }
-
+ 
     this.props.addComment(post._id, newComment)
     this.setState({ text: '' });
+    window.location.reload(false);
   }
 
 
@@ -72,11 +73,12 @@ class PostItem extends Component {
 
   onDeletePostClick(id){
     this.props.deletePost(id);
+   window.location.reload(false);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+  componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+      this.setState({errors: nextProps.errors});
     } 
   }
 
@@ -85,6 +87,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth } = this.props;
+    const { errors } = this.state;
 
     return (
  
@@ -129,7 +132,8 @@ class PostItem extends Component {
         <div className="bookmark-icon"
           onClick={this.onAddRemoveBookmarkClick.bind(this, post._id, post.bookmarks)} 
           type="button">
-          <i className={classnames("far fa-bookmark", {'fas fa-bookmark': this.findUserId(post.bookmarks)})}></i></div>  
+          <i className={classnames("far fa-bookmark", {'fas fa-bookmark': this.findUserId(post.bookmarks)})}></i>
+        </div>  
 
         <div className="likes">{post.likes.length} likes</div>
         <div>
@@ -146,9 +150,11 @@ class PostItem extends Component {
       <div className="input-contanier">
         <form onSubmit={this.onSubmit}>
             <div className="input-group mb-3">
-            
-              <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
-                name="text" value={this.state.text}  onChange={this.onChange} required/>
+              <input type="text" className="comment-input" className={classnames('form-control', {'is-invalid': errors.bio})} placeholder="Add a comment..." 
+                name="text" value={this.state.text}  onChange={this.onChange} autoComplete="off" required/>
+                {errors.text && (
+                  <div className="invalid-feedback"> {errors.text}</div>
+                )}
               <div className="input-group-append">
                 <button className="btn post-button" type="submit" >Post</button>
               </div>
@@ -161,10 +167,6 @@ class PostItem extends Component {
   }
 }
 
-
-/*   PostItem.defaultProps = {
-    showActions: true
-  }; */
   
   PostItem.propTypes = {
     addBookmark: PropTypes.func.isRequired,
