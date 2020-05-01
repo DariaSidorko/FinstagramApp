@@ -81,6 +81,11 @@ body {
     border: none;
   }
 
+  .btn-login-register:focus {
+    background-color: #0095f6;
+    color: white;
+  }
+
   .register-login-input {
     width: 250px;
     height: 35px;
@@ -92,6 +97,11 @@ body {
     border-radius: 3px;
     font-size: 12px; 
   }
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+  }
   
 .password-wrapper {
   position: relative;
@@ -99,18 +109,14 @@ body {
 }
 
 .password-icon-show {
-  /*float: right;*/
-  /*padding: 2px 10px 5px 0;*/
   color: #ff5c5c;
   margin-left: -30px;
   margin-top: 10px;
   position: absolute;
-  
 }
 
+
 .password-icon-hide {
-  /*float: right;*/
-  /*padding: 2px 10px 5px 0;*/
   color: grey;
   margin-left: -30px;
   position: absolute;
@@ -165,30 +171,9 @@ body {
     color: #0095f6;
   }
 
- /*
-  .signup-link {
-  text-decoration: none;
-  cursor: pointer;
-  color: #3897f0;
-  font-weight: bold;
-  }
-  */
-
-  /*
-  .signup {
-    margin-top: 5px;
-  }
-  */
-
   input:focus {
     background-color: #ffffff;
   }
-
-/*   .footer {
-    margin-top: -20px;
-    bottom: 20px;
-  }
- */
 
   @media(min-width: 500px) and (max-width: 665px) {
     .main-content {
@@ -201,11 +186,6 @@ body {
     #backgroundCarousel {
       visibility: hidden;
     }
-/*     .footer {
-      position: absolute;
-      margin-top: 100px;
-      width: 100%;
-    } */
   }
 
   @media(min-width: 666px) and (max-width: 849px) {
@@ -219,10 +199,7 @@ body {
     .carousel-indicators {
       visibility: hidden;
     }
-/*     .footer {
-      position: absolute;
-      width: 100%;
-    } */
+
   }
 
   @media(min-width: 850px) and (max-width: 1000px) {

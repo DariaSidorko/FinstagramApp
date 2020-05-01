@@ -86,7 +86,7 @@ class CreateEditProfile extends Component {
                         <div className="input-lable" >Name</div> 
                       </div> 
                       <div className="col-9">
-                        <input type="email" className="form-control" placeholder={ user.name  } name="email" disabled autoComplete="off"/> 
+                        <input type="email" className="form-control" placeholder={ user.name  } name="email" disabled /> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -94,7 +94,7 @@ class CreateEditProfile extends Component {
                         <div className="input-lable" >Username</div> 
                       </div> 
                       <div className="col-9">
-                        <input type="handle" className="form-control" placeholder={ user.handle } name="handle"  disabled autoComplete="off"/> 
+                        <input type="handle" className="form-control" placeholder={ user.handle } name="handle"  disabled /> 
                       </div>
                     </div>
                     <div className="row input-row">
@@ -103,7 +103,7 @@ class CreateEditProfile extends Component {
                       </div> 
                       <div className="col-9">
                         <input type="website" className={classnames('form-control', {'is-invalid': errors.website})} placeholder={ user.website && user.website }  
-                        name="website" value={this.state.website}  onChange={this.onChange}/> 
+                        name="website" value={this.state.website}  onChange={this.onChange} autoComplete="off" /> 
                           {errors.website && (
                             <div className="invalid-feedback"> {errors.website}</div>
                           )}
@@ -115,7 +115,7 @@ class CreateEditProfile extends Component {
                       </div> 
                       <div className="col-9">
                         <input type="bio" className={classnames('form-control', {'is-invalid': errors.bio})} placeholder={ user.bio && user.bio }  
-                        name="bio" value={this.state.bio}  onChange={this.onChange}/> 
+                        name="bio" value={this.state.bio}  onChange={this.onChange} autoComplete="off" /> 
                         {errors.bio && (
                             <div className="invalid-feedback"> {errors.bio}</div>
                           )}

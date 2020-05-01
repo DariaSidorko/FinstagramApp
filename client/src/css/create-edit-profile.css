@@ -122,8 +122,13 @@ body {
     background-color: #1783e7;
   }
 
+  .submit-btn:active {
+    background-color: #1783e7;
+  }
+
   .submit-btn:focus {
     outline: 0.5rem auto #4d90fe;
+    background-color: #1783e7;
   }
 
   .nav-pills .nav-link.active, .nav-pills .show>.nav-link {

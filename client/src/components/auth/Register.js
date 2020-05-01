@@ -142,6 +142,7 @@ class Register extends Component {
                 <i className = "fas fa-eye-slash password-icon-hide" /> 
               } </i>
           </div>
+
           <input type="submit" value="Sign up" className="btn-login-register" />
 
         </form>
