@@ -8,6 +8,8 @@ const passport = require('passport');
 
 const app = express(); 
 
+const path = require('path');
+
 //Body parser function
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -34,5 +36,13 @@ app.use('/api/profile', profile);
 app.use('/api/posts', post);
 
 
-const port = 8050;
+if (process.env.NODE_ENV === 'production') {
+  //Set static folder and start index.html
+  app.use(express.static('client/build'))
+  app.get('*', (req, ress) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+}
+
+const port = process.env.PORT || 8050;
 app.listen(port, () => console.log(`Server running on port ${port}`));
