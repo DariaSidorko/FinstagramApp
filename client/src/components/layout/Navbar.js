@@ -68,7 +68,7 @@ l
           <Link to="/explore" aria-hidden="true"><i className="fas fa-compass home-btn black" aria-hidden="true"></i></Link>
           <Link to="/likes-comments" className="topnav-like-btn" aria-hidden="true"><i className="fas fa-heart like-btn black" aria-hidden="true"></i></Link>
           <Link to="/dashboard" ><img src={user.avatar} alt={user.name} className="topnav-avatar"/></Link>
-          <a href="/" className="topnav-like-btn" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></a>
+          <a href="" className="topnav-like-btn" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></a>
         </div>
       </div>
     );

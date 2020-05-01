@@ -49,7 +49,7 @@ class Dashboard extends Component {
             </div>
             <div className="profile-bio">
               <div className="profile-real-name">{user.name}  </div> 
-              <div><a href={profile.website} target="_blank">{profile.website}</a></div> 
+              <div><a href={profile.website} >{profile.website}</a></div> 
               <div>{profile.bio}  </div>
             </div>
           </div>
