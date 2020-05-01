@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CommentItem from './CommentItem';
 
-
+/***************** 
+Outputting group of comments for each individual post 
+*****************/
 
 class CommentFeed extends Component {
   render() {

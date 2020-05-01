@@ -9,6 +9,10 @@ import { Link } from 'react-router-dom';
 import { deleteComment } from '../../actions/postActions'
 import moment from 'moment';
 
+/***************** 
+Outputting group of comments for each individual post 
+*****************/
+
 class CommentItem extends Component {
 
 
