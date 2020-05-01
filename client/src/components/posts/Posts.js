@@ -29,8 +29,6 @@ class Posts extends Component {
         userPosts = posts.filter(post => post.user === user.id)
       }
 
-      console.log(userPosts)
-
     return  (!isEmpty(userPosts) ?  userPosts.map(post => <PostItem key={post._id} post={post} />) :
     <div className="post-noposts"> Post your first post or start following other profiles.</div>
     )
@@ -42,8 +40,6 @@ Posts.propTypes  = {
   posts: PropTypes.array.isRequired,
   profiles: PropTypes.object.isRequired
 };
-//(posts.filter(post => profile.followin.filter(follow => follow.user === post.user).length > 0).map(post => <PostItem key={post._id} post={post} />));
-
 
 const mapStateToProps = state => ({
   profiles: state.profile,

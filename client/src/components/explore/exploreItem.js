@@ -30,11 +30,6 @@ class exploreItem extends Component {
 
 exploreItem.propTypes = {
   post: PropTypes.object.isRequired,
-  //auth: PropTypes.object.isRequired
 };
-
-/* const mapStateToProps = state => ({
-  auth: state.auth
-}); */
 
 export default exploreItem;

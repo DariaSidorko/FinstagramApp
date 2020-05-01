@@ -5,7 +5,6 @@ import { Component } from 'react'
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { getPosts } from '../../actions/postActions';
 
@@ -15,23 +14,18 @@ class exploreProfiles extends Component {
 
 
   componentDidMount() {
-    //this.props.getCurrentProfile();
     this.props.getPosts();
   }
-
 
   render() {
     const { posts, postLoading } = this.props.posts;
     let postContent;
   
-    //|| Object.keys(posts).length === 0
     if ( posts === null || postLoading ) {
       postContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
       postContent = <ExplorePosts posts={posts} />
     }
-
-
 
     return (
       <div className="">

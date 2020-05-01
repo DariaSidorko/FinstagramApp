@@ -43,6 +43,10 @@ body {
 
 /* Profile Section */
 
+.profile-wrapper {
+  padding-bottom: 60px;
+}
+
 .profile {
   padding: 10px 0;
 }
@@ -59,7 +63,9 @@ body {
   float: left;
 }
 
-.profile-user-settings {
+
+
+.test {
   
 }
 

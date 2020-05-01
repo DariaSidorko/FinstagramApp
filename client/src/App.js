@@ -18,6 +18,8 @@ import Comments from './components/comments/CommentsPage';
 import Profile from './components/profile/Profile';
 import Explore from './components/explore/exploreProfiles';
 import LikesCommentsFeed from './components/likes-and-comments/likesCommentsFeed'
+import NotFound from './components/not-found/NotFound';
+
 
 import PrivateRoute from './components/common/PrivateRoute';
 
@@ -37,7 +39,7 @@ if(localStorage.jwtToken){
     //logout
     store.dispatch(logoutUser());
     //redirect user to the login page
-    window.location.href = '/';
+    window.location.href = '/login';
   }
   //set auth header
   setAuthToken(localStorage.jwtToken);
@@ -67,6 +69,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/explore" component={Explore} />
+
                 <Route exact path="/comments/:id" component={Comments} ></Route>
               <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
@@ -82,6 +85,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/likes-comments" component={LikesCommentsFeed} ></PrivateRoute>
               </Switch>
+              <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
           </div>

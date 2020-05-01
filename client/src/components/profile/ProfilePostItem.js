@@ -3,10 +3,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class DashboardPostItem extends Component {
+class ProfiledPostItem extends Component {
   render() {
     const { post } = this.props;
-
     return (
       
           <div className="gallery-item" >
@@ -24,13 +23,12 @@ class DashboardPostItem extends Component {
             </div> 
             </Link>
           </div> 
-          
     )
   }
 }
 
-DashboardPostItem.propTypes = {
+ProfiledPostItem.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-export default DashboardPostItem;
+export default ProfiledPostItem;

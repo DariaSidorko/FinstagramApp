@@ -14,13 +14,10 @@ import {
 
 // Get all the posts
 export const getPosts = () => dispatch => {
-  console.log("Got Here")
   dispatch(setPostLoading());
-  console.log(setPostLoading())
   axios
     .get('api/posts')
     .then(res => {
-      console.log("RES: ", res)
       dispatch({
         type: GET_POSTS,
         payload: res.data
@@ -34,6 +31,29 @@ export const getPosts = () => dispatch => {
       })
     )
 }
+
+
+// Get all the posts
+export const getPostsPublic = (handle) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`api/posts/handle/${handle}`)
+    .then(res => {
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      })
+    }
+    )
+    .catch(err =>    
+      dispatch({
+        type: GET_POSTS,
+        payload: null
+      })
+    )
+}
+
+
 
 
 // Get 1 post by ID
@@ -92,7 +112,7 @@ export const addPost = (postData, history) => dispatch => {
 
 
 // Delet post
-export const deletePost = (postId, commentId) => dispatch => {
+export const deletePost = (postId) => dispatch => {
   dispatch(clearErrors());
   axios
     .delete(`/api/posts/${postId}`)

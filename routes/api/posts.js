@@ -10,17 +10,30 @@ const Profile = require('../../models/Profile');
 
 // Validation
 const validatePostInput = require('../../validation/post');
+const isEmpty = require('../../validation/is-empty');
 
 // @route   GET api/posts
 // @desc    Get ALL posts
 // @access  Public
 router.get("/", (req, res) => {
-  console.log("At the server")
   Post.find()
     .sort({date: -1})
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({nopostsfound: "No posts found"}));
 })
+
+
+// @route   GET api/posts
+// @desc    Get ALL posts
+// @access  Public
+router.get("/handle/:handle", (req, res) => {
+  Post.find()
+    .sort({date: -1})
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404).json({nopostsfound: "No posts found"}));
+})
+
+
 
 
 // @route   GET api/posts/:id
@@ -260,15 +273,16 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     //const { errors, isValid } = validatePostInput(req.body);
-
+    console.log("Got here!", req.body.text)
     // Check Validation
-   /*  if (!isValid) {
-      
+    if (isEmpty(req.body.text)) {
+      let errors = {
+        text: "This field is required"
+      }
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
-    } */
+    } 
 
-    console.log("Got Here!")
     Post.findById(req.params.id)
       .then(post => {
         const newComment = {
@@ -281,7 +295,6 @@ router.post(
 
         // Add to comments array
         post.comments.unshift(newComment);
-        console.log(newComment)
         // Save
         post.save().then(post => res.json(post));
       })
@@ -422,11 +435,6 @@ router.get (
 
 /*  ******* NEW FOLLOWING PART  - END *******  */
 
-/* 
-db.bios.find(
-  { _id: { $in: [ 5, ObjectId("507c35dd8fada716c89d0013") ] } }
-) 
-*/
 
 
 module.exports = router;

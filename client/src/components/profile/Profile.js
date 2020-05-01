@@ -6,34 +6,41 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import  isEmpty  from '../../validation/is-empty'
 import { getProfileByHandle, follow, unfollow } from '../../actions/profileActions';
-import { getPosts } from '../../actions/postActions';
+
+import ProfilePostItem from './ProfilePostItem'
 
 
 
 class Profile extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.onFollowUnfollowClick.bind(this);
     this.findUserId.bind(this);
   }
-  
 
+  saveStateToLocalStorage() {
+    const posts = this.props.post.posts;    
+    // save to localStorage
+    localStorage.setItem("posts", JSON.stringify(posts));
+    
+  }
+  
   componentDidMount() {
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
-    this.props.getPosts();
+    if (!isEmpty(this.props.post.posts)){
+      this.saveStateToLocalStorage.bind(this)
+    }
   }
 
   onFollowUnfollowClick(params, id, handle) {
-    //console.log(params)
     if (this.findUserId(params)) {
-      console.log("GOT TO HERE")
       this.props.unfollow(id, handle);
     } else {
-      console.log("OR HERE")
       this.props.follow(id, handle);
       
     } 
@@ -42,8 +49,6 @@ class Profile extends Component {
  // Checking for user Id in likes and bookmarks
   findUserId(params) {
     const { user } = this.props.auth;
-    //console.log(user)
-    //console.log(params.filter(param => param.user === user.id).length > 0)
     if (params.filter(param => param.user === user.id).length > 0) {
       return true;
     } else {
@@ -51,35 +56,60 @@ class Profile extends Component {
     }
   }
 
-
     componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
       this.props.history.push('/not-found');
     }
   }  
-  //auth.isAuthenticated === true ? 
   
   render() {
     const  { profile, profileLoading } = this.props.profile;
-    //const { posts, postLoading } = this.props.post;
     const { user } = this.props.auth;
     let profileContent, postContent;
-    
-    //console.log("User: : ", this.props.auth.isAuthenticated)
-    //profile === null ||
+
+
+    let userPosts = localStorage.getItem("posts");
+    userPosts = JSON.parse(userPosts);
+
+    if (!isEmpty(userPosts)){
+      userPosts = userPosts.filter(post => post.handle === this.props.match.params.handle);
+    postContent = 
+    <div className="dashboard-post-containier">
+      <ul className="nav nav-tabs dashboard-post-containier" id="myTab" role="tablist">
+        <li className="nav-item">
+          <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+          <i className="fas fa-border-all tab-icons"></i>
+            POSTS</a>
+        </li>
+      </ul>
+      <div className="tab-content" id="myTabContent">
+        <div className="tab-pane fade show active dashboard-nav-tabs" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div className="gallery">
+            {!isEmpty(userPosts)?  
+              userPosts.map(post => <ProfilePostItem key={post._id} post={post} />) :
+            < div className="gallery-noposts"> You have no posts. Create your first post.</div>
+              }
+            </div>
+        </div>
+      </div>
+    </div>
+
+    } else {
+      postContent = <div>No posts loaded</div>
+    }
+
     if ( profile === null || profileLoading) {
-      console.log(profile)
       profileContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
       profileContent = (
         <div className="top-wrapper">
-          <div className="row">
+          <div className="row profile-wrapper">
             <div className="col-4 profile-avatar ">
               <img src={profile.user.avatar} alt="" />
             </div>
-            <div className="col-8">
-            <div className="row profile-user-settings">
-                <div className="profile-user-name">{this.props.match.params.handle}</div>
+            <div className="">
+              <div className="profile-user-settings">
+                <span className="profile-user-name">{this.props.match.params.handle}</span>
                 {this.props.auth.isAuthenticated ? user.handle === this.props.match.params.handle ?
                   <Link to="/edit-profile" className="btn profile-edit-btn">Edit Profile</Link> : 
                   
@@ -90,11 +120,12 @@ class Profile extends Component {
                   : undefined}
               </div>
               <br></br>
-              <div className="row profile-stats">
-                  <div className="profile-stat"><span className="profile-stat-count">164</span> posts</div>
+              <div className="profile-stats">
+                  <div className="profile-stat"><span className="profile-stat-count">{userPosts !== undefined && userPosts.length}</span> posts</div>
                   <div className="profile-stat"><span className="profile-stat-count">{profile.followers !== undefined && profile.followers.length }</span> followers</div>
                   <div className="profile-stat"><span className="profile-stat-count">{profile.following !== undefined && profile.following.length }</span> following</div>
               </div>
+              <br></br>
               <div className="profile-bio">
                 <div className="profile-real-name">{profile.user.name}</div> 
                 <div>{profile.bio}</div>
@@ -103,16 +134,7 @@ class Profile extends Component {
           </div>
         </div>  
       )
-
-      
     }
-
-   /*  if (posts === null || postLoading || Object.keys(posts).length === 0) {
-      postContent = (<div className="loader"></div>)
-    } else {
-
-      postContent = (<div></div>)    }   */
-
 
     return (
       <div>
@@ -120,28 +142,25 @@ class Profile extends Component {
           {profileContent}
       </header>
       <main>
-
+        {postContent}
       </main>
       </div>
     )
   }
 }
 
- //{postContent}
 
  Profile.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
-  getPosts: PropTypes.func.isRequired,
   follow: PropTypes.func.isRequired,
   unfollow: PropTypes.func.isRequired,
-  //posts: PropTypes.array.isRequired,
-  //profile: PropTypes.object.isRequired,
+  post: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  posts: state.post
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getProfileByHandle, getPosts, follow, unfollow })(Profile);
+export default connect(mapStateToProps, { getProfileByHandle, follow, unfollow })(Profile);

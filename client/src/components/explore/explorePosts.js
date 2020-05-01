@@ -10,12 +10,12 @@ class explorePosts extends Component {
     const { posts } = this.props;
     const { user } = this.props.auth;
 
-    return posts.filter(post => post.user != user.id).map(post => <ExploreItem key={post._id} post={post} />)
+    return posts.filter(post => post.user !== user.id).map(post => <ExploreItem key={post._id} post={post} />)
     
   }
 }
 
-explorePosts .propTypes = {
+explorePosts.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
@@ -24,5 +24,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {})(explorePosts);
-
-//posts.map(post => <ExploreItem key={post._id} post={post} />)
