@@ -18,11 +18,12 @@ import Comments from './components/comments/CommentsPage';
 import Profile from './components/profile/Profile';
 import Explore from './components/explore/exploreProfiles';
 import LikesCommentsFeed from './components/likes-and-comments/likesCommentsFeed'
-import Emoji from './components/posts/Emoji';
+import Emoji from './components/emoji/src/index';
 import PrivateRoute from './components/common/PrivateRoute';
 import setAuthToken from './utils/setAuthToken';
 import { logoutUser } from './actions/authActions';
 import { SET_CURRENT_USER } from './actions/types';
+import {EMOJI_DATASOURCE_VERSION} from './actions/types';
 
 
 
