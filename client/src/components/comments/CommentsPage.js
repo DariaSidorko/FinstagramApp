@@ -104,7 +104,7 @@ Outputting group of comments for each individual post
                             {postContent}
                           </div>    
                           
-                          <form className="comments-sidebar-input" onSubmit={this.onSubmit}>
+                          {/* <form className="comments-sidebar-input" onSubmit={this.onSubmit}>
                             <div className="input-group mb-3">                        
                               <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
                               name="text" value={this.state.text}  onChange={this.onChange} required autoComplete="off"/>
@@ -113,7 +113,7 @@ Outputting group of comments for each individual post
                               </div> 
                             </div>
                           </form>
-
+                          */}
                         </div>
                       </div>    
                         
