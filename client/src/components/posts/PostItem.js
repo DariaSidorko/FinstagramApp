@@ -13,8 +13,8 @@ import moment from 'moment';
 
 class PostItem extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: '',
       errors: {}
@@ -60,7 +60,7 @@ class PostItem extends Component {
   onLikeDislikeClick(id, likes) {
     if (this.findUserId(likes)) {
       this.props.removeLike(id);
-    } else {
+    } else {;
       this.props.addLike(id);
     }
   }
@@ -86,7 +86,7 @@ class PostItem extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
-    }
+    } 
   }
 
  render() {
@@ -97,10 +97,16 @@ class PostItem extends Component {
     <div className=" col-8 post">
       <div className="post-header">
         { auth.isAuthenticated && auth.user.handle === post.handle ? 
-          <Link to="/dashboard"><img src={ post.avatar } alt="avatar" /></Link> :
-          <Link to={`/profile/${post.handle}`}><img src={ post.avatar } alt="avatar" /></Link>
+          <Link className="avatar-username-link" to="/dashboard">
+            <img src={ post.avatar } alt="avatar" />
+            <div className="username">{ post.handle }</div>
+          </Link> :
+          <Link className="avatar-username-link" to={`/profile/${post.handle}`}>
+            <img src={ post.avatar } alt="avatar" />
+            <div className="username">{ post.handle }</div>
+          </Link>
         }
-        <div className="username">{ post.handle }</div>
+        
 
         {post.user === auth.user.id ? (
               <div
@@ -159,16 +165,16 @@ class PostItem extends Component {
         </Link>
       </div>  
       <div className="input-contanier">
-      <form onSubmit={this.onSubmit}>
-          <div className="input-group mb-3">
-          
-            <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
-              name="text" value={this.state.text}  onChange={this.onChange} required/>
-            <div className="input-group-append">
-              <button className="btn post-button" type="submit" >Post</button>
+        <form onSubmit={this.onSubmit}>
+            <div className="input-group mb-3">
+            
+              <input type="text" className="form-control comment-input" placeholder="Add a comment..." 
+                name="text" value={this.state.text}  onChange={this.onChange} required/>
+              <div className="input-group-append">
+                <button className="btn post-button" type="submit" >Post</button>
+              </div>
             </div>
-          </div>
-          </form>
+        </form>
       </div>
     </div>
 

@@ -45,9 +45,9 @@ class CreateEditProfile extends Component {
     this.props.updateProfile(userData, this.props.history)
   }
 
+  //<a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</a>
 
-/* <input type="email" className={classnames('form-control', {'is-invalid': errors.email})} 
-placeholder="Email" name="email" value={this.state.email}  onChange={this.onChange}  /> */
+
   render() {
     const { user } = this.props.auth;
 
@@ -60,8 +60,8 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
           <div className="row">
             <div className="col-3 side-bar">
               <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a className="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Edit Profile</a>
-                <a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</a>
+                <a className="nav-link active profile-nav-link " id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Edit Profile</a>
+
               </div>
             </div>
             <div className="col-8 main-form">
@@ -130,9 +130,6 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
         </div>
         </div>
 
-
-
-        
       </div>
   
     )

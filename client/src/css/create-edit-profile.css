@@ -67,13 +67,17 @@ body {
     color: #acacac;
   }
 
+  .post-form-username {
+    font-weight: 600;
+  }
+
   .input-row {
     width: 90%;
     padding: 6px 0px;
   }
   
  .main-form {
-   padding: 0px 80px;
+   padding: 40px 30px;
  }
 
  .input-lable-wrapper{
@@ -87,17 +91,17 @@ body {
    width: 100%;
    height: 38px;
    margin-bottom: 5px;
-   padding: 8px 12px;
-   border: 1px solid #dbdbdb;
+ 
    box-sizing: border-box;
    border-radius: 3px;
  }
 
   .form-control {
-    padding: 0 10px;
-    font-size: 14px;
+    padding: 10px 10px;
+    font-size: 16px;
     font-weight: 400;
   }
+
 
   .submit-btn-row {
     padding-top: 30px;
@@ -120,6 +124,18 @@ body {
 
   .submit-btn:focus {
     outline: 0.5rem auto #4d90fe;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #262626;
+    background-color: #ffff;
+  }
+
+  .profile-nav-link {
+    margin: 0 40px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
   }
   /*
   .fogot-pass{

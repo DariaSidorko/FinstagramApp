@@ -3,6 +3,8 @@ import '../../css/post-feed.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { getPosts } from '../../actions/postActions'
 import { getCurrentProfile } from '../../actions/profileActions'
 import  isEmpty  from '../../validation/is-empty'
@@ -34,7 +36,7 @@ class PostFeed extends Component {
     if (posts === null || postLoading ||  profile === null || profileLoading ) {
 
 
-      postContent = <div className="loader"></div>;
+      postContent = <div className="post-loader"><div className="spinner-grow text-secondary" role="status"></div></div>;
     } else if (isEmpty(posts) || isEmpty(profile)) {
       postContent = <div></div>
     } else {
@@ -46,12 +48,18 @@ class PostFeed extends Component {
         <div className="post-contanier">
           <div className="row">
             {postContent}
-            
-            <div className="col-4">
-              <div className="side-bar-header">
-                <img src={ user.avatar } alt="avatar" />
-                <div className="username">{ user.handle }</div>
-              </div>     
+            <div className="fixed">
+             
+              <div className="row post-side-bar">
+              <Link className="avatar-username-link" to="/dashboard">
+                <img className="row post-side-avatar" src={ user.avatar } alt="avatar" />
+              </Link>
+                <div className="col">
+                  <div className="post-side-username">{ user.handle }</div>
+                  <div className="post-side-name">{ user.name }</div>
+                </div>
+              </div>  
+                 
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import '../../css/profile.css';
+import '../../css/explore.css';
 
 import { Component } from 'react'
 import React from 'react';
@@ -25,17 +26,20 @@ class exploreProfiles extends Component {
   
     //|| Object.keys(posts).length === 0
     if ( posts === null || postLoading ) {
-      postContent = (<div className="loader"></div>)
+      postContent = (<div className="d-flex justify-content-center loader"><div className="spinner-grow text-secondary" role="status"></div></div>)
     } else {
-      console.log("POSTS: ", this.props.posts)
       postContent = <ExplorePosts posts={posts} />
     }
 
 
 
     return (
-      <div>
-        {postContent}
+      <div className="">
+        <div className="top-wrapper">
+          <div className="gallery">
+            {postContent}
+          </div>
+        </div>
       </div>
     )
   }

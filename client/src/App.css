@@ -1,0 +1,54 @@
+.top-wrapper {
+  max-width: 70%;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+
+.footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  height: 20px;
+  text-align: center;
+  color: grey;
+}
+
+.form-control:focus {
+  border-color: #ffffff;
+  box-shadow: inset 0 1px 1px #ffffff, 0 0 0px #ffffff;
+}
+
+/* Loader */
+
+.loader {
+  min-height: 700px;
+  padding-top: 30%;
+}
+
+.post-loader{
+  min-height: 700px;
+  padding-top: 30%;
+  margin: auto;
+}
+
+Link {
+  color: #262626;
+}
+
+Link:hover {
+  text-decoration: underline; 
+  text-decoration-color: white;
+}
+
+.avatar-username-link {
+  text-decoration: underline; 
+  text-decoration-color: white;
+  color: #262626;
+}
+
+.avatar-username-link:hover {
+  text-decoration: underline; 
+  text-decoration-color: white;
+  color: #262626;
+}

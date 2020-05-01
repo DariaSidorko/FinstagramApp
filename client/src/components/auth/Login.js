@@ -62,6 +62,16 @@ class Login extends Component {
   // **********visible-invisible password*******
 
 
+    // **************password visible-invisible**********
+    state = {
+      isPasswordShown: false
+    }
+    togglePasswordVisibility = () =>{
+      const {isPasswordShown} = this.state;
+      this.setState ({isPasswordShown :!isPasswordShown});
+    }
+    // **************************************************
+
   render() {
     const {errors} = this.state; 
     // **********visible-invisible password*******
@@ -72,7 +82,7 @@ class Login extends Component {
       <div className="wrapper">
 
 
-        <div id="backgroundCarousel" className="carousel slide" data-ride="carousel">
+        <div id="backgroundCarousel" className="carousel slide carousel-fade" data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
             <li data-target="#backgroundCarousel" data-slide-to="1"></li>
@@ -97,8 +107,6 @@ class Login extends Component {
             </div>
           </div>
           </div>
-
-
 
         <div className="main-content">
           <div className="header">

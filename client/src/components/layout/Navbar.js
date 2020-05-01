@@ -76,7 +76,7 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
           <Link to="/explore" aria-hidden="true"><i className="fas fa-compass home-btn black" aria-hidden="true"></i></Link>
           <Link to="/likes-comments" className="topnav-like-btn" aria-hidden="true"><i className="fas fa-heart like-btn black" aria-hidden="true"></i></Link>
           <Link to="/dashboard" ><img src={user.avatar} alt={user.name} className="topnav-avatar"/></Link>
-          <a href="" className="topnav-like-btn" aria-hidden="true" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></a>
+          <a href="/login" className="topnav-like-btn" aria-hidden="true" onClick={this.onLogoutClick.bind(this)}><i className="fas fa-sign-out-alt logout-btn black" aria-hidden="true"></i></a>
         </div>
       </div>
     );
@@ -89,6 +89,27 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
       
 
 
+
+</div>
+    )
+  }
+}
+
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, {logoutUser, addPost})(Navbar);
+
+
+/*
 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content">
@@ -113,23 +134,9 @@ placeholder="Email" name="email" value={this.state.email}  onChange={this.onChan
     </div>
   </div>
 </div>
-</div>
-    )
-  }
-}
+*/
 
-Navbar.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  addPost: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-}
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(mapStateToProps, {logoutUser, addPost})(Navbar);
 
 
 /*

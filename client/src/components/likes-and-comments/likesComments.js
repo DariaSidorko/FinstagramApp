@@ -41,10 +41,10 @@ class likesComments extends Component {
           }
         } 
 
-        for (let j=0; j < posts.posts[i].comments.length; j++){     
+        for (let j=0; j < posts.posts[i].comments.length; j++){  
+            
           let days = (moment(posts.posts[i].comments[j].date).startOf('day').fromNow()).split(' '); 
- 
-          if (days[0] === 'a' || days[0] < 8){
+          if (days[0] === 'a' || days[0] < 10){
           
           let obj = {
               _id:  posts.posts[i].comments[j]._id,
@@ -69,43 +69,45 @@ class likesComments extends Component {
     })
 
     userComments.sort(function(a,b){
-      if (a.date > b.date) return 1;
-      if (a.date < b.date) return -1;
+      if (a.date < b.date) return 1;
+      if (a.date > b.date) return -1;
       return 0;
     })
 
 
     
 
-    //console.log("LIKES: ", userLikes);
+    //console.log("LIKES: ", userComments);
 
 
 
     let likesContent = userLikes.map((like, index) => (
       <div key={index} >
-        <Link to={`/comments/${like.post_id}`}>
+        <Link to={`/comments/${like.post_id}`} className="likes-comments-string">
         <span><img className="likes-comments-img" src={like.image} /></span>
-        <span>{like.text}</span> 
-        <span>- {moment(like.date).startOf('hour').fromNow()}</span> 
+        <span className="likes-comments-generic-text"> received new like on this image</span> 
+        <span className="likes-comments-date"> - {moment(like.date).startOf('hour').fromNow()}</span> 
         </Link>
         <hr></hr>
       </div>) )
 
     let commentsContent = userComments.map((comment, index) => (
       <div key={index}>
-        <Link to={`/comments/${comment.post_id}`}>
+        <Link to={`/comments/${comment.post_id}`} className="likes-comments-string">
         <span><img className="likes-comments-img" src={comment.image} /></span>
-        <span>{comment.text}</span> 
-        <span>- {moment(comment.date).startOf('hour').fromNow()}</span> 
+        <span className="likes-comments-handle"> <a className="likes-comments-handle" href={`/profile/${comment.handle}`}> {comment.handle} </a></span> 
+        <span className="likes-comments-generic-text"> comented:</span>        
+        <span className="likes-comments-comment"> "{comment.text}"</span> 
+        <span className="likes-comments-date"> - {moment(comment.date).startOf('hour').fromNow()}</span> 
         </Link>
         <hr></hr>
         </div>) )
 
     return <div>
-        <p>Likes:</p>
-        {likesContent}
-        <p>Comments:</p>
+        <div className="likes-comments-header">New comments for the past week:</div>
         {commentsContent}
+        <div className="likes-comments-header">New likes for the past week:</div>
+        {likesContent}
       </div>
   }
 }
@@ -121,7 +123,7 @@ likesComments.propTypes  = {
 const mapStateToProps = state => ({
   //profiles: state.profile,
   auth: state.auth,
-  //post: state.posts
+  post: state.posts
 });
 
 
