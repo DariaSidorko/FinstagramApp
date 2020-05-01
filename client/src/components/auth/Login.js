@@ -72,7 +72,9 @@ class Login extends Component {
       <div className="wrapper">
 
 
+
         <div id="backgroundCarousel" className="carousel slide " data-ride="carousel">
+
           <ol className="carousel-indicators">
             <li data-target="#backgroundCarousel" data-slide-to="0" className="active"></li>
             <li data-target="#backgroundCarousel" data-slide-to="1"></li>
@@ -112,8 +114,7 @@ class Login extends Component {
               errors = {errors.email}
             />
             </div>
-            <div>
-
+            <div className="password-wrapper">
             <TextFieldGroup 
               placeholder="Password"
               name = "password" 
@@ -122,13 +123,13 @@ class Login extends Component {
               onChange = {this.onChange}
               errors = {errors.password}
             />
-
+            
             <i onClick= {this.togglePasswordVisibility}>
               {isPasswordShown ? 
                 <i className = "far fa-eye password-icon-show" /> :
                 <i className = "fas fa-eye-slash password-icon-hide" /> 
               } </i>
-
+            
             </div>
           <input type="submit" value="Log in" className="btn-login-register" />
 
