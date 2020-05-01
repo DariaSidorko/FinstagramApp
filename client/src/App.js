@@ -50,25 +50,25 @@ if(localStorage.jwtToken){
 
 
 }
-
-//<Route exact path="/profile/:handle" component={Profile} />
-//<Route exact path="/profiles" component={Profiles} />
 class App extends Component {
   render() {
+    
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
             <Navbar />
-            <Emoji symbol="🐑" label="sheep"/>
+           
 
             <Route exact path="/" component={Login} /> 
             <div className="">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/explore" component={Explore} />
                 <Route exact path="/comments/:id" component={Comments} ></Route>
+              
               <PrivateRoute exact path="/post-feed" component={PostFeed} ></PrivateRoute>
               <Switch>
               <Route exact path="/dashboard" component={Dashboard} />

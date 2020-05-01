@@ -99,9 +99,17 @@ class likesComments extends Component {
         <span className="likes-comments-generic-text"> comented:</span>        
         <span className="likes-comments-comment"> "{comment.text}"</span> 
         <span className="likes-comments-date"> - {moment(comment.date).startOf('hour').fromNow()}</span> 
+        <div className="emoji"> 
+      
+        <span aria-label="a rocket blasting off" role="img">🚀</span>
+          <span aria-hidden="true" role="img">🤫</span>
+          <span role="img" aria-label="sheep">🐑</span>
+          </div>
+    
         </Link>
         <hr></hr>
         </div>) )
+        
 
     return <div>
         <div className="likes-comments-header">New comments for the past week:</div>

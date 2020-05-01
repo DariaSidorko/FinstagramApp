@@ -75,8 +75,8 @@ class PostItem extends Component {
   onDeletePostClick(id){
     this.props.deletePost(id);
   }
-  onAddRmoveEmojiClick(id, emoji){
-    if(this.findUserId(emoji)) {
+  onAddRmoveEmojiClick(id, emojis){
+    if(this.findUserId(emojis)) {
       this.props.removeEmoji(id);
     } else {
       this.props.addEmoji(id);
@@ -139,18 +139,20 @@ class PostItem extends Component {
 
         <div className="likes">{post.likes.length} likes</div>
         
-    
-        <div className="emoji"
-          onClick={this.onAddRemoveEmojiClick.bind(this, post.emojis)} 
-          type="button">
-          <i className={classnames('far fa-imoji', {'fas fa-emoji': this.findUserId(post.emoji)})}></i></div>
-        
-        <div className="emoji"> {post.emojis.length} emojis
+      
+        <div className="emoji">
       
         <span aria-label="a rocket blasting off" role="img">🚀</span>
+        <i class="twa twa-railway-car"></i>
           <span aria-hidden="true" role="img">🤫</span>
           <span role="img" aria-label="sheep">🐑</span>
-          </div>
+          <span role="img" aria-label="time"> 🔢</span>
+          <span role="img" aria-label= "100">💯</span>
+          <span role="img" aria-label="joy">😀</span>
+          <span role="img" aria-label="angry">😬</span>
+          <span role="img" aria-label="laugh">😁</span>
+          <span role="img" aria-label="doublelaugh">😂</span>
+        </div>
     
         
       <div>

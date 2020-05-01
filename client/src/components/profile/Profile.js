@@ -89,6 +89,18 @@ class Profile extends Component {
                     {this.findUserId(profile.followers) ? "Unfollow" : "Follow"}</div>
                   : undefined}
               </div>
+              <div className="emoji">
+      
+        <span aria-label="a rocket blasting off" role="img">🚀</span>
+          <span aria-hidden="true" role="img">🤫</span>
+          <span role="img" aria-label="sheep">🐑</span>
+          <span role="img" aria-label="time"> 🔢</span>
+          <span role="img" aria-label= "100">💯</span>
+          <span role="img" aria-label="joy">😀</span>
+          <span role="img" aria-label="angry">😬</span>
+          <span role="img" aria-label="laugh">😁</span>
+          <span role="img" aria-label="doublelaugh">😂</span>
+        </div>
               <br></br>
               <div className="row profile-stats">
                   <div className="profile-stat"><span className="profile-stat-count">164</span> posts</div>
