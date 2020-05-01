@@ -143,14 +143,14 @@ class PostItem extends Component {
         <div className="timestamp">{moment(post.date).startOf('hour').fromNow()}</div>
 
         <Link to={`/comments/${post._id}`}>
-        { post.comments.length === 1 && ( <div className="comments">View {post.comments.length} comment...</div>)}
-        { post.comments.length > 1  && <div className="comments">View all {post.comments.length} comments...</div> || ""}
+        { post.comments.length === 1 ? ( <div className="comments">View {post.comments.length} comment...</div>) : undefined}
+        { post.comments.length > 1  ? <div className="comments">View all {post.comments.length} comments...</div> : ""}
         </Link>
       </div>  
       <div className="input-contanier">
         <form onSubmit={this.onSubmit}>
             <div className="input-group mb-3">
-              <input type="text" className="comment-input" className={classnames('form-control gallery-form-control', {'is-invalid': errors.bio})} placeholder="Add a comment..." 
+              <input type="text" className={classnames('form-control gallery-form-control comment-input', {'is-invalid': errors.bio})} placeholder="Add a comment..." 
                 name="text" value={this.state.text}  onChange={this.onChange} autoComplete="off" required/>
                 {errors.text && (
                   <div className="invalid-feedback"> {errors.text}</div>
