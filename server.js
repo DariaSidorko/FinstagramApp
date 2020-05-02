@@ -29,7 +29,7 @@ mongoose.connect(db,  { useNewUrlParser: true })
 .catch(err => console.log(err))
 
 //first route
-//app.get('/', (req, res) => res.send('Hello'));
+app.get('/', (req, res) => res.send('Hello'));
 
 app.use('/api/users', users);
 app.use('/api/profile', profile);
