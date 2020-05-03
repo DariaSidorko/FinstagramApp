@@ -86,7 +86,7 @@ class likesComments extends Component {
         <span><img className="likes-comments-img" src={comment.image} alt="" /></span>
         </Link>
         <span className="likes-comments-handle"> <Link className="likes-comments-handle" to={`/profile/${comment.handle}`}> {comment.handle} </Link></span> 
-        <span className="likes-comments-generic-text"> comented:</span>        
+        <span className="likes-comments-generic-text"> commented:</span>        
         <span className="likes-comments-comment"> "{comment.text}"</span> 
         <span className="likes-comments-date"> - {moment(comment.date).startOf('hour').fromNow()}</span> 
         
