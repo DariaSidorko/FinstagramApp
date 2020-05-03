@@ -23,6 +23,7 @@ require('./config/passport')(passport);
 //DB config
 const db = require('./config/keys').mongoURI;
 
+
 //connect to mongodb
 mongoose.connect(db,  { useNewUrlParser: true })
 .then(() => console.log('MongoDB connected!'))
