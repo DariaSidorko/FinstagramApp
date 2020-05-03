@@ -23,13 +23,14 @@ require('./config/passport')(passport);
 //DB config
 const db = require('./config/keys').mongoURI;
 
+
 //connect to mongodb
 mongoose.connect(db,  { useNewUrlParser: true })
 .then(() => console.log('MongoDB connected!'))
 .catch(err => console.log(err))
 
 //first route
-app.get('/', (req, res) => res.send('Hello'));
+//app.get('/', (req, res) => res.send('Hello'));
 
 app.use('/api/users', users);
 app.use('/api/profile', profile);
@@ -46,3 +47,4 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 8050;
 app.listen(port, () => console.log(`Server running on port ${port}`));
+//heroku logs --tail

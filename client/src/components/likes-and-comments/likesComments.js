@@ -22,7 +22,7 @@ class likesComments extends Component {
         for (let j=0; j < posts.posts[i].likes.length; j++){        
           let days = (moment(posts.posts[i].likes[j].date).startOf('day').fromNow()).split(' '); 
           let minutes = (moment(posts.posts[i].likes[j].date).startOf('hour').fromNow()).split(' '); 
-          if (days[0] === 'a' || days[0] < 8 || minutes[1] === 'minutes'){
+          if (days[0] === 'a' || days[0] < 8 || minutes[1] === 'minutes' || minutes[1] === 'hours' || minutes[1] === 'hour'){
 
           let obj = {
               _id:  posts.posts[i].likes[j]._id,
@@ -40,7 +40,7 @@ class likesComments extends Component {
             
           let days = (moment(posts.posts[i].comments[j].date).startOf('day').fromNow()).split(' '); 
           let minutes = (moment(posts.posts[i].comments[j].date).startOf('hour').fromNow()).split(' '); 
-          if (days[0] === 'a' || days[0] < 10 || minutes[1] === 'minutes'){
+          if (days[0] === 'a' || days[0] < 10 || minutes[1] === 'minutes'|| minutes[1] === 'hours' || minutes[1] === 'hour'){
           
           let obj = {
               _id:  posts.posts[i].comments[j]._id,
@@ -86,7 +86,7 @@ class likesComments extends Component {
         <span><img className="likes-comments-img" src={comment.image} alt="" /></span>
         </Link>
         <span className="likes-comments-handle"> <Link className="likes-comments-handle" to={`/profile/${comment.handle}`}> {comment.handle} </Link></span> 
-        <span className="likes-comments-generic-text"> comented:</span>        
+        <span className="likes-comments-generic-text"> commented:</span>        
         <span className="likes-comments-comment"> "{comment.text}"</span> 
         <span className="likes-comments-date"> - {moment(comment.date).startOf('hour').fromNow()}</span> 
         
