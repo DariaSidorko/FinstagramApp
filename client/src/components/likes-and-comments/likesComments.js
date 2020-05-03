@@ -22,7 +22,7 @@ class likesComments extends Component {
         for (let j=0; j < posts.posts[i].likes.length; j++){        
           let days = (moment(posts.posts[i].likes[j].date).startOf('day').fromNow()).split(' '); 
           let minutes = (moment(posts.posts[i].likes[j].date).startOf('hour').fromNow()).split(' '); 
-          if (days[0] === 'a' || days[0] < 8 || minutes[1] === 'minutes'){
+          if (days[0] === 'a' || days[0] < 8 || minutes[1] === 'minutes' || minutes[1] === 'hours'){
 
           let obj = {
               _id:  posts.posts[i].likes[j]._id,
